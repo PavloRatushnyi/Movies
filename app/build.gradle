@@ -53,6 +53,6 @@ dependencies {
     implementation libs.activity.compose
     implementation libs.hilt
     kapt libs.hilt.compiler
-    testImplementation libs.junit
+
     debugImplementation libs.compose.tooling
 }

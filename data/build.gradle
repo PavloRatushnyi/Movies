@@ -1,6 +1,11 @@
+buildscript {
+    apply from: './variables.gradle'
+}
+
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -12,6 +17,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField 'String', 'TMDB_API_KEY', tmdbApiKey
     }
 
     buildTypes {
@@ -20,11 +27,30 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
 }
 
 dependencies {
 
     implementation project(':domain')
 
-    testImplementation libs.junit
+    implementation libs.coroutines
+    implementation libs.hilt.core
+    kapt libs.hilt.compiler
+    implementation libs.moshi
+    kapt libs.moshi.codegen
+    implementation libs.retrofit
+    implementation libs.retrofit.moshi
+    implementation libs.okhttp
+    implementation libs.okhttp.logging
+
+    testImplementation libs.junit.api
+    testRuntimeOnly libs.junit.engine
+    testImplementation libs.mockito
+    testImplementation libs.turbine
 }
