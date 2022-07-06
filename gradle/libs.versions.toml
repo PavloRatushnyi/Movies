@@ -4,6 +4,7 @@ compose = "1.1.1"
 corektx = "1.8.0"
 gradleplugin = "7.2.1"
 gradleversions = "0.42.0"
+hilt = "2.42"
 junit = "4.13.2"
 kotlin = "1.6.10"
 runtimektx = "2.5.0"
@@ -16,6 +17,8 @@ compose-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.r
 compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "corektx" }
+hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 junit = { module = "junit:junit", version.ref = "junit" }
 runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "runtimektx" }
 
