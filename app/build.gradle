@@ -38,6 +38,12 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
 }
 
 dependencies {
@@ -50,9 +56,18 @@ dependencies {
     implementation libs.compose.material
     implementation libs.compose.preview
     implementation libs.runtime.ktx
+    implementation libs.viewmodel.ktx
+    implementation libs.viewmodel.compose
     implementation libs.activity.compose
     implementation libs.hilt
     kapt libs.hilt.compiler
+    implementation libs.coil
 
     debugImplementation libs.compose.tooling
+
+    testImplementation libs.junit.api
+    testRuntimeOnly libs.junit.engine
+    testImplementation libs.mockito
+    testImplementation libs.turbine
+    testImplementation libs.coroutines.test
 }

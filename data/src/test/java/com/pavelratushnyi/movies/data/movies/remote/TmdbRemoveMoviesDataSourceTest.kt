@@ -31,7 +31,14 @@ internal class TmdbRemoveMoviesDataSourceTest {
         }
 
         runBlocking {
-            assertEquals(moviesDto.map { it.toDomain() }, dataSource.getPopularMovies())
+            assertEquals(
+                moviesDto.map {
+                    it.toDomain().copy(
+                        posterPath = "https://image.tmdb.org/t/p/w500/movie poster path"
+                    )
+                },
+                dataSource.getPopularMovies()
+            )
         }
     }
 }
