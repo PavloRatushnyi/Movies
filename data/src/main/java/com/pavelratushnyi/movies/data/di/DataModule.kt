@@ -1,8 +1,18 @@
 package com.pavelratushnyi.movies.data.di
 
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.PreferenceDataStoreFactory
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStoreFile
+import androidx.room.Room
 import com.pavelratushnyi.movies.data.BuildConfig
 import com.pavelratushnyi.movies.data.movies.MoviesRepository
 import com.pavelratushnyi.movies.data.movies.MoviesRepositoryImpl
+import com.pavelratushnyi.movies.data.movies.local.LocalMoviesDataSource
+import com.pavelratushnyi.movies.data.movies.local.MoviesDao
+import com.pavelratushnyi.movies.data.movies.local.MoviesDatabase
+import com.pavelratushnyi.movies.data.movies.local.RoomLocalMoviesDataSource
 import com.pavelratushnyi.movies.data.movies.remote.MoviesService
 import com.pavelratushnyi.movies.data.movies.remote.RemoteMoviesDataSource
 import com.pavelratushnyi.movies.data.movies.remote.TmdbRemoveMoviesDataSource
@@ -12,6 +22,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -25,6 +36,29 @@ import javax.inject.Singleton
 abstract class DataModule {
 
     companion object {
+
+        @Singleton
+        @Provides
+        fun providePreferencesDatastore(@ApplicationContext appContext: Context): DataStore<Preferences> {
+            return PreferenceDataStoreFactory.create(
+                produceFile = { appContext.preferencesDataStoreFile("movies") }
+            )
+        }
+
+        @Singleton
+        @Provides
+        internal fun provideMoviesDatabase(@ApplicationContext appContext: Context): MoviesDatabase {
+            return Room.databaseBuilder(
+                appContext,
+                MoviesDatabase::class.java,
+                "movies"
+            ).build()
+        }
+
+        @Provides
+        internal fun provideMoviesDao(moviesDatabase: MoviesDatabase): MoviesDao {
+            return moviesDatabase.moviesDao()
+        }
 
         @Singleton
         @Provides
@@ -70,6 +104,11 @@ abstract class DataModule {
     internal abstract fun bindRemoteMoviesDataSource(
         tmdbRemoveMoviesDataSource: TmdbRemoveMoviesDataSource
     ): RemoteMoviesDataSource
+
+    @Binds
+    internal abstract fun bindLocalMoviesDataSource(
+        roomLocalMoviesDataSource: RoomLocalMoviesDataSource
+    ): LocalMoviesDataSource
 
     @Binds
     internal abstract fun bindMoviesRepository(

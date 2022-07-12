@@ -6,6 +6,7 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -40,7 +41,7 @@ dependencies {
     implementation project(':domain')
 
     implementation libs.coroutines
-    implementation libs.hilt.core
+    implementation libs.hilt
     kapt libs.hilt.compiler
     implementation libs.moshi
     kapt libs.moshi.codegen
@@ -48,9 +49,14 @@ dependencies {
     implementation libs.retrofit.moshi
     implementation libs.okhttp
     implementation libs.okhttp.logging
+    implementation libs.room
+    implementation libs.room.ktx
+    kapt libs.room.compiler
+    implementation libs.datastore.preferences
 
     testImplementation libs.junit.api
     testRuntimeOnly libs.junit.engine
     testImplementation libs.mockito
     testImplementation libs.turbine
+    testImplementation libs.coroutines.test
 }
