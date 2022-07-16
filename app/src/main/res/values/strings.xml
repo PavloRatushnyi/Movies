@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Movies</string>
     <string name="error.general">Something went wrong</string>
+    <string name="empty_state.no_items">No items</string>
+    <string name="movies.popular">Popular</string>
+    <string name="movies.favourites">Favourites</string>
+    <string name="toggle_favourite.add">Add to favourites</string>
+    <string name="toggle_favourite.remove">Remove</string>
 </resources>

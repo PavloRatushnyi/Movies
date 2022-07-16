@@ -62,12 +62,15 @@ dependencies {
     implementation libs.hilt
     kapt libs.hilt.compiler
     implementation libs.coil
+    implementation libs.accompanist.pager
+    implementation libs.accompanist.pager.indicators
 
     debugImplementation libs.compose.tooling
 
     testImplementation libs.junit.api
     testRuntimeOnly libs.junit.engine
     testImplementation libs.mockito
+    testImplementation libs.mockito.inline
     testImplementation libs.turbine
     testImplementation libs.coroutines.test
 }

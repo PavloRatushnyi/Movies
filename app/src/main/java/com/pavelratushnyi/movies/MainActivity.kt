@@ -3,11 +3,17 @@ package com.pavelratushnyi.movies
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.pavelratushnyi.movies.ui.screen.popularmovies.PopularMoviesScreen
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.pavelratushnyi.movies.ui.screen.movies.MoviesScreen
 import com.pavelratushnyi.movies.ui.theme.MoviesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
+@ExperimentalPagerApi
+@ExperimentalFoundationApi
+@ExperimentalAnimationApi
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +21,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MoviesTheme {
-                PopularMoviesScreen()
+                MoviesScreen()
             }
         }
     }

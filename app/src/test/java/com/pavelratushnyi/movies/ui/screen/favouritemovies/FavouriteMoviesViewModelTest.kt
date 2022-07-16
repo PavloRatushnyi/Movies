@@ -1,9 +1,9 @@
-package com.pavelratushnyi.movies.ui.screen.popularmovies
+package com.pavelratushnyi.movies.ui.screen.favouritemovies
 
 import com.pavelratushnyi.movies.MainDispatchersExtension
 import com.pavelratushnyi.movies.domain.Resource
-import com.pavelratushnyi.movies.domain.usecase.GetPopularUserMoviesStreamUseCase
-import com.pavelratushnyi.movies.domain.usecase.ToggleFavouriteUseCase
+import com.pavelratushnyi.movies.domain.usecase.GetFavouriteUserMoviesStreamUseCase
+import com.pavelratushnyi.movies.domain.usecase.RemoveFromFavouritesUseCase
 import com.pavelratushnyi.movies.domain.vo.Movie
 import com.pavelratushnyi.movies.domain.vo.UserMovie
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -18,14 +18,14 @@ import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
 @ExtendWith(MainDispatchersExtension::class)
-internal class PopularMoviesViewModelTest {
+internal class FavouriteMoviesViewModelTest {
 
-    private val getPopularUserMoviesStreamUseCase: GetPopularUserMoviesStreamUseCase = mock()
-    private val toggleFavouriteUseCase: ToggleFavouriteUseCase = mock()
+    private val getFavouriteUserMoviesStreamUseCase: GetFavouriteUserMoviesStreamUseCase = mock()
+    private val removeFromFavouritesUseCase: RemoveFromFavouritesUseCase = mock()
 
-    private fun createViewModel() = PopularMoviesViewModel(
-        getPopularUserMoviesStreamUseCase,
-        toggleFavouriteUseCase
+    private fun createViewModel() = FavouriteMoviesViewModel(
+        getFavouriteUserMoviesStreamUseCase,
+        removeFromFavouritesUseCase
     )
 
     @Test
@@ -42,7 +42,7 @@ internal class PopularMoviesViewModelTest {
             )
         )
         val moviesResource = Resource.Success(movies)
-        whenever(getPopularUserMoviesStreamUseCase()).thenReturn(flowOf(moviesResource))
+        whenever(getFavouriteUserMoviesStreamUseCase()).thenReturn(flowOf(moviesResource))
 
         val viewModel = createViewModel()
 
@@ -50,7 +50,7 @@ internal class PopularMoviesViewModelTest {
     }
 
     @Test
-    fun `WHEN favourite toggled THEN use case is triggered`() = runTest {
+    fun `WHEN removing favourite THEN use case is triggered`() = runTest {
         val movie = UserMovie(
             movie = Movie(
                 id = 1,
@@ -62,11 +62,11 @@ internal class PopularMoviesViewModelTest {
         )
         val movies = listOf(movie)
         val moviesResource = Resource.Success(movies)
-        whenever(getPopularUserMoviesStreamUseCase()).thenReturn(flowOf(moviesResource))
+        whenever(getFavouriteUserMoviesStreamUseCase()).thenReturn(flowOf(moviesResource))
 
         val viewModel = createViewModel()
         viewModel.toggleFavouriteClicked(movie)
 
-        verify(toggleFavouriteUseCase).invoke(movie)
+        verify(removeFromFavouritesUseCase).invoke(movie)
     }
 }

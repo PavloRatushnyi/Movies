@@ -1,16 +1,16 @@
 package com.pavelratushnyi.movies.data.movies.local
 
 import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 @Dao
-internal interface MoviesDao {
+internal interface MoviesDao : BaseMoviesDao {
 
-    @Query("SELECT * FROM movies WHERE id IN (:movieIds)")
-    suspend fun loadByIds(movieIds: LongArray): List<MovieEntity>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(vararg movies: MovieEntity)
+    fun getAndSortByIds(movieIds: LongArray): Flow<List<MovieEntity>> {
+        val moviesIdsPositionMap = movieIds.withIndex().associate {
+            it.value to it.index
+        }
+        return getByIds(movieIds).map { movies -> movies.sortedBy { moviesIdsPositionMap.getValue(it.id) } }
+    }
 }

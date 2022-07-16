@@ -6,10 +6,12 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import app.cash.turbine.test
 import com.pavelratushnyi.movies.data.FakeDataStore
+import com.pavelratushnyi.movies.data.movies.local.RoomLocalMoviesDataSource.Companion.FAVOURITE_MOVIES_IDS_KEY
 import com.pavelratushnyi.movies.data.movies.local.RoomLocalMoviesDataSource.Companion.POPULAR_MOVIES_IDS_KEY
 import com.pavelratushnyi.movies.data.movies.toEntity
 import com.pavelratushnyi.movies.domain.vo.Movie
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -32,7 +34,10 @@ internal class RoomLocalMoviesDataSourceTest {
                 preferences.remove(stringSetPreferencesKey(POPULAR_MOVIES_IDS_KEY))
             }
 
-            assertEquals(null, dataSource.getPopularMovies())
+            dataSource.getPopularMovies().test {
+                assertEquals(null, awaitItem())
+                expectNoEvents()
+            }
         }
 
     @Test
@@ -51,44 +56,26 @@ internal class RoomLocalMoviesDataSourceTest {
                     posterPath = "movie poster path 1"
                 ),
                 Movie(
+                    id = 2,
+                    title = "movie title 2",
+                    overview = "movie overview 2",
+                    posterPath = "movie poster path 2"
+                ),
+                Movie(
                     id = 3,
                     title = "movie title 3",
                     overview = "movie overview 3",
                     posterPath = "movie poster path 3"
                 ),
-                Movie(
-                    id = 2,
-                    title = "movie title 2",
-                    overview = "movie overview 2",
-                    posterPath = "movie poster path 2"
-                )
             )
-            whenever(moviesDao.loadByIds(longArrayOf(1, 2, 3))).thenReturn(movies.map {
+            whenever(moviesDao.getAndSortByIds(longArrayOf(1, 2, 3))).thenReturn(flowOf(movies.map {
                 it.toEntity()
-            })
+            }))
 
-            assertEquals(
-                listOf(
-                    Movie(
-                        id = 1,
-                        title = "movie title 1",
-                        overview = "movie overview 1",
-                        posterPath = "movie poster path 1"
-                    ),
-                    Movie(
-                        id = 2,
-                        title = "movie title 2",
-                        overview = "movie overview 2",
-                        posterPath = "movie poster path 2"
-                    ),
-                    Movie(
-                        id = 3,
-                        title = "movie title 3",
-                        overview = "movie overview 3",
-                        posterPath = "movie poster path 3"
-                    )
-                ), dataSource.getPopularMovies()
-            )
+            dataSource.getPopularMovies().test {
+                assertEquals(listOf(movies), awaitItem())
+                expectNoEvents()
+            }
         }
 
     @Test
@@ -117,6 +104,97 @@ internal class RoomLocalMoviesDataSourceTest {
                 )
             }
             verify(moviesDao).insert(*movies.map { it.toEntity() }.toTypedArray())
+        }
+
+    @Test
+    fun `GIVEN favourite movies ids WHEN getting favourite movies THEN movies from dao returned and sorted according to id position`() =
+        runTest {
+            dataStore.edit { preferences ->
+                preferences[
+                        stringSetPreferencesKey(FAVOURITE_MOVIES_IDS_KEY)
+                ] = linkedSetOf("1", "2", "3")
+            }
+            val movies = listOf(
+                Movie(
+                    id = 1,
+                    title = "movie title 1",
+                    overview = "movie overview 1",
+                    posterPath = "movie poster path 1"
+                ),
+                Movie(
+                    id = 2,
+                    title = "movie title 2",
+                    overview = "movie overview 2",
+                    posterPath = "movie poster path 2"
+                ),
+                Movie(
+                    id = 3,
+                    title = "movie title 3",
+                    overview = "movie overview 3",
+                    posterPath = "movie poster path 3"
+                ),
+            )
+            whenever(moviesDao.getAndSortByIds(longArrayOf(1, 2, 3))).thenReturn(flowOf(movies.map {
+                it.toEntity()
+            }))
+
+            dataSource.getFavouriteMovies().test {
+                assertEquals(movies, awaitItem())
+                expectNoEvents()
+            }
+        }
+
+    @Test
+    fun `GIVEN favourite movies ids WHEN getting favourite movies ids THEN movies ids returned`() =
+        runTest {
+            dataStore.edit { preferences ->
+                preferences[
+                        stringSetPreferencesKey(FAVOURITE_MOVIES_IDS_KEY)
+                ] = linkedSetOf("1", "2", "3")
+            }
+
+            dataSource.getFavouriteMoviesIds().test {
+                assertEquals(listOf(1L, 2L, 3L), awaitItem())
+                expectNoEvents()
+            }
+        }
+
+    @Test
+    fun `WHEN adding to favourites THEN movie id added to favourites`() =
+        runTest {
+            dataStore.edit { preferences ->
+                preferences[
+                        stringSetPreferencesKey(FAVOURITE_MOVIES_IDS_KEY)
+                ] = linkedSetOf("1", "2", "3")
+            }
+
+            dataSource.addToFavourites(4)
+
+            dataStore.data.test {
+                assertEquals(
+                    linkedSetOf("4", "1", "2", "3"),
+                    awaitItem()[stringSetPreferencesKey(FAVOURITE_MOVIES_IDS_KEY)]
+                )
+            }
+        }
+
+    @Test
+    fun `WHEN removing from favourites THEN movie id removed from favourites`() =
+        runTest {
+            dataStore.edit { preferences ->
+                preferences[
+                        stringSetPreferencesKey(FAVOURITE_MOVIES_IDS_KEY)
+                ] = linkedSetOf("1", "2", "3")
+            }
+
+            dataSource.removeFromFavourites(2)
+
+            dataStore.data.test {
+                assertEquals(
+                    linkedSetOf("1", "3"),
+                    awaitItem()[stringSetPreferencesKey(FAVOURITE_MOVIES_IDS_KEY)]
+                )
+            }
         }
 }
 

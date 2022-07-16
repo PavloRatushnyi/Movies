@@ -7,7 +7,6 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import androidx.room.Room
 import com.pavelratushnyi.movies.data.BuildConfig
-import com.pavelratushnyi.movies.data.movies.MoviesRepository
 import com.pavelratushnyi.movies.data.movies.MoviesRepositoryImpl
 import com.pavelratushnyi.movies.data.movies.local.LocalMoviesDataSource
 import com.pavelratushnyi.movies.data.movies.local.MoviesDao
@@ -17,6 +16,7 @@ import com.pavelratushnyi.movies.data.movies.remote.MoviesService
 import com.pavelratushnyi.movies.data.movies.remote.RemoteMoviesDataSource
 import com.pavelratushnyi.movies.data.movies.remote.TmdbRemoveMoviesDataSource
 import com.pavelratushnyi.movies.data.network.TmdbApikeyInterceptor
+import com.pavelratushnyi.movies.domain.repository.MoviesRepository
 import com.squareup.moshi.Moshi
 import dagger.Binds
 import dagger.Module

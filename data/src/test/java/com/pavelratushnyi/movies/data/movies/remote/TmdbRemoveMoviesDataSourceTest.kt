@@ -1,13 +1,14 @@
 package com.pavelratushnyi.movies.data.movies.remote
 
 import com.pavelratushnyi.movies.data.movies.toDomain
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
-import org.mockito.kotlin.stub
+import org.mockito.kotlin.whenever
 
+@ExperimentalCoroutinesApi
 internal class TmdbRemoveMoviesDataSourceTest {
 
     private val service: MoviesService = mock()
@@ -17,7 +18,7 @@ internal class TmdbRemoveMoviesDataSourceTest {
     )
 
     @Test
-    fun `WHEN fetching popular movies THEN movies from api returned`() {
+    fun `WHEN fetching popular movies THEN movies from api returned`() = runTest {
         val moviesDto = listOf(
             MovieDto(
                 id = 1,
@@ -26,19 +27,15 @@ internal class TmdbRemoveMoviesDataSourceTest {
                 posterPath = "movie poster path"
             )
         )
-        service.stub {
-            onBlocking { getPopularMovies() } doReturn MoviesPage(moviesDto)
-        }
+        whenever(service.getPopularMovies()).thenReturn(MoviesPage(moviesDto))
 
-        runBlocking {
-            assertEquals(
-                moviesDto.map {
-                    it.toDomain().copy(
-                        posterPath = "https://image.tmdb.org/t/p/w500/movie poster path"
-                    )
-                },
-                dataSource.getPopularMovies()
-            )
-        }
+        assertEquals(
+            moviesDto.map {
+                it.toDomain().copy(
+                    posterPath = "https://image.tmdb.org/t/p/w500/movie poster path"
+                )
+            },
+            dataSource.getPopularMovies()
+        )
     }
 }
