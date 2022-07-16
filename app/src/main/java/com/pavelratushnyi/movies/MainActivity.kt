@@ -3,7 +3,7 @@ package com.pavelratushnyi.movies
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.pavelratushnyi.movies.ui.screen.movies.MoviesScreen
+import com.pavelratushnyi.movies.ui.screen.popularmovies.PopularMoviesScreen
 import com.pavelratushnyi.movies.ui.theme.MoviesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,7 +15,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MoviesTheme {
-                MoviesScreen()
+                PopularMoviesScreen()
             }
         }
     }

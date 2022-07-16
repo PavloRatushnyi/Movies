@@ -1,4 +1,4 @@
-package com.pavelratushnyi.movies.ui.screen.movies
+package com.pavelratushnyi.movies.ui.screen.popularmovies
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,12 +19,12 @@ import com.pavelratushnyi.movies.data.Resource
 import com.pavelratushnyi.movies.domain.vo.Movie
 
 @Composable
-fun MoviesScreen(viewModel: MoviesViewModel = viewModel()) {
+fun PopularMoviesScreen(viewModel: PopularMoviesViewModel = viewModel()) {
     MoviesScreenContent(viewModel.uiState)
 }
 
 @Composable
-private fun MoviesScreenContent(uiState: MoviesUiState) {
+private fun MoviesScreenContent(uiState: PopularMoviesUiState) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colors.background

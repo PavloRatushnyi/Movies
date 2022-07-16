@@ -1,8 +1,8 @@
-package com.pavelratushnyi.movies.ui.screen.movies
+package com.pavelratushnyi.movies.ui.screen.popularmovies
 
 import com.pavelratushnyi.movies.data.Resource
 import com.pavelratushnyi.movies.domain.vo.Movie
 
-data class MoviesUiState(
+data class PopularMoviesUiState(
     val movies: Resource<List<Movie>> = Resource.Loading()
 )

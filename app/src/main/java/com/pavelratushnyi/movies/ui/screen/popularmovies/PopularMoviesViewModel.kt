@@ -1,4 +1,4 @@
-package com.pavelratushnyi.movies.ui.screen.movies
+package com.pavelratushnyi.movies.ui.screen.popularmovies
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -11,11 +11,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MoviesViewModel @Inject constructor(
+class PopularMoviesViewModel @Inject constructor(
     private val moviesRepository: MoviesRepository
 ) : ViewModel() {
 
-    var uiState by mutableStateOf(MoviesUiState())
+    var uiState by mutableStateOf(PopularMoviesUiState())
         private set
 
     init {

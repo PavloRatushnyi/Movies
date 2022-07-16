@@ -1,6 +1,7 @@
-package com.pavelratushnyi.movies.ui.screen.movies
+package com.pavelratushnyi.movies.ui.screen.popularmovies
 
 import com.pavelratushnyi.movies.MainDispatchersExtension
+import com.pavelratushnyi.movies.data.Resource
 import com.pavelratushnyi.movies.data.movies.MoviesRepository
 import com.pavelratushnyi.movies.domain.vo.Movie
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -15,11 +16,11 @@ import org.mockito.kotlin.stub
 
 @ExperimentalCoroutinesApi
 @ExtendWith(MainDispatchersExtension::class)
-internal class MoviesViewModelTest {
+internal class PopularMoviesViewModelTest {
 
     private val moviesRepository: MoviesRepository = mock()
 
-    private fun createViewModel() = MoviesViewModel(moviesRepository)
+    private fun createViewModel() = PopularMoviesViewModel(moviesRepository)
 
     @Test
     fun `WHEN view model is created THEN movies are fetched and set to ui state`() = runTest {
@@ -31,12 +32,13 @@ internal class MoviesViewModelTest {
                 posterPath = "posterPath"
             )
         )
+        val moviesResource = Resource.Success(movies)
         moviesRepository.stub {
             onBlocking {
                 getPopularMovies()
-            } doReturn flowOf(movies)
+            } doReturn flowOf(moviesResource)
         }
         val viewModel = createViewModel()
-        assertEquals(movies, viewModel.uiState.movies)
+        assertEquals(moviesResource, viewModel.uiState.movies)
     }
 }
