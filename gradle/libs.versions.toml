@@ -11,7 +11,7 @@ gradleversions = "0.42.0"
 hilt = "2.42"
 junit = "5.8.2"
 kotlin = "1.6.10"
-lifecycle = "2.5.0"
+lifecycle = "2.6.0-alpha01"
 mockito = "4.0.0"
 moshi = "1.13.0"
 okhttp = "4.10.0"
@@ -49,6 +49,7 @@ retrofit-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.re
 room = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }

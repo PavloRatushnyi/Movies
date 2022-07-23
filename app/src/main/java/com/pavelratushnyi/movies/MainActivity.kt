@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.pavelratushnyi.movies.ui.screen.movies.MoviesScreen
 import com.pavelratushnyi.movies.ui.theme.MoviesTheme
@@ -14,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @ExperimentalPagerApi
 @ExperimentalFoundationApi
 @ExperimentalAnimationApi
+@ExperimentalLifecycleComposeApi
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

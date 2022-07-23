@@ -1,5 +1,6 @@
 package com.pavelratushnyi.movies.ui.screen.popularmovies
 
+import app.cash.turbine.test
 import com.pavelratushnyi.movies.MainDispatchersExtension
 import com.pavelratushnyi.movies.domain.Resource
 import com.pavelratushnyi.movies.domain.usecase.GetPopularUserMoviesStreamUseCase
@@ -29,7 +30,7 @@ internal class PopularMoviesViewModelTest {
     )
 
     @Test
-    fun `WHEN view model is created THEN movies are fetched and set to ui state`() {
+    fun `WHEN view model is created THEN movies are fetched and set to ui state`() = runTest {
         val movies = listOf(
             UserMovie(
                 movie = Movie(
@@ -46,7 +47,10 @@ internal class PopularMoviesViewModelTest {
 
         val viewModel = createViewModel()
 
-        assertEquals(moviesResource, viewModel.uiState.movies)
+        viewModel.uiStateFlow.test {
+            assertEquals(moviesResource, awaitItem().movies)
+            cancelAndIgnoreRemainingEvents()
+        }
     }
 
     @Test
