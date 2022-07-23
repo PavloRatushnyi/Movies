@@ -7,12 +7,14 @@ import androidx.datastore.preferences.core.stringSetPreferencesKey
 import com.pavelratushnyi.movies.data.movies.toDomain
 import com.pavelratushnyi.movies.data.movies.toEntity
 import com.pavelratushnyi.movies.domain.vo.Movie
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 internal class RoomLocalMoviesDataSource @Inject constructor(
     private val moviesDao: MoviesDao,
     private val dataStore: DataStore<Preferences>
