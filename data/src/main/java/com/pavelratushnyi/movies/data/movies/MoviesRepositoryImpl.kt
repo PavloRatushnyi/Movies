@@ -37,6 +37,12 @@ internal class MoviesRepositoryImpl @Inject constructor(
         }.distinctUntilChanged()
     }
 
+    override suspend fun refreshPopularMovies(): Result<Unit> {
+        return runCatching {
+            remoteMoviesDataSource.getPopularMovies()
+        }.onSuccess { localMoviesDataSource.insertPopularMovies(it) }.map { }
+    }
+
     override fun getFavouriteMovies(): Flow<Resource<List<Movie>>> {
         return flow {
             emit(Resource.Loading())

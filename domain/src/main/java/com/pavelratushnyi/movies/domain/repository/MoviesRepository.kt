@@ -8,6 +8,8 @@ interface MoviesRepository {
 
     fun getPopularMovies(): Flow<Resource<List<Movie>>>
 
+    suspend fun refreshPopularMovies(): Result<Unit>
+
     fun getFavouriteMovies(): Flow<Resource<List<Movie>>>
 
     fun getFavouriteMoviesIds(): Flow<Resource<List<Long>>>

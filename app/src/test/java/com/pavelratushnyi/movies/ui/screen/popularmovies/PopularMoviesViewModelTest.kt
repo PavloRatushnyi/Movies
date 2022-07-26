@@ -4,15 +4,18 @@ import app.cash.turbine.test
 import com.pavelratushnyi.movies.MainDispatchersExtension
 import com.pavelratushnyi.movies.domain.Resource
 import com.pavelratushnyi.movies.domain.usecase.GetPopularUserMoviesStreamUseCase
+import com.pavelratushnyi.movies.domain.usecase.RefreshPopularMoviesUseCase
 import com.pavelratushnyi.movies.domain.usecase.ToggleFavouriteUseCase
 import com.pavelratushnyi.movies.domain.vo.Movie
 import com.pavelratushnyi.movies.domain.vo.UserMovie
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.kotlin.doAnswer
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
@@ -23,10 +26,12 @@ internal class PopularMoviesViewModelTest {
 
     private val getPopularUserMoviesStreamUseCase: GetPopularUserMoviesStreamUseCase = mock()
     private val toggleFavouriteUseCase: ToggleFavouriteUseCase = mock()
+    private val refreshPopularMoviesUseCase: RefreshPopularMoviesUseCase = mock()
 
     private fun createViewModel() = PopularMoviesViewModel(
         getPopularUserMoviesStreamUseCase,
-        toggleFavouriteUseCase
+        toggleFavouriteUseCase,
+        refreshPopularMoviesUseCase
     )
 
     @Test
@@ -73,4 +78,22 @@ internal class PopularMoviesViewModelTest {
 
         verify(toggleFavouriteUseCase).invoke(movie)
     }
+
+    @Test
+    fun `WHEN refreshing movies THEN flag is changed to true AND when is refreshed THEN flag changed to false`() =
+        runTest {
+            whenever(refreshPopularMoviesUseCase()) doAnswer { runBlocking { Result.success(Unit) } }
+
+            val viewModel = createViewModel()
+
+            viewModel.isRefreshingFlow.test {
+                assertEquals(false, awaitItem())
+                viewModel.refresh()
+                assertEquals(true, awaitItem())
+                assertEquals(false, awaitItem())
+                cancelAndIgnoreRemainingEvents()
+            }
+
+            verify(refreshPopularMoviesUseCase).invoke()
+        }
 }

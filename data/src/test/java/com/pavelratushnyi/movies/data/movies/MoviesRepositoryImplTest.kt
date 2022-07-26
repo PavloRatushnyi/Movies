@@ -10,13 +10,12 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.whenever
+import org.mockito.kotlin.*
 
 @ExperimentalCoroutinesApi
 internal class MoviesRepositoryImplTest {
 
-    private val localMoviesDataSource = FakeLocalMoviesDataSource()
+    private val localMoviesDataSource = spy(FakeLocalMoviesDataSource())
     private val remoteDataSource: RemoteMoviesDataSource = mock()
 
     private val repository = MoviesRepositoryImpl(localMoviesDataSource, remoteDataSource)
@@ -111,6 +110,44 @@ internal class MoviesRepositoryImplTest {
                 assertEquals(Resource.Error<List<Movie>>(moviesRemoteError), awaitItem())
                 expectNoEvents()
             }
+        }
+
+    @Test
+    fun `WHEN refreshing popular movies AND error thrown THEN failure returned AND local storage not updated`() =
+        runTest {
+            val moviesRemoteError = IllegalStateException("no internet")
+            whenever(remoteDataSource.getPopularMovies()).thenThrow(moviesRemoteError)
+
+            assertEquals(Result.failure<Unit>(moviesRemoteError), repository.refreshPopularMovies())
+
+            verifyNoInteractions(localMoviesDataSource)
+        }
+
+    @Test
+    fun `WHEN refreshing popular movies AND movies refreshed THEN local storage updated AND success returned`() =
+        runTest {
+            val moviesRemote = listOf(
+                Movie(
+                    id = 1,
+                    title = "movie title 1",
+                    overview = "movie overview 1",
+                    posterPath = "movie poster path 1"
+                )
+            )
+            whenever(remoteDataSource.getPopularMovies()).thenReturn(moviesRemote)
+
+            assertEquals(Result.success(Unit), repository.refreshPopularMovies())
+
+            verify(localMoviesDataSource).insertPopularMovies(
+                listOf(
+                    Movie(
+                        id = 1,
+                        title = "movie title 1",
+                        overview = "movie overview 1",
+                        posterPath = "movie poster path 1"
+                    )
+                )
+            )
         }
 
     @Test

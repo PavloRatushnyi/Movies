@@ -25,26 +25,30 @@ import com.pavelratushnyi.movies.domain.vo.UserMovie
 @Composable
 internal fun MoviesList(
     moviesResource: Resource<List<UserMovie>>,
-    toggleFavoriteClicked: (UserMovie) -> Unit
+    toggleFavoriteClicked: (UserMovie) -> Unit,
+    emptyContentModifier: Modifier = Modifier,
+    errorContentModifier: Modifier = Modifier,
 ) {
-    Box(modifier = Modifier.fillMaxSize()) {
-        when (moviesResource) {
-            is Resource.Loading -> {
-                val movies = moviesResource.data
-                if (movies != null) {
-                    MoviesContent(movies, toggleFavoriteClicked)
-                } else {
-                    LoaderContent()
-                }
+    when (moviesResource) {
+        is Resource.Loading -> {
+            val movies = moviesResource.data
+            if (movies != null) {
+                MoviesContent(movies, toggleFavoriteClicked, emptyContentModifier)
+            } else {
+                LoaderContent()
             }
-            is Resource.Success -> MoviesContent(moviesResource.data, toggleFavoriteClicked)
-            is Resource.Error -> {
-                val movies = moviesResource.data
-                if (movies != null) {
-                    MoviesContent(movies, toggleFavoriteClicked)
-                } else {
-                    ErrorContent(moviesResource.error)
-                }
+        }
+        is Resource.Success -> MoviesContent(
+            moviesResource.data,
+            toggleFavoriteClicked,
+            emptyContentModifier
+        )
+        is Resource.Error -> {
+            val movies = moviesResource.data
+            if (movies != null) {
+                MoviesContent(movies, toggleFavoriteClicked, emptyContentModifier)
+            } else {
+                ErrorContent(errorContentModifier, moviesResource.error)
             }
         }
     }
@@ -55,13 +59,16 @@ internal fun MoviesList(
 @Composable
 private fun MoviesContent(
     userMovies: List<UserMovie>,
-    toggleFavoriteClicked: (UserMovie) -> Unit
+    toggleFavoriteClicked: (UserMovie) -> Unit,
+    emptyContentModifier: Modifier = Modifier,
 ) {
     if (userMovies.isEmpty()) {
-        EmptyContent()
+        EmptyContent(emptyContentModifier)
     } else {
         LazyColumn(
-            modifier = Modifier.padding(vertical = 4.dp)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(vertical = 4.dp)
         ) {
             items(userMovies, key = { it.movie.id }, itemContent = { movie ->
                 MovieCard(
@@ -77,7 +84,6 @@ private fun MoviesContent(
 @Composable
 private fun LoaderContent() {
     Box(
-        modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator()
@@ -85,11 +91,9 @@ private fun LoaderContent() {
 }
 
 @Composable
-private fun EmptyContent() {
+private fun EmptyContent(modifier: Modifier = Modifier) {
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
+        modifier = modifier.padding(16.dp),
         contentAlignment = Alignment.Center
     ) {
         Text(
@@ -100,11 +104,12 @@ private fun EmptyContent() {
 }
 
 @Composable
-private fun ErrorContent(throwable: Throwable) {
+private fun ErrorContent(
+    modifier: Modifier = Modifier,
+    throwable: Throwable
+) {
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
+        modifier = modifier.padding(16.dp),
         contentAlignment = Alignment.Center
     ) {
         Text(
