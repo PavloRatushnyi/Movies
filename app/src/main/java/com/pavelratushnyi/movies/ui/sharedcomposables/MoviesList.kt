@@ -9,12 +9,15 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.app.ShareCompat
 import coil.compose.AsyncImage
 import com.pavelratushnyi.movies.R
 import com.pavelratushnyi.movies.domain.Resource
@@ -153,23 +156,60 @@ private fun MovieCard(
                 Text(
                     text = userMovie.movie.overview
                 )
+
                 Spacer(modifier = Modifier.height(8.dp))
+
                 Divider(modifier = Modifier.fillMaxWidth())
+
                 Spacer(modifier = Modifier.height(4.dp))
-                val text = stringResource(
-                    id = if (userMovie.favourite) {
-                        R.string.toggle_favourite_remove
-                    } else {
-                        R.string.toggle_favourite_add
-                    }
+
+                MovieButtons(
+                    userMovie = userMovie,
+                    toggleFavoriteClicked = toggleFavoriteClicked
                 )
-                AnimatedContent(targetState = text) { targetState ->
-                    TextButton(
-                        onClick = { toggleFavoriteClicked(userMovie) }
-                    ) {
-                        Text(text = targetState)
-                    }
-                }
+            }
+        }
+    }
+}
+
+@Composable
+@ExperimentalAnimationApi
+private fun MovieButtons(
+    userMovie: UserMovie,
+    toggleFavoriteClicked: (UserMovie) -> Unit
+) {
+    Row {
+        val text = stringResource(
+            id = if (userMovie.favourite) {
+                R.string.toggle_favourite_remove
+            } else {
+                R.string.toggle_favourite_add
+            }
+        )
+        AnimatedContent(targetState = text) { targetState ->
+            TextButton(
+                onClick = { toggleFavoriteClicked(userMovie) }
+            ) {
+                Text(text = targetState)
+            }
+        }
+
+        val context = LocalContext.current
+        val resolvedShareIntent = remember(userMovie) {
+            ShareCompat.IntentBuilder(context)
+                .setType("text/plain")
+                .setChooserTitle(context.getString(R.string.share))
+                .setText(userMovie.movie.title)
+                .createChooserIntent()
+                .takeIf { it.resolveActivity(context.packageManager) != null }
+        }
+
+        if (resolvedShareIntent != null) {
+            Spacer(modifier = Modifier.width(4.dp))
+            TextButton(
+                onClick = { context.startActivity(resolvedShareIntent) }
+            ) {
+                Text(text = stringResource(id = R.string.share))
             }
         }
     }

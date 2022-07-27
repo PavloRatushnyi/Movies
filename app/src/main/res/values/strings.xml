@@ -6,4 +6,5 @@
     <string name="movies.favourites">Favourites</string>
     <string name="toggle_favourite.add">Add to favourites</string>
     <string name="toggle_favourite.remove">Remove</string>
+    <string name="share">Share</string>
 </resources>
