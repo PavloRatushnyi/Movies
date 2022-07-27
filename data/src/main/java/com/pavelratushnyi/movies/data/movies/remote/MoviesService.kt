@@ -1,6 +1,7 @@
 package com.pavelratushnyi.movies.data.movies.remote
 
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 internal interface MoviesService {
 
@@ -9,5 +10,8 @@ internal interface MoviesService {
     }
 
     @GET("movie/popular")
-    suspend fun getPopularMovies(): MoviesPage
+    suspend fun getPopularMovies(): MoviesPageDto
+
+    @GET("movie/{movieId}")
+    suspend fun getMovieDetails(@Path("movieId") movieId: Long): MovieDetailsDto
 }

@@ -2,6 +2,7 @@ package com.pavelratushnyi.movies.domain.repository
 
 import com.pavelratushnyi.movies.domain.Resource
 import com.pavelratushnyi.movies.domain.vo.Movie
+import com.pavelratushnyi.movies.domain.vo.MovieDetails
 import kotlinx.coroutines.flow.Flow
 
 interface MoviesRepository {
@@ -17,4 +18,6 @@ interface MoviesRepository {
     suspend fun addToFavourites(id: Long)
 
     suspend fun removeFromFavourites(id: Long)
+
+    fun getMovieDetails(id: Long): Flow<Resource<MovieDetails>>
 }

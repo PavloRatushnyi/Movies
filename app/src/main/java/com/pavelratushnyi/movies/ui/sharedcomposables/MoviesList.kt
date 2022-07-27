@@ -21,35 +21,39 @@ import androidx.core.app.ShareCompat
 import coil.compose.AsyncImage
 import com.pavelratushnyi.movies.R
 import com.pavelratushnyi.movies.domain.Resource
+import com.pavelratushnyi.movies.domain.vo.Movie
 import com.pavelratushnyi.movies.domain.vo.UserMovie
 
 @ExperimentalFoundationApi
 @ExperimentalAnimationApi
+@ExperimentalMaterialApi
 @Composable
 internal fun MoviesList(
     moviesResource: Resource<List<UserMovie>>,
-    toggleFavoriteClicked: (UserMovie) -> Unit,
+    onToggleFavoriteClicked: (UserMovie) -> Unit,
     emptyContentModifier: Modifier = Modifier,
     errorContentModifier: Modifier = Modifier,
+    onMovieClicked: (Movie) -> Unit
 ) {
     when (moviesResource) {
         is Resource.Loading -> {
             val movies = moviesResource.data
             if (movies != null) {
-                MoviesContent(movies, toggleFavoriteClicked, emptyContentModifier)
+                MoviesContent(movies, onToggleFavoriteClicked, emptyContentModifier, onMovieClicked)
             } else {
                 LoaderContent()
             }
         }
         is Resource.Success -> MoviesContent(
             moviesResource.data,
-            toggleFavoriteClicked,
-            emptyContentModifier
+            onToggleFavoriteClicked,
+            emptyContentModifier,
+            onMovieClicked
         )
         is Resource.Error -> {
             val movies = moviesResource.data
             if (movies != null) {
-                MoviesContent(movies, toggleFavoriteClicked, emptyContentModifier)
+                MoviesContent(movies, onToggleFavoriteClicked, emptyContentModifier, onMovieClicked)
             } else {
                 ErrorContent(errorContentModifier, moviesResource.error)
             }
@@ -59,11 +63,13 @@ internal fun MoviesList(
 
 @ExperimentalFoundationApi
 @ExperimentalAnimationApi
+@ExperimentalMaterialApi
 @Composable
 private fun MoviesContent(
     userMovies: List<UserMovie>,
-    toggleFavoriteClicked: (UserMovie) -> Unit,
+    onToggleFavoriteClicked: (UserMovie) -> Unit,
     emptyContentModifier: Modifier = Modifier,
+    onMovieClicked: (Movie) -> Unit
 ) {
     if (userMovies.isEmpty()) {
         EmptyContent(emptyContentModifier)
@@ -77,19 +83,11 @@ private fun MoviesContent(
                 MovieCard(
                     modifier = Modifier.animateItemPlacement(),
                     userMovie = movie,
-                    toggleFavoriteClicked = toggleFavoriteClicked
+                    onToggleFavoriteClicked = onToggleFavoriteClicked,
+                    onMovieClicked = onMovieClicked
                 )
             })
         }
-    }
-}
-
-@Composable
-private fun LoaderContent() {
-    Box(
-        contentAlignment = Alignment.Center
-    ) {
-        CircularProgressIndicator()
     }
 }
 
@@ -106,35 +104,22 @@ private fun EmptyContent(modifier: Modifier = Modifier) {
     }
 }
 
-@Composable
-private fun ErrorContent(
-    modifier: Modifier = Modifier,
-    throwable: Throwable
-) {
-    Box(
-        modifier = modifier.padding(16.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = throwable.message ?: stringResource(R.string.error_general),
-            textAlign = TextAlign.Center
-        )
-    }
-}
-
+@ExperimentalMaterialApi
 @ExperimentalAnimationApi
 @Composable
 private fun MovieCard(
     modifier: Modifier = Modifier,
     userMovie: UserMovie,
-    toggleFavoriteClicked: (UserMovie) -> Unit
+    onToggleFavoriteClicked: (UserMovie) -> Unit,
+    onMovieClicked: (Movie) -> Unit
 ) {
     Card(
         shape = RoundedCornerShape(4.dp),
         elevation = 4.dp,
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp, vertical = 4.dp)
+            .padding(horizontal = 8.dp, vertical = 4.dp),
+        onClick = { onMovieClicked(userMovie.movie) }
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
             AsyncImage(
@@ -165,7 +150,7 @@ private fun MovieCard(
 
                 MovieButtons(
                     userMovie = userMovie,
-                    toggleFavoriteClicked = toggleFavoriteClicked
+                    onToggleFavoriteClicked = onToggleFavoriteClicked
                 )
             }
         }
@@ -176,7 +161,7 @@ private fun MovieCard(
 @ExperimentalAnimationApi
 private fun MovieButtons(
     userMovie: UserMovie,
-    toggleFavoriteClicked: (UserMovie) -> Unit
+    onToggleFavoriteClicked: (UserMovie) -> Unit
 ) {
     Row {
         val text = stringResource(
@@ -188,7 +173,7 @@ private fun MovieButtons(
         )
         AnimatedContent(targetState = text) { targetState ->
             TextButton(
-                onClick = { toggleFavoriteClicked(userMovie) }
+                onClick = { onToggleFavoriteClicked(userMovie) }
             ) {
                 Text(text = targetState)
             }

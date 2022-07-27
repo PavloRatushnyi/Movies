@@ -66,6 +66,8 @@ dependencies {
     implementation libs.accompanist.pager
     implementation libs.accompanist.pager.indicators
     implementation libs.accompanist.swiperefresh
+    implementation libs.navigation.compose
+    implementation libs.navigation.compose.hilt
 
     debugImplementation libs.compose.tooling
 

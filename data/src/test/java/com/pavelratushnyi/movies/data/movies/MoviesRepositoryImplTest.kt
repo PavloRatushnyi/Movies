@@ -5,6 +5,7 @@ import com.pavelratushnyi.movies.data.movies.local.FakeLocalMoviesDataSource
 import com.pavelratushnyi.movies.data.movies.remote.RemoteMoviesDataSource
 import com.pavelratushnyi.movies.domain.Resource
 import com.pavelratushnyi.movies.domain.vo.Movie
+import com.pavelratushnyi.movies.domain.vo.MovieDetails
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.AfterEach
@@ -209,6 +210,27 @@ internal class MoviesRepositoryImplTest {
             localMoviesDataSource.getFavouriteMoviesIds().test {
                 assertEquals(emptyList<Long>(), expectMostRecentItem())
                 expectNoEvents()
+            }
+        }
+
+    @Test
+    fun `WHEN requesting movie details THEN movies from remote data source returned`() =
+        runTest {
+            val movieDetails = MovieDetails(
+                id = 1,
+                title = "movie title",
+                overview = "movie overview",
+                posterPath = "movie poster path",
+                genres = emptyList(),
+                productionCompanies = emptyList(),
+                productionCountries = emptyList()
+            )
+            whenever(remoteDataSource.getMovieDetails(1)).thenReturn(movieDetails)
+
+            repository.getMovieDetails(1).test {
+                assertEquals(Resource.Loading<MovieDetails>(), awaitItem())
+                assertEquals(Resource.Success(movieDetails), awaitItem())
+                awaitComplete()
             }
         }
 }

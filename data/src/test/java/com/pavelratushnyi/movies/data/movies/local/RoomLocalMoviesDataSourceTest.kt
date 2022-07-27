@@ -73,7 +73,7 @@ internal class RoomLocalMoviesDataSourceTest {
             }))
 
             dataSource.getPopularMovies().test {
-                assertEquals(listOf(movies), awaitItem())
+                assertEquals(movies, awaitItem())
                 expectNoEvents()
             }
         }
