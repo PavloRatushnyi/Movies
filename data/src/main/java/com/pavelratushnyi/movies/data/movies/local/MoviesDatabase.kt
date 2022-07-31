@@ -3,7 +3,20 @@ package com.pavelratushnyi.movies.data.movies.local
 import androidx.room.Database
 import androidx.room.RoomDatabase
 
-@Database(entities = [MovieEntity::class], version = 1)
+@Database(
+    entities = [
+        MovieEntity::class,
+        MovieDetailsEntity::class,
+        MovieGenreEntity::class,
+        MovieProductionCompanyEntity::class,
+        MovieProductionCountryEntity::class,
+        MovieGenreCrossRef::class,
+        MovieProductionCompanyCrossRef::class,
+        MovieProductionCountryCrossRef::class,
+    ],
+    version = 1
+)
 internal abstract class MoviesDatabase : RoomDatabase() {
     abstract fun moviesDao(): MoviesDao
+    abstract fun movieDetailsDao(): MovieDetailsDao
 }

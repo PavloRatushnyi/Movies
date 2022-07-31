@@ -7,6 +7,7 @@ import com.pavelratushnyi.movies.domain.Resource
 import com.pavelratushnyi.movies.domain.vo.Movie
 import com.pavelratushnyi.movies.domain.vo.MovieDetails
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -214,7 +215,7 @@ internal class MoviesRepositoryImplTest {
         }
 
     @Test
-    fun `WHEN requesting movie details THEN movies from remote data source returned`() =
+    fun `GIVEN no movie details in cache WHEN requesting movie details THEN movies from remote data source returned AND saved to cache`() =
         runTest {
             val movieDetails = MovieDetails(
                 id = 1,
@@ -230,7 +231,43 @@ internal class MoviesRepositoryImplTest {
             repository.getMovieDetails(1).test {
                 assertEquals(Resource.Loading<MovieDetails>(), awaitItem())
                 assertEquals(Resource.Success(movieDetails), awaitItem())
-                awaitComplete()
+                expectNoEvents()
             }
+
+            assertEquals(movieDetails, localMoviesDataSource.getMovieDetails(1).first())
+        }
+
+    @Test
+    fun `GIVEN movie details in cache WHEN requesting movie details THEN movies from cache and then from remote data source returned AND saved to cache`() =
+        runTest {
+            val movieDetailsLocal = MovieDetails(
+                id = 1,
+                title = "movie title",
+                overview = "movie overview old",
+                posterPath = "movie poster path",
+                genres = emptyList(),
+                productionCompanies = emptyList(),
+                productionCountries = emptyList()
+            )
+            val movieDetailsRemote = MovieDetails(
+                id = 1,
+                title = "movie title",
+                overview = "movie overview",
+                posterPath = "movie poster path",
+                genres = emptyList(),
+                productionCompanies = emptyList(),
+                productionCountries = emptyList()
+            )
+            localMoviesDataSource.insertMovieDetails(movieDetailsLocal)
+            whenever(remoteDataSource.getMovieDetails(1)).thenReturn(movieDetailsRemote)
+
+            repository.getMovieDetails(1).test {
+                assertEquals(Resource.Loading<MovieDetails>(), awaitItem())
+                assertEquals(Resource.Loading(movieDetailsLocal), awaitItem())
+                assertEquals(Resource.Success(movieDetailsRemote), awaitItem())
+                expectNoEvents()
+            }
+
+            assertEquals(movieDetailsRemote, localMoviesDataSource.getMovieDetails(1).first())
         }
 }

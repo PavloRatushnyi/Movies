@@ -1,5 +1,6 @@
 package com.pavelratushnyi.movies.data.movies
 
+import com.pavelratushnyi.movies.data.movies.local.*
 import com.pavelratushnyi.movies.data.movies.remote.MovieDetailsDto
 import com.pavelratushnyi.movies.data.movies.remote.MovieGenreDto
 import com.pavelratushnyi.movies.data.movies.remote.MovieProductionCompanyDto
@@ -44,6 +45,78 @@ internal class MovieDetailsMapperKtTest {
                     )
                 )
             ).toDomain()
+        )
+    }
+
+    @Test
+    fun `WHEN mapping entity to domain THEN mapped movie details returned`() {
+        assertEquals(
+            MovieDetails(
+                id = 1,
+                title = "movie title",
+                overview = "movie overview",
+                posterPath = "movie poster path",
+                genres = listOf(MovieGenre(id = 1, name = "comedy")),
+                productionCompanies = listOf(MovieProductionCompany(id = 1, name = "worner")),
+                productionCountries = listOf(
+                    MovieProductionCountry(
+                        name = "Great Britain",
+                        isoCode = "GB"
+                    )
+                )
+            ),
+            MovieDetailsContent(
+                movieDetails = MovieDetailsEntity(
+                    id = 1,
+                    title = "movie title",
+                    overview = "movie overview",
+                    posterPath = "movie poster path"
+                ),
+                genres = listOf(MovieGenreEntity(id = 1, name = "comedy")),
+                productionCompanies = listOf(MovieProductionCompanyEntity(id = 1, name = "worner")),
+                productionCountries = listOf(
+                    MovieProductionCountryEntity(
+                        name = "Great Britain",
+                        isoCode = "GB"
+                    )
+                )
+            ).toDomain()
+        )
+    }
+
+    @Test
+    fun `WHEN mapping domain to entity THEN mapped movie details returned`() {
+        assertEquals(
+            MovieDetailsContent(
+                movieDetails = MovieDetailsEntity(
+                    id = 1,
+                    title = "movie title",
+                    overview = "movie overview",
+                    posterPath = "movie poster path"
+                ),
+                genres = listOf(MovieGenreEntity(id = 1, name = "comedy")),
+                productionCompanies = listOf(MovieProductionCompanyEntity(id = 1, name = "worner")),
+                productionCountries = listOf(
+                    MovieProductionCountryEntity(
+                        name = "Great Britain",
+                        isoCode = "GB"
+                    )
+                )
+            ),
+            MovieDetails(
+                id = 1,
+                title = "movie title",
+                overview = "movie overview",
+                posterPath = "movie poster path",
+                genres = listOf(MovieGenre(id = 1, name = "comedy")),
+                productionCompanies = listOf(MovieProductionCompany(id = 1, name = "worner")),
+                productionCountries = listOf(
+                    MovieProductionCountry(
+                        name = "Great Britain",
+                        isoCode = "GB"
+                    )
+                )
+            ).toEntity()
         )
     }
 }

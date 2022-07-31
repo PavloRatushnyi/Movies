@@ -8,10 +8,7 @@ import androidx.datastore.preferences.preferencesDataStoreFile
 import androidx.room.Room
 import com.pavelratushnyi.movies.data.BuildConfig
 import com.pavelratushnyi.movies.data.movies.MoviesRepositoryImpl
-import com.pavelratushnyi.movies.data.movies.local.LocalMoviesDataSource
-import com.pavelratushnyi.movies.data.movies.local.MoviesDao
-import com.pavelratushnyi.movies.data.movies.local.MoviesDatabase
-import com.pavelratushnyi.movies.data.movies.local.RoomLocalMoviesDataSource
+import com.pavelratushnyi.movies.data.movies.local.*
 import com.pavelratushnyi.movies.data.movies.remote.MoviesService
 import com.pavelratushnyi.movies.data.movies.remote.RemoteMoviesDataSource
 import com.pavelratushnyi.movies.data.movies.remote.TmdbRemoveMoviesDataSource
@@ -24,6 +21,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -58,6 +56,11 @@ abstract class DataModule {
         @Provides
         internal fun provideMoviesDao(moviesDatabase: MoviesDatabase): MoviesDao {
             return moviesDatabase.moviesDao()
+        }
+
+        @Provides
+        internal fun provideMovieDetailsDao(moviesDatabase: MoviesDatabase): MovieDetailsDao {
+            return moviesDatabase.movieDetailsDao()
         }
 
         @Singleton
@@ -105,6 +108,7 @@ abstract class DataModule {
         tmdbRemoveMoviesDataSource: TmdbRemoveMoviesDataSource
     ): RemoteMoviesDataSource
 
+    @ExperimentalCoroutinesApi
     @Binds
     internal abstract fun bindLocalMoviesDataSource(
         roomLocalMoviesDataSource: RoomLocalMoviesDataSource

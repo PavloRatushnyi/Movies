@@ -70,12 +70,23 @@ internal class MoviesRepositoryImpl @Inject constructor(
         return flow {
             emit(Resource.Loading())
 
+            val localMovieDetails = localMoviesDataSource.getMovieDetails(id).first()
+            val localMovieDetailsResource = localMovieDetails?.let { Resource.Loading(it) }
+            localMovieDetailsResource?.let { emit(it) }
+
             val remoteMovieDetailsResource = runCatching {
                 remoteMoviesDataSource.getMovieDetails(id)
             }
+                .onSuccess { localMoviesDataSource.insertMovieDetails(it) }
                 .map { Resource.Success(it) }
                 .getOrElse { Resource.Error(it) }
             emit(remoteMovieDetailsResource)
-        }
+
+            emitAll(
+                localMoviesDataSource.getMovieDetails(id)
+                    .filterNotNull()
+                    .map { Resource.Success(it) }
+            )
+        }.distinctUntilChanged()
     }
 }
