@@ -14,6 +14,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.pavelratushnyi.movies.R
 import com.pavelratushnyi.movies.domain.Resource
 import com.pavelratushnyi.movies.domain.vo.MovieDetails
@@ -26,27 +28,35 @@ internal fun MovieDetailsScreen(
     viewModel: MovieDetailsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiStateFlow.collectAsStateWithLifecycle()
-    when (val movieDetailsResource = uiState.movieDetails) {
-        is Resource.Loading -> {
-            val movieDetails = movieDetailsResource.data
-            if (movieDetails != null) {
-                MovieDetailsContent(movieDetails)
-            } else {
-                LoaderContent()
+    val isRefreshing by viewModel.isRefreshingFlow.collectAsStateWithLifecycle()
+    SwipeRefresh(
+        state = rememberSwipeRefreshState(isRefreshing),
+        onRefresh = { viewModel.refresh() },
+    ) {
+        when (val movieDetailsResource = uiState.movieDetails) {
+            is Resource.Loading -> {
+                val movieDetails = movieDetailsResource.data
+                if (movieDetails != null) {
+                    MovieDetailsContent(movieDetails)
+                } else {
+                    LoaderContent()
+                }
             }
-        }
-        is Resource.Success -> MovieDetailsContent(
-            movieDetailsResource.data
-        )
-        is Resource.Error -> {
-            val movieDetails = movieDetailsResource.data
-            if (movieDetails != null) {
-                MovieDetailsContent(movieDetails)
-            } else {
-                ErrorContent(
-                    Modifier.fillMaxSize(),
-                    movieDetailsResource.error
-                )
+            is Resource.Success -> MovieDetailsContent(
+                movieDetailsResource.data
+            )
+            is Resource.Error -> {
+                val movieDetails = movieDetailsResource.data
+                if (movieDetails != null) {
+                    MovieDetailsContent(movieDetails)
+                } else {
+                    ErrorContent(
+                        Modifier
+                            .fillMaxSize()
+                            .verticalScroll(rememberScrollState()),
+                        movieDetailsResource.error
+                    )
+                }
             }
         }
     }

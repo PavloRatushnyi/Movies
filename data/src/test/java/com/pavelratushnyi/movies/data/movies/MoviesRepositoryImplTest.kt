@@ -140,16 +140,7 @@ internal class MoviesRepositoryImplTest {
 
             assertEquals(Result.success(Unit), repository.refreshPopularMovies())
 
-            verify(localMoviesDataSource).insertPopularMovies(
-                listOf(
-                    Movie(
-                        id = 1,
-                        title = "movie title 1",
-                        overview = "movie overview 1",
-                        posterPath = "movie poster path 1"
-                    )
-                )
-            )
+            verify(localMoviesDataSource).insertPopularMovies(moviesRemote)
         }
 
     @Test
@@ -269,5 +260,35 @@ internal class MoviesRepositoryImplTest {
             }
 
             assertEquals(movieDetailsRemote, localMoviesDataSource.getMovieDetails(1).first())
+        }
+
+    @Test
+    fun `WHEN refreshing movie details AND error thrown THEN failure returned AND local storage not updated`() =
+        runTest {
+            val movieDetailsRemoteError = IllegalStateException("no internet")
+            whenever(remoteDataSource.getMovieDetails(1)).thenThrow(movieDetailsRemoteError)
+
+            assertEquals(Result.failure<Unit>(movieDetailsRemoteError), repository.refreshMovieDetails(1))
+
+            verifyNoInteractions(localMoviesDataSource)
+        }
+
+    @Test
+    fun `WHEN refreshing popular movie details AND movie details refreshed THEN local storage updated AND success returned`() =
+        runTest {
+            val movieDetailsRemote = MovieDetails(
+                id = 1,
+                title = "title",
+                overview = "overview",
+                posterPath = "posterPath",
+                genres = emptyList(),
+                productionCountries = emptyList(),
+                productionCompanies = emptyList()
+            )
+            whenever(remoteDataSource.getMovieDetails(1)).thenReturn(movieDetailsRemote)
+
+            assertEquals(Result.success(Unit), repository.refreshMovieDetails(1))
+
+            verify(localMoviesDataSource).insertMovieDetails(movieDetailsRemote)
         }
 }

@@ -89,4 +89,10 @@ internal class MoviesRepositoryImpl @Inject constructor(
             )
         }.distinctUntilChanged()
     }
+
+    override suspend fun refreshMovieDetails(id: Long): Result<Unit> {
+        return runCatching {
+            remoteMoviesDataSource.getMovieDetails(id)
+        }.onSuccess { localMoviesDataSource.insertMovieDetails(it) }.map { }
+    }
 }

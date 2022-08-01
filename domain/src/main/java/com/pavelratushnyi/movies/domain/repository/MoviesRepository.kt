@@ -20,4 +20,6 @@ interface MoviesRepository {
     suspend fun removeFromFavourites(id: Long)
 
     fun getMovieDetails(id: Long): Flow<Resource<MovieDetails>>
+
+    suspend fun refreshMovieDetails(id: Long): Result<Unit>
 }
