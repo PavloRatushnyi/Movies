@@ -2,7 +2,7 @@ package com.pavelratushnyi.movies.domain.usecase
 
 import app.cash.turbine.test
 import com.pavelratushnyi.movies.domain.Resource
-import com.pavelratushnyi.movies.domain.repository.MoviesRepository
+import com.pavelratushnyi.movies.domain.repository.MovieDetailsRepository
 import com.pavelratushnyi.movies.domain.vo.MovieDetails
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
@@ -15,9 +15,9 @@ import org.mockito.kotlin.whenever
 @ExperimentalCoroutinesApi
 internal class GetMovieDetailsStreamUseCaseTest {
 
-    private val moviesRepository: MoviesRepository = mock()
+    private val movieDetailsRepository: MovieDetailsRepository = mock()
 
-    private val useCase = GetMovieDetailsStreamUseCase(moviesRepository)
+    private val useCase = GetMovieDetailsStreamUseCase(movieDetailsRepository)
 
     @Test
     fun `WHEN getting favourite movies THEN favourite movies returned`() = runTest {
@@ -30,7 +30,7 @@ internal class GetMovieDetailsStreamUseCaseTest {
             productionCompanies = emptyList(),
             productionCountries = emptyList()
         )
-        whenever(moviesRepository.getMovieDetails(1)).thenReturn(flowOf(Resource.Success(movieDetails)))
+        whenever(movieDetailsRepository.getMovieDetails(1)).thenReturn(flowOf(Resource.Success(movieDetails)))
 
         useCase(1).test {
             assertEquals(Resource.Success(movieDetails), awaitItem())

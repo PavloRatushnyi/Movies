@@ -5,9 +5,7 @@ import com.pavelratushnyi.movies.data.movies.local.FakeLocalMoviesDataSource
 import com.pavelratushnyi.movies.data.movies.remote.RemoteMoviesDataSource
 import com.pavelratushnyi.movies.domain.Resource
 import com.pavelratushnyi.movies.domain.vo.Movie
-import com.pavelratushnyi.movies.domain.vo.MovieDetails
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -17,14 +15,14 @@ import org.mockito.kotlin.*
 @ExperimentalCoroutinesApi
 internal class MoviesRepositoryImplTest {
 
-    private val localMoviesDataSource = spy(FakeLocalMoviesDataSource())
+    private val localDataSource = spy(FakeLocalMoviesDataSource())
     private val remoteDataSource: RemoteMoviesDataSource = mock()
 
-    private val repository = MoviesRepositoryImpl(localMoviesDataSource, remoteDataSource)
+    private val repository = MoviesRepositoryImpl(localDataSource, remoteDataSource)
 
     @AfterEach
     fun reset() {
-        localMoviesDataSource.reset()
+        localDataSource.reset()
     }
 
     @Test
@@ -46,7 +44,7 @@ internal class MoviesRepositoryImplTest {
                     posterPath = "movie poster path 2"
                 )
             )
-            localMoviesDataSource.insertPopularMovies(moviesLocal)
+            localDataSource.insertPopularMovies(moviesLocal)
             whenever(remoteDataSource.getPopularMovies()).thenReturn(moviesRemote)
 
             repository.getPopularMovies().test {
@@ -68,7 +66,7 @@ internal class MoviesRepositoryImplTest {
                     posterPath = "movie poster path 1"
                 )
             )
-            localMoviesDataSource.insertPopularMovies(moviesLocal)
+            localDataSource.insertPopularMovies(moviesLocal)
             val moviesRemoteError = IllegalStateException("no internet")
             whenever(remoteDataSource.getPopularMovies()).thenThrow(moviesRemoteError)
 
@@ -122,7 +120,7 @@ internal class MoviesRepositoryImplTest {
 
             assertEquals(Result.failure<Unit>(moviesRemoteError), repository.refreshPopularMovies())
 
-            verifyNoInteractions(localMoviesDataSource)
+            verifyNoInteractions(localDataSource)
         }
 
     @Test
@@ -140,7 +138,7 @@ internal class MoviesRepositoryImplTest {
 
             assertEquals(Result.success(Unit), repository.refreshPopularMovies())
 
-            verify(localMoviesDataSource).insertPopularMovies(moviesRemote)
+            verify(localDataSource).insertPopularMovies(moviesRemote)
         }
 
     @Test
@@ -159,8 +157,8 @@ internal class MoviesRepositoryImplTest {
                 posterPath = "movie poster path 2"
             )
             val moviesLocal = listOf(firstMovie, secondMovie)
-            localMoviesDataSource.insertPopularMovies(moviesLocal)
-            localMoviesDataSource.addToFavourites(2)
+            localDataSource.insertPopularMovies(moviesLocal)
+            localDataSource.addToFavourites(2)
 
             repository.getFavouriteMovies().test {
                 assertEquals(Resource.Loading<List<Movie>>(), awaitItem())
@@ -172,7 +170,7 @@ internal class MoviesRepositoryImplTest {
     @Test
     fun `GIVEN favourite movies in local cache WHEN requesting favourite movies ids THEN movies ids from local data source returned`() =
         runTest {
-            localMoviesDataSource.addToFavourites(2)
+            localDataSource.addToFavourites(2)
 
             repository.getFavouriteMoviesIds().test {
                 assertEquals(Resource.Loading<List<Long>>(), awaitItem())
@@ -186,7 +184,7 @@ internal class MoviesRepositoryImplTest {
         runTest {
             repository.addToFavourites(2)
 
-            localMoviesDataSource.getFavouriteMoviesIds().test {
+            localDataSource.getFavouriteMoviesIds().test {
                 assertEquals(listOf(2L), expectMostRecentItem())
                 expectNoEvents()
             }
@@ -195,100 +193,13 @@ internal class MoviesRepositoryImplTest {
     @Test
     fun `WHEN removing movie from favourites THEN movie id removed from favourites`() =
         runTest {
-            localMoviesDataSource.addToFavourites(2)
+            localDataSource.addToFavourites(2)
 
             repository.removeFromFavourites(2)
 
-            localMoviesDataSource.getFavouriteMoviesIds().test {
+            localDataSource.getFavouriteMoviesIds().test {
                 assertEquals(emptyList<Long>(), expectMostRecentItem())
                 expectNoEvents()
             }
-        }
-
-    @Test
-    fun `GIVEN no movie details in cache WHEN requesting movie details THEN movies from remote data source returned AND saved to cache`() =
-        runTest {
-            val movieDetails = MovieDetails(
-                id = 1,
-                title = "movie title",
-                overview = "movie overview",
-                posterPath = "movie poster path",
-                genres = emptyList(),
-                productionCompanies = emptyList(),
-                productionCountries = emptyList()
-            )
-            whenever(remoteDataSource.getMovieDetails(1)).thenReturn(movieDetails)
-
-            repository.getMovieDetails(1).test {
-                assertEquals(Resource.Loading<MovieDetails>(), awaitItem())
-                assertEquals(Resource.Success(movieDetails), awaitItem())
-                expectNoEvents()
-            }
-
-            assertEquals(movieDetails, localMoviesDataSource.getMovieDetails(1).first())
-        }
-
-    @Test
-    fun `GIVEN movie details in cache WHEN requesting movie details THEN movies from cache and then from remote data source returned AND saved to cache`() =
-        runTest {
-            val movieDetailsLocal = MovieDetails(
-                id = 1,
-                title = "movie title",
-                overview = "movie overview old",
-                posterPath = "movie poster path",
-                genres = emptyList(),
-                productionCompanies = emptyList(),
-                productionCountries = emptyList()
-            )
-            val movieDetailsRemote = MovieDetails(
-                id = 1,
-                title = "movie title",
-                overview = "movie overview",
-                posterPath = "movie poster path",
-                genres = emptyList(),
-                productionCompanies = emptyList(),
-                productionCountries = emptyList()
-            )
-            localMoviesDataSource.insertMovieDetails(movieDetailsLocal)
-            whenever(remoteDataSource.getMovieDetails(1)).thenReturn(movieDetailsRemote)
-
-            repository.getMovieDetails(1).test {
-                assertEquals(Resource.Loading<MovieDetails>(), awaitItem())
-                assertEquals(Resource.Loading(movieDetailsLocal), awaitItem())
-                assertEquals(Resource.Success(movieDetailsRemote), awaitItem())
-                expectNoEvents()
-            }
-
-            assertEquals(movieDetailsRemote, localMoviesDataSource.getMovieDetails(1).first())
-        }
-
-    @Test
-    fun `WHEN refreshing movie details AND error thrown THEN failure returned AND local storage not updated`() =
-        runTest {
-            val movieDetailsRemoteError = IllegalStateException("no internet")
-            whenever(remoteDataSource.getMovieDetails(1)).thenThrow(movieDetailsRemoteError)
-
-            assertEquals(Result.failure<Unit>(movieDetailsRemoteError), repository.refreshMovieDetails(1))
-
-            verifyNoInteractions(localMoviesDataSource)
-        }
-
-    @Test
-    fun `WHEN refreshing popular movie details AND movie details refreshed THEN local storage updated AND success returned`() =
-        runTest {
-            val movieDetailsRemote = MovieDetails(
-                id = 1,
-                title = "title",
-                overview = "overview",
-                posterPath = "posterPath",
-                genres = emptyList(),
-                productionCountries = emptyList(),
-                productionCompanies = emptyList()
-            )
-            whenever(remoteDataSource.getMovieDetails(1)).thenReturn(movieDetailsRemote)
-
-            assertEquals(Result.success(Unit), repository.refreshMovieDetails(1))
-
-            verify(localMoviesDataSource).insertMovieDetails(movieDetailsRemote)
         }
 }

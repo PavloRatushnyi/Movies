@@ -1,6 +1,8 @@
-package com.pavelratushnyi.movies.data.movies.remote
+package com.pavelratushnyi.movies.data.moviedetails.remote
 
 import com.pavelratushnyi.movies.data.movies.toDomain
+import com.pavelratushnyi.movies.data.tmdb.TmdbImageResolver
+import com.pavelratushnyi.movies.data.tmdb.TmdbMoviesService
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -9,35 +11,14 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
-internal class TmdbRemoveMoviesDataSourceTest {
+internal class TmdbRemoteMovieDetailsDataSourceTest {
 
-    private val service: MoviesService = mock()
+    private val service: TmdbMoviesService = mock()
 
-    private val dataSource = TmdbRemoveMoviesDataSource(
-        service = service
+    private val dataSource = TmdbRemoteMovieDetailsDataSource(
+        service = service,
+        tmdbImageResolver = TmdbImageResolver()
     )
-
-    @Test
-    fun `WHEN fetching popular movies THEN movies from api returned`() = runTest {
-        val moviesDto = listOf(
-            MovieDto(
-                id = 1,
-                title = "movie title",
-                overview = "movie overview",
-                posterPath = "movie poster path"
-            )
-        )
-        whenever(service.getPopularMovies()).thenReturn(MoviesPageDto(moviesDto))
-
-        assertEquals(
-            moviesDto.map {
-                it.toDomain().copy(
-                    posterPath = "https://image.tmdb.org/t/p/w500/movie poster path"
-                )
-            },
-            dataSource.getPopularMovies()
-        )
-    }
 
     @Test
     fun `WHEN fetching movie details THEN movie details from api returned`() = runTest {
@@ -45,7 +26,7 @@ internal class TmdbRemoveMoviesDataSourceTest {
             id = 1,
             title = "movie title",
             overview = "movie overview",
-            posterPath = "movie poster path",
+            posterPath = "poster",
             genres = listOf(MovieGenreDto(id = 1, name = "comedy")),
             productionCompanies = listOf(MovieProductionCompanyDto(id = 1, name = "worner")),
             productionCountries = listOf(
@@ -59,7 +40,7 @@ internal class TmdbRemoveMoviesDataSourceTest {
 
         assertEquals(
             movieDetailsDto.toDomain().copy(
-                posterPath = "https://image.tmdb.org/t/p/w780/movie poster path"
+                posterPath = "https://image.tmdb.org/t/p/w780/poster"
             ),
             dataSource.getMovieDetails(1)
         )

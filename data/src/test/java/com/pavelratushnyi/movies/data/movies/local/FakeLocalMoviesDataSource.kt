@@ -3,7 +3,6 @@ package com.pavelratushnyi.movies.data.movies.local
 import com.pavelratushnyi.movies.data.movies.toDomain
 import com.pavelratushnyi.movies.data.movies.toEntity
 import com.pavelratushnyi.movies.domain.vo.Movie
-import com.pavelratushnyi.movies.domain.vo.MovieDetails
 import kotlinx.coroutines.flow.*
 
 internal class FakeLocalMoviesDataSource : LocalMoviesDataSource {
@@ -11,7 +10,6 @@ internal class FakeLocalMoviesDataSource : LocalMoviesDataSource {
     private val popularMoviesIdsFlow = MutableStateFlow<List<Long>?>(null)
     private val moviesFlow = MutableStateFlow<Map<Long, MovieEntity>>(emptyMap())
     private val favouriteMoviesIdsFlow = MutableStateFlow<List<Long>>(emptyList())
-    private val movieDetailsFlow = MutableStateFlow<Map<Long, MovieDetailsContent>>(emptyMap())
 
     override fun getPopularMovies(): Flow<List<Movie>?> {
         return popularMoviesIdsFlow.flatMapLatest { moviesIds ->
@@ -54,16 +52,6 @@ internal class FakeLocalMoviesDataSource : LocalMoviesDataSource {
     override suspend fun removeFromFavourites(id: Long) {
         favouriteMoviesIdsFlow.update {
             it.minus(id)
-        }
-    }
-
-    override fun getMovieDetails(id: Long): Flow<MovieDetails?> {
-        return movieDetailsFlow.map { it[id]?.toDomain() }
-    }
-
-    override suspend fun insertMovieDetails(movieDetails: MovieDetails) {
-        movieDetailsFlow.update {
-            it.plus(movieDetails.id to movieDetails.toEntity())
         }
     }
 

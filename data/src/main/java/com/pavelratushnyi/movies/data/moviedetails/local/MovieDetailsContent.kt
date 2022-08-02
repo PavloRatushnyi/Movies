@@ -1,4 +1,4 @@
-package com.pavelratushnyi.movies.data.movies.local
+package com.pavelratushnyi.movies.data.moviedetails.local
 
 import androidx.room.Embedded
 import androidx.room.Junction

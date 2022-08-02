@@ -1,4 +1,4 @@
-package com.pavelratushnyi.movies.data.movies.local
+package com.pavelratushnyi.movies.data.moviedetails.local
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

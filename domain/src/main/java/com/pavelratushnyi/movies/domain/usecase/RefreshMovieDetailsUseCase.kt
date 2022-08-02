@@ -1,13 +1,13 @@
 package com.pavelratushnyi.movies.domain.usecase
 
-import com.pavelratushnyi.movies.domain.repository.MoviesRepository
+import com.pavelratushnyi.movies.domain.repository.MovieDetailsRepository
 import javax.inject.Inject
 
 class RefreshMovieDetailsUseCase @Inject constructor(
-    private val moviesRepository: MoviesRepository
+    private val movieDetailsRepository: MovieDetailsRepository
 ) {
 
     suspend operator fun invoke(movieId: Long): Result<Unit> {
-        return moviesRepository.refreshMovieDetails(movieId)
+        return movieDetailsRepository.refreshMovieDetails(movieId)
     }
 }

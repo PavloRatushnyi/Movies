@@ -1,4 +1,4 @@
-package com.pavelratushnyi.movies.data.network
+package com.pavelratushnyi.movies.data.tmdb
 
 import com.pavelratushnyi.movies.data.BuildConfig
 import okhttp3.HttpUrl

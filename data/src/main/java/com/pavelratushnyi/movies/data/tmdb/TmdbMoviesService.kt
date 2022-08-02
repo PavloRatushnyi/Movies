@@ -1,9 +1,11 @@
-package com.pavelratushnyi.movies.data.movies.remote
+package com.pavelratushnyi.movies.data.tmdb
 
+import com.pavelratushnyi.movies.data.moviedetails.remote.MovieDetailsDto
+import com.pavelratushnyi.movies.data.movies.remote.MoviesPageDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-internal interface MoviesService {
+internal interface TmdbMoviesService {
 
     companion object {
         const val BASE_URL = "https://api.themoviedb.org/3/"

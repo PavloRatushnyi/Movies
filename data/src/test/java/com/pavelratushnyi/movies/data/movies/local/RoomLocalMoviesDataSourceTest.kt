@@ -10,7 +10,6 @@ import com.pavelratushnyi.movies.data.movies.local.RoomLocalMoviesDataSource.Com
 import com.pavelratushnyi.movies.data.movies.local.RoomLocalMoviesDataSource.Companion.POPULAR_MOVIES_IDS_KEY
 import com.pavelratushnyi.movies.data.movies.toEntity
 import com.pavelratushnyi.movies.domain.vo.Movie
-import com.pavelratushnyi.movies.domain.vo.MovieDetails
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
@@ -25,9 +24,8 @@ internal class RoomLocalMoviesDataSourceTest {
 
     private val moviesDao: MoviesDao = mock()
     private val dataStore: DataStore<Preferences> = FakeDataStore()
-    private val movieDetailsDao: MovieDetailsDao = mock()
 
-    private val dataSource = RoomLocalMoviesDataSource(moviesDao, dataStore, movieDetailsDao)
+    private val dataSource = RoomLocalMoviesDataSource(moviesDao, dataStore)
 
     @Test
     fun `GIVEN no popular movies ids WHEN getting popular movies THEN no movies returned`() =
@@ -201,42 +199,5 @@ internal class RoomLocalMoviesDataSourceTest {
                 expectNoEvents()
             }
         }
-
-    @Test
-    fun `WHEN getting movie details THEN movie details returned`() = runTest {
-        val movieDetails = MovieDetails(
-            id = 1,
-            title = "movie title",
-            overview = "movie overview",
-            posterPath = "movie poster path",
-            genres = emptyList(),
-            productionCompanies = emptyList(),
-            productionCountries = emptyList()
-        )
-        whenever(movieDetailsDao.get(1)).thenReturn(flowOf(null, movieDetails.toEntity()))
-
-        dataSource.getMovieDetails(1).test {
-            assertEquals(null, awaitItem())
-            assertEquals(movieDetails, awaitItem())
-            awaitComplete()
-        }
-    }
-
-    @Test
-    fun `WHEN saving movie details THEN movie details saved`() = runTest {
-        val movieDetails = MovieDetails(
-            id = 1,
-            title = "movie title",
-            overview = "movie overview",
-            posterPath = "movie poster path",
-            genres = emptyList(),
-            productionCompanies = emptyList(),
-            productionCountries = emptyList()
-        )
-        whenever(movieDetailsDao.get(1)).thenReturn(flowOf(movieDetails.toEntity()))
-
-        dataSource.insertMovieDetails(movieDetails)
-        verify(movieDetailsDao).insert(movieDetails.toEntity())
-    }
 }
 

@@ -7,12 +7,22 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import androidx.room.Room
 import com.pavelratushnyi.movies.data.BuildConfig
+import com.pavelratushnyi.movies.data.moviedetails.MovieDetailsRepositoryImpl
+import com.pavelratushnyi.movies.data.moviedetails.local.LocalMovieDetailsDataSource
+import com.pavelratushnyi.movies.data.moviedetails.local.MovieDetailsDao
+import com.pavelratushnyi.movies.data.moviedetails.local.RoomLocalMovieDetailsDataSource
+import com.pavelratushnyi.movies.data.moviedetails.remote.RemoteMovieDetailsDataSource
+import com.pavelratushnyi.movies.data.moviedetails.remote.TmdbRemoteMovieDetailsDataSource
 import com.pavelratushnyi.movies.data.movies.MoviesRepositoryImpl
-import com.pavelratushnyi.movies.data.movies.local.*
-import com.pavelratushnyi.movies.data.movies.remote.MoviesService
+import com.pavelratushnyi.movies.data.movies.local.LocalMoviesDataSource
+import com.pavelratushnyi.movies.data.movies.local.MoviesDao
+import com.pavelratushnyi.movies.data.movies.local.MoviesDatabase
+import com.pavelratushnyi.movies.data.movies.local.RoomLocalMoviesDataSource
 import com.pavelratushnyi.movies.data.movies.remote.RemoteMoviesDataSource
-import com.pavelratushnyi.movies.data.movies.remote.TmdbRemoveMoviesDataSource
-import com.pavelratushnyi.movies.data.network.TmdbApikeyInterceptor
+import com.pavelratushnyi.movies.data.movies.remote.TmdbRemoteMoviesDataSource
+import com.pavelratushnyi.movies.data.tmdb.TmdbApikeyInterceptor
+import com.pavelratushnyi.movies.data.tmdb.TmdbMoviesService
+import com.pavelratushnyi.movies.domain.repository.MovieDetailsRepository
 import com.pavelratushnyi.movies.domain.repository.MoviesRepository
 import com.squareup.moshi.Moshi
 import dagger.Binds
@@ -93,19 +103,19 @@ abstract class DataModule {
         @Provides
         internal fun provideMoviesService(
             @Named("tmdb") okHttpClient: OkHttpClient
-        ): MoviesService {
+        ): TmdbMoviesService {
             return Retrofit.Builder()
                 .client(okHttpClient)
-                .baseUrl(MoviesService.BASE_URL)
+                .baseUrl(TmdbMoviesService.BASE_URL)
                 .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().build()))
                 .build()
-                .create(MoviesService::class.java)
+                .create(TmdbMoviesService::class.java)
         }
     }
 
     @Binds
     internal abstract fun bindRemoteMoviesDataSource(
-        tmdbRemoveMoviesDataSource: TmdbRemoveMoviesDataSource
+        tmdbRemoteMoviesDataSource: TmdbRemoteMoviesDataSource
     ): RemoteMoviesDataSource
 
     @ExperimentalCoroutinesApi
@@ -118,4 +128,20 @@ abstract class DataModule {
     internal abstract fun bindMoviesRepository(
         moviesRepositoryImpl: MoviesRepositoryImpl
     ): MoviesRepository
+
+    @Binds
+    internal abstract fun bindRemoteMovieDetailsDataSource(
+        tmdbRemoteMovieDetailsDataSource: TmdbRemoteMovieDetailsDataSource
+    ): RemoteMovieDetailsDataSource
+
+    @ExperimentalCoroutinesApi
+    @Binds
+    internal abstract fun bindLocalMovieDetailsDataSource(
+        roomLocalMovieDetailsDataSource: RoomLocalMovieDetailsDataSource
+    ): LocalMovieDetailsDataSource
+
+    @Binds
+    internal abstract fun bindMoviesDetailsRepository(
+        movieDetailsRepositoryImpl: MovieDetailsRepositoryImpl
+    ): MovieDetailsRepository
 }

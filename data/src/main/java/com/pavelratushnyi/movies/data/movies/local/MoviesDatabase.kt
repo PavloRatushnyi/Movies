@@ -2,6 +2,7 @@ package com.pavelratushnyi.movies.data.movies.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.pavelratushnyi.movies.data.moviedetails.local.*
 
 @Database(
     entities = [

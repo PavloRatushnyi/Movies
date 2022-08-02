@@ -7,7 +7,6 @@ import androidx.datastore.preferences.core.stringSetPreferencesKey
 import com.pavelratushnyi.movies.data.movies.toDomain
 import com.pavelratushnyi.movies.data.movies.toEntity
 import com.pavelratushnyi.movies.domain.vo.Movie
-import com.pavelratushnyi.movies.domain.vo.MovieDetails
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
@@ -19,7 +18,6 @@ import javax.inject.Inject
 internal class RoomLocalMoviesDataSource @Inject constructor(
     private val moviesDao: MoviesDao,
     private val dataStore: DataStore<Preferences>,
-    private val movieDetailsDao: MovieDetailsDao
 ) : LocalMoviesDataSource {
 
     override fun getPopularMovies(): Flow<List<Movie>?> {
@@ -70,14 +68,6 @@ internal class RoomLocalMoviesDataSource @Inject constructor(
         updateFavourites { favouriteMoviesIds ->
             favouriteMoviesIds - id.toString()
         }
-    }
-
-    override fun getMovieDetails(id: Long): Flow<MovieDetails?> {
-        return movieDetailsDao.get(id).map { it?.toDomain() }
-    }
-
-    override suspend fun insertMovieDetails(movieDetails: MovieDetails) {
-        movieDetailsDao.insert(movieDetails.toEntity())
     }
 
     private suspend fun updateFavourites(updateAction: (favouriteIds: Set<String>) -> Set<String>) {
