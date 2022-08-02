@@ -31,7 +31,7 @@ internal fun MovieDetailsScreen(
     val isRefreshing by viewModel.isRefreshingFlow.collectAsStateWithLifecycle()
     SwipeRefresh(
         state = rememberSwipeRefreshState(isRefreshing),
-        onRefresh = { viewModel.refresh() },
+        onRefresh = { viewModel.onEvent(MovieDetailsEvent.Refresh) },
     ) {
         when (val movieDetailsResource = uiState.movieDetails) {
             is Resource.Loading -> {

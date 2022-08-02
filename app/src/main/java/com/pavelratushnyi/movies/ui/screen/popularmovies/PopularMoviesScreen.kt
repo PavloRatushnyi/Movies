@@ -30,11 +30,11 @@ internal fun PopularMoviesScreen(
     val isRefreshing by viewModel.isRefreshingFlow.collectAsStateWithLifecycle()
     SwipeRefresh(
         state = rememberSwipeRefreshState(isRefreshing),
-        onRefresh = { viewModel.refresh() },
+        onRefresh = { viewModel.onEvent(PopularMoviesEvent.Refresh) },
     ) {
         MoviesList(
             moviesResource = uiState.movies,
-            onToggleFavoriteClicked = { viewModel.toggleFavouriteClicked(it) },
+            onToggleFavoriteClicked = { viewModel.onEvent(PopularMoviesEvent.ToggleFavourite(it)) },
             emptyContentModifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState()),

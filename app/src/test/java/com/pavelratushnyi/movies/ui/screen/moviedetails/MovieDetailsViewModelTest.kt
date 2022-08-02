@@ -65,7 +65,7 @@ internal class MovieDetailsViewModelTest {
 
             viewModel.isRefreshingFlow.test {
                 assertEquals(false, awaitItem())
-                viewModel.refresh()
+                viewModel.onEvent(MovieDetailsEvent.Refresh)
                 assertEquals(true, awaitItem())
                 assertEquals(false, awaitItem())
                 cancelAndIgnoreRemainingEvents()

@@ -69,7 +69,7 @@ internal class FavouriteMoviesViewModelTest {
         whenever(getFavouriteUserMoviesStreamUseCase()).thenReturn(flowOf(moviesResource))
 
         val viewModel = createViewModel()
-        viewModel.toggleFavouriteClicked(movie)
+        viewModel.onEvent(FavouriteMoviesEvent.ToggleFavourite(movie))
 
         verify(removeFromFavouritesUseCase).invoke(movie)
     }

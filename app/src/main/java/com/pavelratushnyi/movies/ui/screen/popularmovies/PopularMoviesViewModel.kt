@@ -31,13 +31,20 @@ internal class PopularMoviesViewModel @Inject constructor(
     private val _isRefreshingFlow = MutableStateFlow(false)
     val isRefreshingFlow: StateFlow<Boolean> = _isRefreshingFlow.asStateFlow()
 
-    fun toggleFavouriteClicked(movie: UserMovie) {
+    fun onEvent(event: PopularMoviesEvent) {
+        when (event) {
+            PopularMoviesEvent.Refresh -> refresh()
+            is PopularMoviesEvent.ToggleFavourite -> toggleFavourite(event.movie)
+        }
+    }
+
+    private fun toggleFavourite(movie: UserMovie) {
         viewModelScope.launch {
             toggleFavouriteUseCase(movie)
         }
     }
 
-    fun refresh() {
+    private fun refresh() {
         viewModelScope.launch {
             _isRefreshingFlow.emit(true)
             refreshPopularMoviesUseCase()

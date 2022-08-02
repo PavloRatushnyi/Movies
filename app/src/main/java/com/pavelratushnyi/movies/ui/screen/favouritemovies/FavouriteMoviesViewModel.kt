@@ -28,7 +28,13 @@ internal class FavouriteMoviesViewModel @Inject constructor(
             initialValue = FavouriteMoviesUiState()
         )
 
-    fun toggleFavouriteClicked(movie: UserMovie) {
+    fun onEvent(event: FavouriteMoviesEvent) {
+        when (event) {
+            is FavouriteMoviesEvent.ToggleFavourite -> toggleFavourite(event.movie)
+        }
+    }
+
+    private fun toggleFavourite(movie: UserMovie) {
         if (movie.favourite.not()) return
         viewModelScope.launch {
             removeFromFavouritesUseCase(movie)

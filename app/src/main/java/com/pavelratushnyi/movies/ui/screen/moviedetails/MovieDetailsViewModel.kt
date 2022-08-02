@@ -32,7 +32,13 @@ internal class MovieDetailsViewModel @Inject constructor(
             initialValue = MovieDetailsUiState()
         )
 
-    fun refresh() {
+    fun onEvent(event: MovieDetailsEvent) {
+        when (event) {
+            MovieDetailsEvent.Refresh -> refresh()
+        }
+    }
+
+    private fun refresh() {
         viewModelScope.launch {
             _isRefreshingFlow.emit(true)
             refreshMovieDetailsUseCase(movieId)

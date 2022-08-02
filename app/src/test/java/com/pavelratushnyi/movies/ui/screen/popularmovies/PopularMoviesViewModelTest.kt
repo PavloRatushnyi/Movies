@@ -74,7 +74,7 @@ internal class PopularMoviesViewModelTest {
         whenever(getPopularUserMoviesStreamUseCase()).thenReturn(flowOf(moviesResource))
 
         val viewModel = createViewModel()
-        viewModel.toggleFavouriteClicked(movie)
+        viewModel.onEvent(PopularMoviesEvent.ToggleFavourite(movie))
 
         verify(toggleFavouriteUseCase).invoke(movie)
     }
@@ -88,7 +88,7 @@ internal class PopularMoviesViewModelTest {
 
             viewModel.isRefreshingFlow.test {
                 assertEquals(false, awaitItem())
-                viewModel.refresh()
+                viewModel.onEvent(PopularMoviesEvent.Refresh)
                 assertEquals(true, awaitItem())
                 assertEquals(false, awaitItem())
                 cancelAndIgnoreRemainingEvents()

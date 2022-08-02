@@ -23,7 +23,7 @@ internal fun FavouriteMoviesScreen(
     val uiState by viewModel.uiStateFlow.collectAsStateWithLifecycle()
     MoviesList(
         moviesResource = uiState.movies,
-        onToggleFavoriteClicked = { viewModel.toggleFavouriteClicked(it) },
+        onToggleFavoriteClicked = { viewModel.onEvent(FavouriteMoviesEvent.ToggleFavourite(it)) },
         onMovieClicked = onMovieClicked
     )
 }
