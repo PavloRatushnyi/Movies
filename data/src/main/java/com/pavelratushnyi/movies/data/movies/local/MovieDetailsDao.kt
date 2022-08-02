@@ -9,61 +9,49 @@ import kotlinx.coroutines.flow.combine
 internal interface MovieDetailsDao : BaseMovieDetailsDao {
 
     @Transaction
-    suspend fun insert(vararg moviesDetailsContents: MovieDetailsContent) {
-        val movieDetailsIds = mutableListOf<Long>()
-        val movieDetails = mutableListOf<MovieDetailsEntity>()
-        val movieGenres = linkedSetOf<MovieGenreEntity>()
-        val movieProductionCompanies = linkedSetOf<MovieProductionCompanyEntity>()
-        val movieProductionCountries = linkedSetOf<MovieProductionCountryEntity>()
+    suspend fun insert(moviesDetailsContent: MovieDetailsContent) {
         val movieGenreCrossRefs = mutableListOf<MovieGenreCrossRef>()
         val movieProductionCompanyCrossRefs = mutableListOf<MovieProductionCompanyCrossRef>()
         val movieProductionCountryCrossRefs = mutableListOf<MovieProductionCountryCrossRef>()
-        moviesDetailsContents.forEach {
-            movieDetailsIds.add(it.movieDetails.id)
-            movieDetails.add(it.movieDetails)
-            movieGenres.addAll(it.genres)
-            movieProductionCompanies.addAll(it.productionCompanies)
-            movieProductionCountries.addAll(it.productionCountries)
-            movieGenreCrossRefs.addAll(
-                it.genres.mapIndexed { index, genre ->
-                    MovieGenreCrossRef(
-                        movieId = it.movieDetails.id,
-                        genreId = genre.id,
-                        position = index
-                    )
-                }
-            )
-            movieProductionCompanyCrossRefs.addAll(
-                it.productionCompanies.mapIndexed { index, productionCompany ->
-                    MovieProductionCompanyCrossRef(
-                        movieId = it.movieDetails.id,
-                        productionCompanyId = productionCompany.id,
-                        position = index
-                    )
-                }
-            )
-            movieProductionCountryCrossRefs.addAll(
-                it.productionCountries.mapIndexed { index, productionCountry ->
-                    MovieProductionCountryCrossRef(
-                        movieId = it.movieDetails.id,
-                        countryIsoCode = productionCountry.isoCode,
-                        position = index
-                    )
-                }
-            )
-        }
-        deleteMovieGenreCrossRefs(*movieDetailsIds.toLongArray())
-        deleteMovieProductionCompanyCrossRefs(*movieDetailsIds.toLongArray())
-        deleteMovieProductionCountryCrossRefs(*movieDetailsIds.toLongArray())
+        movieGenreCrossRefs.addAll(
+            moviesDetailsContent.genres.mapIndexed { index, genre ->
+                MovieGenreCrossRef(
+                    movieId = moviesDetailsContent.movieDetails.id,
+                    genreId = genre.id,
+                    position = index
+                )
+            }
+        )
+        movieProductionCompanyCrossRefs.addAll(
+            moviesDetailsContent.productionCompanies.mapIndexed { index, productionCompany ->
+                MovieProductionCompanyCrossRef(
+                    movieId = moviesDetailsContent.movieDetails.id,
+                    productionCompanyId = productionCompany.id,
+                    position = index
+                )
+            }
+        )
+        movieProductionCountryCrossRefs.addAll(
+            moviesDetailsContent.productionCountries.mapIndexed { index, productionCountry ->
+                MovieProductionCountryCrossRef(
+                    movieId = moviesDetailsContent.movieDetails.id,
+                    countryIsoCode = productionCountry.isoCode,
+                    position = index
+                )
+            }
+        )
+        deleteMovieGenreCrossRefs(moviesDetailsContent.movieDetails.id)
+        deleteMovieProductionCompanyCrossRefs(moviesDetailsContent.movieDetails.id)
+        deleteMovieProductionCountryCrossRefs(moviesDetailsContent.movieDetails.id)
 
-        insert(*movieDetails.toTypedArray())
-        insert(*movieGenres.toTypedArray())
-        insert(*movieProductionCompanies.toTypedArray())
-        insert(*movieProductionCountries.toTypedArray())
+        insertMovieDetails(moviesDetailsContent.movieDetails)
+        insertMovieGenres(moviesDetailsContent.genres.toList())
+        insertProductionCompanies(moviesDetailsContent.productionCompanies.toList())
+        insertProductionCountries(moviesDetailsContent.productionCountries.toList())
 
-        insert(*movieGenreCrossRefs.toTypedArray())
-        insert(*movieProductionCompanyCrossRefs.toTypedArray())
-        insert(*movieProductionCountryCrossRefs.toTypedArray())
+        insertMovieGenreCrossRefs(movieGenreCrossRefs.toList())
+        insertMovieProductionCompanyCrossRefs(movieProductionCompanyCrossRefs.toList())
+        insertMovieProductionCountryCrossRefs(movieProductionCountryCrossRefs.toList())
     }
 
     fun get(id: Long): Flow<MovieDetailsContent?> {

@@ -70,7 +70,7 @@ internal class RoomLocalMoviesDataSourceTest {
                     posterPath = "movie poster path 3"
                 ),
             )
-            whenever(moviesDao.getAndSortByIds(longArrayOf(1, 2, 3))).thenReturn(flowOf(movies.map {
+            whenever(moviesDao.getAndSortByIds(listOf(1L, 2L, 3L))).thenReturn(flowOf(movies.map {
                 it.toEntity()
             }))
 
@@ -106,7 +106,7 @@ internal class RoomLocalMoviesDataSourceTest {
                 )
                 expectNoEvents()
             }
-            verify(moviesDao).insert(*movies.map { it.toEntity() }.toTypedArray())
+            verify(moviesDao).insert(movies.map { it.toEntity() })
         }
 
     @Test
@@ -137,7 +137,7 @@ internal class RoomLocalMoviesDataSourceTest {
                     posterPath = "movie poster path 3"
                 ),
             )
-            whenever(moviesDao.getAndSortByIds(longArrayOf(1, 2, 3))).thenReturn(flowOf(movies.map {
+            whenever(moviesDao.getAndSortByIds(listOf(1L, 2L, 3L))).thenReturn(flowOf(movies.map {
                 it.toEntity()
             }))
 

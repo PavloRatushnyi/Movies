@@ -6,44 +6,44 @@ internal class FakeMovieDetailsDao(
     private val baseMovieDetailsDao: BaseMovieDetailsDao
 ) : MovieDetailsDao {
 
-    override suspend fun insert(vararg movieDetails: MovieDetailsEntity) {
-        baseMovieDetailsDao.insert(*movieDetails)
+    override suspend fun insertMovieDetails(movieDetails: MovieDetailsEntity) {
+        baseMovieDetailsDao.insertMovieDetails(movieDetails)
     }
 
-    override suspend fun insert(vararg movieGenres: MovieGenreEntity) {
-        baseMovieDetailsDao.insert(*movieGenres)
+    override suspend fun insertMovieGenres(movieGenres: List<MovieGenreEntity>) {
+        baseMovieDetailsDao.insertMovieGenres(movieGenres)
     }
 
-    override suspend fun insert(vararg movieProductionCompanies: MovieProductionCompanyEntity) {
-        baseMovieDetailsDao.insert(*movieProductionCompanies)
+    override suspend fun insertProductionCompanies(movieProductionCompanies: List<MovieProductionCompanyEntity>) {
+        baseMovieDetailsDao.insertProductionCompanies(movieProductionCompanies)
     }
 
-    override suspend fun insert(vararg movieProductionCountries: MovieProductionCountryEntity) {
-        baseMovieDetailsDao.insert(*movieProductionCountries)
+    override suspend fun insertProductionCountries(movieProductionCountries: List<MovieProductionCountryEntity>) {
+        baseMovieDetailsDao.insertProductionCountries(movieProductionCountries)
     }
 
-    override suspend fun insert(vararg movieGenreCrossRefs: MovieGenreCrossRef) {
-        baseMovieDetailsDao.insert(*movieGenreCrossRefs)
+    override suspend fun insertMovieGenreCrossRefs(movieGenreCrossRefs: List<MovieGenreCrossRef>) {
+        baseMovieDetailsDao.insertMovieGenreCrossRefs(movieGenreCrossRefs)
     }
 
-    override suspend fun insert(vararg movieProductionCompanyCrossRefs: MovieProductionCompanyCrossRef) {
-        baseMovieDetailsDao.insert(*movieProductionCompanyCrossRefs)
+    override suspend fun insertMovieProductionCompanyCrossRefs(movieProductionCompanyCrossRefs: List<MovieProductionCompanyCrossRef>) {
+        baseMovieDetailsDao.insertMovieProductionCompanyCrossRefs(movieProductionCompanyCrossRefs)
     }
 
-    override suspend fun insert(vararg movieProductionCountryCrossRefs: MovieProductionCountryCrossRef) {
-        baseMovieDetailsDao.insert(*movieProductionCountryCrossRefs)
+    override suspend fun insertMovieProductionCountryCrossRefs(movieProductionCountryCrossRefs: List<MovieProductionCountryCrossRef>) {
+        baseMovieDetailsDao.insertMovieProductionCountryCrossRefs(movieProductionCountryCrossRefs)
     }
 
-    override suspend fun deleteMovieGenreCrossRefs(vararg movieIds: Long) {
-        baseMovieDetailsDao.deleteMovieGenreCrossRefs(*movieIds)
+    override suspend fun deleteMovieGenreCrossRefs(movieId: Long) {
+        baseMovieDetailsDao.deleteMovieGenreCrossRefs(movieId)
     }
 
-    override suspend fun deleteMovieProductionCompanyCrossRefs(vararg movieIds: Long) {
-        baseMovieDetailsDao.deleteMovieProductionCompanyCrossRefs(*movieIds)
+    override suspend fun deleteMovieProductionCompanyCrossRefs(movieId: Long) {
+        baseMovieDetailsDao.deleteMovieProductionCompanyCrossRefs(movieId)
     }
 
-    override suspend fun deleteMovieProductionCountryCrossRefs(vararg movieIds: Long) {
-        baseMovieDetailsDao.deleteMovieProductionCountryCrossRefs(*movieIds)
+    override suspend fun deleteMovieProductionCountryCrossRefs(movieId: Long) {
+        baseMovieDetailsDao.deleteMovieProductionCountryCrossRefs(movieId)
     }
 
     override fun getMovieDetails(id: Long): Flow<MovieDetailsEntity?> {

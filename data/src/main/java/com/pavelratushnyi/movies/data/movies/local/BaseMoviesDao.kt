@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.Flow
 internal interface BaseMoviesDao {
 
     @Query("SELECT * FROM movies WHERE id IN (:movieIds)")
-    fun getByIds(movieIds: LongArray): Flow<List<MovieEntity>>
+    fun getByIds(movieIds: List<Long>): Flow<List<MovieEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(vararg movies: MovieEntity)
+    suspend fun insert(movies: List<MovieEntity>)
 }

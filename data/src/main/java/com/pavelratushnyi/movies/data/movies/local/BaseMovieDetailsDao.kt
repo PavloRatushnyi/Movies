@@ -45,32 +45,32 @@ internal interface BaseMovieDetailsDao {
     fun getMovieProductionCountries(movieId: Long): Flow<List<MovieProductionCountryEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(vararg movieDetails: MovieDetailsEntity)
+    suspend fun insertMovieDetails(movieDetails: MovieDetailsEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(vararg movieGenres: MovieGenreEntity)
+    suspend fun insertMovieGenres(movieGenres: List<MovieGenreEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(vararg movieProductionCompanies: MovieProductionCompanyEntity)
+    suspend fun insertProductionCompanies(movieProductionCompanies: List<MovieProductionCompanyEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(vararg movieProductionCountries: MovieProductionCountryEntity)
+    suspend fun insertProductionCountries(movieProductionCountries: List<MovieProductionCountryEntity>)
 
     @Insert
-    suspend fun insert(vararg movieGenreCrossRefs: MovieGenreCrossRef)
+    suspend fun insertMovieGenreCrossRefs(movieGenreCrossRefs: List<MovieGenreCrossRef>)
 
     @Insert
-    suspend fun insert(vararg movieProductionCompanyCrossRefs: MovieProductionCompanyCrossRef)
+    suspend fun insertMovieProductionCompanyCrossRefs(movieProductionCompanyCrossRefs: List<MovieProductionCompanyCrossRef>)
 
     @Insert
-    suspend fun insert(vararg movieProductionCountryCrossRefs: MovieProductionCountryCrossRef)
+    suspend fun insertMovieProductionCountryCrossRefs(movieProductionCountryCrossRefs: List<MovieProductionCountryCrossRef>)
 
-    @Query("DELETE FROM movie_genre_cross_ref WHERE movie_id IN (:movieIds)")
-    suspend fun deleteMovieGenreCrossRefs(vararg movieIds: Long)
+    @Query("DELETE FROM movie_genre_cross_ref WHERE movie_id = :movieId")
+    suspend fun deleteMovieGenreCrossRefs(movieId: Long)
 
-    @Query("DELETE FROM movie_production_company_cross_ref WHERE movie_id IN (:movieIds)")
-    suspend fun deleteMovieProductionCompanyCrossRefs(vararg movieIds: Long)
+    @Query("DELETE FROM movie_production_company_cross_ref WHERE movie_id = :movieId")
+    suspend fun deleteMovieProductionCompanyCrossRefs(movieId: Long)
 
-    @Query("DELETE FROM movie_production_country_cross_ref WHERE movie_id IN (:movieIds)")
-    suspend fun deleteMovieProductionCountryCrossRefs(vararg movieIds: Long)
+    @Query("DELETE FROM movie_production_country_cross_ref WHERE movie_id = :movieIds")
+    suspend fun deleteMovieProductionCountryCrossRefs(movieIds: Long)
 }

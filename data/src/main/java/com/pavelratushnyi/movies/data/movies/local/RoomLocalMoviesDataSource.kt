@@ -30,7 +30,7 @@ internal class RoomLocalMoviesDataSource @Inject constructor(
                 if (moviesIds == null) {
                     flowOf(null)
                 } else {
-                    moviesDao.getAndSortByIds(moviesIds.toLongArray())
+                    moviesDao.getAndSortByIds(moviesIds)
                         .map { movies -> movies.map { it.toDomain() } }
                 }
             }
@@ -42,13 +42,13 @@ internal class RoomLocalMoviesDataSource @Inject constructor(
                 it.id.toString()
             }.toSet()
         }
-        moviesDao.insert(*movies.map { it.toEntity() }.toTypedArray())
+        moviesDao.insert(movies.map { it.toEntity() })
     }
 
     override fun getFavouriteMovies(): Flow<List<Movie>> {
         return getFavouriteMoviesIds()
             .flatMapLatest { moviesIds ->
-                moviesDao.getAndSortByIds(moviesIds.toLongArray()).map { movies ->
+                moviesDao.getAndSortByIds(moviesIds).map { movies ->
                     movies.map { it.toDomain() }
                 }
             }

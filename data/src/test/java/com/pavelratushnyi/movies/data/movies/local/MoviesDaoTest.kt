@@ -36,9 +36,9 @@ internal class MoviesDaoTest {
             posterPath = "movie poster path 1"
         )
         val movies = listOf(thirdMovie, secondMovie, firstMovie)
-        whenever(baseMoviesDao.getByIds(longArrayOf(1, 2, 3))).thenReturn(flowOf(movies))
+        whenever(baseMoviesDao.getByIds(listOf(1L, 2L, 3L))).thenReturn(flowOf(movies))
 
-        moviesDao.getAndSortByIds(longArrayOf(1, 2, 3)).test {
+        moviesDao.getAndSortByIds(listOf(1L, 2L, 3L)).test {
             assertEquals(listOf(firstMovie, secondMovie, thirdMovie), awaitItem())
             cancelAndIgnoreRemainingEvents()
         }

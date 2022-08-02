@@ -6,11 +6,11 @@ internal class FakeMoviesDao(
     private val baseMoviesDao: BaseMoviesDao
 ) : MoviesDao {
 
-    override fun getByIds(movieIds: LongArray): Flow<List<MovieEntity>> {
+    override fun getByIds(movieIds: List<Long>): Flow<List<MovieEntity>> {
         return baseMoviesDao.getByIds(movieIds)
     }
 
-    override suspend fun insert(vararg movies: MovieEntity) {
-        return baseMoviesDao.insert(*movies)
+    override suspend fun insert(movies: List<MovieEntity>) {
+        return baseMoviesDao.insert(movies)
     }
 }
