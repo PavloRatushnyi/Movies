@@ -1,11 +1,11 @@
-package com.pavelratushnyi.movies.data.movies.local
+package com.pavelratushnyi.movies.data.popularmovies.local
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringSetPreferencesKey
-import com.pavelratushnyi.movies.data.movies.toDomain
-import com.pavelratushnyi.movies.data.movies.toEntity
+import com.pavelratushnyi.movies.data.popularmovies.toDomain
+import com.pavelratushnyi.movies.data.popularmovies.toEntity
 import com.pavelratushnyi.movies.domain.vo.Movie
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -15,10 +15,10 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
-internal class RoomLocalMoviesDataSource @Inject constructor(
+internal class RoomLocalPopularMoviesDataSource @Inject constructor(
     private val moviesDao: MoviesDao,
     private val dataStore: DataStore<Preferences>,
-) : LocalMoviesDataSource {
+) : LocalPopularMoviesDataSource {
 
     override fun getPopularMovies(): Flow<List<Movie>?> {
         return dataStore.data

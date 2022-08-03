@@ -1,4 +1,4 @@
-package com.pavelratushnyi.movies.data.movies
+package com.pavelratushnyi.movies.data.popularmovies
 
 import com.pavelratushnyi.movies.data.moviedetails.local.*
 import com.pavelratushnyi.movies.data.moviedetails.remote.MovieDetailsDto

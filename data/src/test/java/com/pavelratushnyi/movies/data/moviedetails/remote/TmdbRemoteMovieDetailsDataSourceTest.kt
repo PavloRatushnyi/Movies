@@ -1,6 +1,6 @@
 package com.pavelratushnyi.movies.data.moviedetails.remote
 
-import com.pavelratushnyi.movies.data.movies.toDomain
+import com.pavelratushnyi.movies.data.popularmovies.toDomain
 import com.pavelratushnyi.movies.data.tmdb.TmdbImageResolver
 import com.pavelratushnyi.movies.data.tmdb.TmdbMoviesService
 import kotlinx.coroutines.ExperimentalCoroutinesApi

@@ -1,7 +1,7 @@
 package com.pavelratushnyi.movies.data.moviedetails.local
 
 import app.cash.turbine.test
-import com.pavelratushnyi.movies.data.movies.toEntity
+import com.pavelratushnyi.movies.data.popularmovies.toEntity
 import com.pavelratushnyi.movies.domain.vo.MovieDetails
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf

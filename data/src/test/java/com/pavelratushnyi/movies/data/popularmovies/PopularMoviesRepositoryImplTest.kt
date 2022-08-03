@@ -1,8 +1,8 @@
-package com.pavelratushnyi.movies.data.movies
+package com.pavelratushnyi.movies.data.popularmovies
 
 import app.cash.turbine.test
-import com.pavelratushnyi.movies.data.movies.local.FakeLocalMoviesDataSource
-import com.pavelratushnyi.movies.data.movies.remote.RemoteMoviesDataSource
+import com.pavelratushnyi.movies.data.popularmovies.local.FakeLocalPopularMoviesDataSource
+import com.pavelratushnyi.movies.data.popularmovies.remote.RemotePopularMoviesDataSource
 import com.pavelratushnyi.movies.domain.Resource
 import com.pavelratushnyi.movies.domain.vo.Movie
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -13,12 +13,12 @@ import org.junit.jupiter.api.Test
 import org.mockito.kotlin.*
 
 @ExperimentalCoroutinesApi
-internal class MoviesRepositoryImplTest {
+internal class PopularMoviesRepositoryImplTest {
 
-    private val localDataSource = spy(FakeLocalMoviesDataSource())
-    private val remoteDataSource: RemoteMoviesDataSource = mock()
+    private val localDataSource = spy(FakeLocalPopularMoviesDataSource())
+    private val remoteDataSource: RemotePopularMoviesDataSource = mock()
 
-    private val repository = MoviesRepositoryImpl(localDataSource, remoteDataSource)
+    private val repository = PopularMoviesRepositoryImpl(localDataSource, remoteDataSource)
 
     @AfterEach
     fun reset() {

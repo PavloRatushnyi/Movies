@@ -1,6 +1,6 @@
 package com.pavelratushnyi.movies.data.moviedetails.local
 
-import com.pavelratushnyi.movies.data.movies.local.BaseMovieDetailsDao
+import com.pavelratushnyi.movies.data.popularmovies.local.BaseMovieDetailsDao
 import kotlinx.coroutines.flow.Flow
 
 internal class FakeMovieDetailsDao(

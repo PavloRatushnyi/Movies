@@ -1,7 +1,7 @@
 package com.pavelratushnyi.movies.data.moviedetails.local
 
 import app.cash.turbine.test
-import com.pavelratushnyi.movies.data.movies.local.BaseMovieDetailsDao
+import com.pavelratushnyi.movies.data.popularmovies.local.BaseMovieDetailsDao
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flowOf

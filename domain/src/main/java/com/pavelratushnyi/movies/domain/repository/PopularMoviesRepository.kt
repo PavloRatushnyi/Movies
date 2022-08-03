@@ -4,7 +4,7 @@ import com.pavelratushnyi.movies.domain.Resource
 import com.pavelratushnyi.movies.domain.vo.Movie
 import kotlinx.coroutines.flow.Flow
 
-interface MoviesRepository {
+interface PopularMoviesRepository {
 
     fun getPopularMovies(): Flow<Resource<List<Movie>>>
 

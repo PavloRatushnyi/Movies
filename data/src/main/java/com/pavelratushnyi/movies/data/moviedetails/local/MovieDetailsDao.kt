@@ -2,7 +2,7 @@ package com.pavelratushnyi.movies.data.moviedetails.local
 
 import androidx.room.Dao
 import androidx.room.Transaction
-import com.pavelratushnyi.movies.data.movies.local.BaseMovieDetailsDao
+import com.pavelratushnyi.movies.data.popularmovies.local.BaseMovieDetailsDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 

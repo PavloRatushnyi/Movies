@@ -1,11 +1,11 @@
-package com.pavelratushnyi.movies.data.movies.local
+package com.pavelratushnyi.movies.data.popularmovies.local
 
-import com.pavelratushnyi.movies.data.movies.toDomain
-import com.pavelratushnyi.movies.data.movies.toEntity
+import com.pavelratushnyi.movies.data.popularmovies.toDomain
+import com.pavelratushnyi.movies.data.popularmovies.toEntity
 import com.pavelratushnyi.movies.domain.vo.Movie
 import kotlinx.coroutines.flow.*
 
-internal class FakeLocalMoviesDataSource : LocalMoviesDataSource {
+internal class FakeLocalPopularMoviesDataSource : LocalPopularMoviesDataSource {
 
     private val popularMoviesIdsFlow = MutableStateFlow<List<Long>?>(null)
     private val moviesFlow = MutableStateFlow<Map<Long, MovieEntity>>(emptyMap())

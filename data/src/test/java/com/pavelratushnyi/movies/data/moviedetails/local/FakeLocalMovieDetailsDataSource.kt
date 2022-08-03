@@ -1,7 +1,7 @@
 package com.pavelratushnyi.movies.data.moviedetails.local
 
-import com.pavelratushnyi.movies.data.movies.toDomain
-import com.pavelratushnyi.movies.data.movies.toEntity
+import com.pavelratushnyi.movies.data.popularmovies.toDomain
+import com.pavelratushnyi.movies.data.popularmovies.toEntity
 import com.pavelratushnyi.movies.domain.vo.MovieDetails
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

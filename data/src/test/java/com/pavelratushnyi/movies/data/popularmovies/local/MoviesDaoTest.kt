@@ -1,4 +1,4 @@
-package com.pavelratushnyi.movies.data.movies.local
+package com.pavelratushnyi.movies.data.popularmovies.local
 
 import app.cash.turbine.test
 import kotlinx.coroutines.ExperimentalCoroutinesApi

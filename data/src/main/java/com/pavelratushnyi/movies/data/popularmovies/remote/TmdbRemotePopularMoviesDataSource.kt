@@ -1,15 +1,15 @@
-package com.pavelratushnyi.movies.data.movies.remote
+package com.pavelratushnyi.movies.data.popularmovies.remote
 
-import com.pavelratushnyi.movies.data.movies.toDomain
+import com.pavelratushnyi.movies.data.popularmovies.toDomain
 import com.pavelratushnyi.movies.data.tmdb.TmdbImageResolver
 import com.pavelratushnyi.movies.data.tmdb.TmdbMoviesService
 import com.pavelratushnyi.movies.domain.vo.Movie
 import javax.inject.Inject
 
-internal class TmdbRemoteMoviesDataSource @Inject constructor(
+internal class TmdbRemotePopularMoviesDataSource @Inject constructor(
     private val service: TmdbMoviesService,
     private val tmdbImageResolver: TmdbImageResolver
-) : RemoteMoviesDataSource {
+) : RemotePopularMoviesDataSource {
 
     override suspend fun getPopularMovies(): List<Movie> {
         return service.getPopularMovies().results.map {

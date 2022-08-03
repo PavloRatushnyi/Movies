@@ -3,7 +3,7 @@ package com.pavelratushnyi.movies.domain.usecase
 import app.cash.turbine.test
 import com.pavelratushnyi.movies.domain.Resource
 import com.pavelratushnyi.movies.domain.repository.FavouriteMoviesRepository
-import com.pavelratushnyi.movies.domain.repository.MoviesRepository
+import com.pavelratushnyi.movies.domain.repository.PopularMoviesRepository
 import com.pavelratushnyi.movies.domain.vo.Movie
 import com.pavelratushnyi.movies.domain.vo.UserMovie
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -17,12 +17,12 @@ import org.mockito.kotlin.whenever
 @ExperimentalCoroutinesApi
 internal class GetPopularUserMoviesStreamUseCaseTest {
 
-    private val moviesRepository: MoviesRepository = mock()
+    private val popularMoviesRepository: PopularMoviesRepository = mock()
     private val favouriteMoviesRepository: FavouriteMoviesRepository = mock()
 
     private val useCase = GetPopularUserMoviesStreamUseCase(
         favouriteMoviesRepository,
-        moviesRepository
+        popularMoviesRepository
     )
 
     @Test
@@ -42,7 +42,7 @@ internal class GetPopularUserMoviesStreamUseCaseTest {
                     posterPath = "posterPath 2"
                 )
             )
-            whenever(moviesRepository.getPopularMovies()).thenReturn(flowOf(Resource.Success(movies)))
+            whenever(popularMoviesRepository.getPopularMovies()).thenReturn(flowOf(Resource.Success(movies)))
             whenever(favouriteMoviesRepository.getFavouriteMoviesIds()).thenReturn(
                 flowOf(
                     Resource.Success(

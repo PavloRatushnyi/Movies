@@ -3,7 +3,7 @@ package com.pavelratushnyi.movies.domain.usecase
 import com.pavelratushnyi.movies.domain.Resource
 import com.pavelratushnyi.movies.domain.mergeWith
 import com.pavelratushnyi.movies.domain.repository.FavouriteMoviesRepository
-import com.pavelratushnyi.movies.domain.repository.MoviesRepository
+import com.pavelratushnyi.movies.domain.repository.PopularMoviesRepository
 import com.pavelratushnyi.movies.domain.vo.Movie
 import com.pavelratushnyi.movies.domain.vo.UserMovie
 import kotlinx.coroutines.flow.Flow
@@ -12,13 +12,13 @@ import javax.inject.Inject
 
 class GetPopularUserMoviesStreamUseCase @Inject constructor(
     private val favouriteMoviesRepository: FavouriteMoviesRepository,
-    private val moviesRepository: MoviesRepository
+    private val popularMoviesRepository: PopularMoviesRepository
 ) {
 
     operator fun invoke(): Flow<Resource<List<UserMovie>>> {
         return combine(
             favouriteMoviesRepository.getFavouriteMoviesIds(),
-            moviesRepository.getPopularMovies()
+            popularMoviesRepository.getPopularMovies()
         ) { favouriteMoviesIds, popularMovies ->
             fun createUserMovies(
                 favouriteMoviesIds: List<Long>,

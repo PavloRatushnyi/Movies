@@ -1,4 +1,4 @@
-package com.pavelratushnyi.movies.data.movies.local
+package com.pavelratushnyi.movies.data.popularmovies.local
 
 import kotlinx.coroutines.flow.Flow
 

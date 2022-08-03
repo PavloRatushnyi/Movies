@@ -1,6 +1,6 @@
-package com.pavelratushnyi.movies.data.movies.remote
+package com.pavelratushnyi.movies.data.popularmovies.remote
 
-import com.pavelratushnyi.movies.data.movies.toDomain
+import com.pavelratushnyi.movies.data.popularmovies.toDomain
 import com.pavelratushnyi.movies.data.tmdb.TmdbImageResolver
 import com.pavelratushnyi.movies.data.tmdb.TmdbMoviesService
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -11,11 +11,11 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
-internal class TmdbRemoteMoviesDataSourceTest {
+internal class TmdbRemotePopularMoviesDataSourceTest {
 
     private val service: TmdbMoviesService = mock()
 
-    private val dataSource = TmdbRemoteMoviesDataSource(
+    private val dataSource = TmdbRemotePopularMoviesDataSource(
         service = service,
         tmdbImageResolver = TmdbImageResolver()
     )

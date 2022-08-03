@@ -1,7 +1,7 @@
 package com.pavelratushnyi.movies.data.tmdb
 
 import com.pavelratushnyi.movies.data.moviedetails.remote.MovieDetailsDto
-import com.pavelratushnyi.movies.data.movies.remote.MoviesPageDto
+import com.pavelratushnyi.movies.data.popularmovies.remote.MoviesPageDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 

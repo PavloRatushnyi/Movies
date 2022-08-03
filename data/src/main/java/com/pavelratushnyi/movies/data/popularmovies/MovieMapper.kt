@@ -1,7 +1,7 @@
-package com.pavelratushnyi.movies.data.movies
+package com.pavelratushnyi.movies.data.popularmovies
 
-import com.pavelratushnyi.movies.data.movies.local.MovieEntity
-import com.pavelratushnyi.movies.data.movies.remote.MovieDto
+import com.pavelratushnyi.movies.data.popularmovies.local.MovieEntity
+import com.pavelratushnyi.movies.data.popularmovies.remote.MovieDto
 import com.pavelratushnyi.movies.domain.vo.Movie
 
 internal fun MovieDto.toDomain() = Movie(

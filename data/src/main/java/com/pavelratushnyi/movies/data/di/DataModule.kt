@@ -16,18 +16,18 @@ import com.pavelratushnyi.movies.data.moviedetails.local.MovieDetailsDao
 import com.pavelratushnyi.movies.data.moviedetails.local.RoomLocalMovieDetailsDataSource
 import com.pavelratushnyi.movies.data.moviedetails.remote.RemoteMovieDetailsDataSource
 import com.pavelratushnyi.movies.data.moviedetails.remote.TmdbRemoteMovieDetailsDataSource
-import com.pavelratushnyi.movies.data.movies.MoviesRepositoryImpl
-import com.pavelratushnyi.movies.data.movies.local.LocalMoviesDataSource
-import com.pavelratushnyi.movies.data.movies.local.MoviesDao
-import com.pavelratushnyi.movies.data.movies.local.MoviesDatabase
-import com.pavelratushnyi.movies.data.movies.local.RoomLocalMoviesDataSource
-import com.pavelratushnyi.movies.data.movies.remote.RemoteMoviesDataSource
-import com.pavelratushnyi.movies.data.movies.remote.TmdbRemoteMoviesDataSource
+import com.pavelratushnyi.movies.data.popularmovies.PopularMoviesRepositoryImpl
+import com.pavelratushnyi.movies.data.popularmovies.local.LocalPopularMoviesDataSource
+import com.pavelratushnyi.movies.data.popularmovies.local.MoviesDao
+import com.pavelratushnyi.movies.data.popularmovies.local.MoviesDatabase
+import com.pavelratushnyi.movies.data.popularmovies.local.RoomLocalPopularMoviesDataSource
+import com.pavelratushnyi.movies.data.popularmovies.remote.RemotePopularMoviesDataSource
+import com.pavelratushnyi.movies.data.popularmovies.remote.TmdbRemotePopularMoviesDataSource
 import com.pavelratushnyi.movies.data.tmdb.TmdbApikeyInterceptor
 import com.pavelratushnyi.movies.data.tmdb.TmdbMoviesService
 import com.pavelratushnyi.movies.domain.repository.FavouriteMoviesRepository
 import com.pavelratushnyi.movies.domain.repository.MovieDetailsRepository
-import com.pavelratushnyi.movies.domain.repository.MoviesRepository
+import com.pavelratushnyi.movies.domain.repository.PopularMoviesRepository
 import com.squareup.moshi.Moshi
 import dagger.Binds
 import dagger.Module
@@ -118,20 +118,20 @@ abstract class DataModule {
     }
 
     @Binds
-    internal abstract fun bindRemoteMoviesDataSource(
-        tmdbRemoteMoviesDataSource: TmdbRemoteMoviesDataSource
-    ): RemoteMoviesDataSource
+    internal abstract fun bindRemotePopularMoviesDataSource(
+        tmdbRemotePopularMoviesDataSource: TmdbRemotePopularMoviesDataSource
+    ): RemotePopularMoviesDataSource
 
     @ExperimentalCoroutinesApi
     @Binds
-    internal abstract fun bindLocalMoviesDataSource(
-        roomLocalMoviesDataSource: RoomLocalMoviesDataSource
-    ): LocalMoviesDataSource
+    internal abstract fun bindLocalPopularMoviesDataSource(
+        roomLocalPopularMoviesDataSource: RoomLocalPopularMoviesDataSource
+    ): LocalPopularMoviesDataSource
 
     @Binds
-    internal abstract fun bindMoviesRepository(
-        moviesRepositoryImpl: MoviesRepositoryImpl
-    ): MoviesRepository
+    internal abstract fun bindPopularMoviesRepository(
+        popularMoviesRepositoryImpl: PopularMoviesRepositoryImpl
+    ): PopularMoviesRepository
 
     @Binds
     internal abstract fun bindRemoteMovieDetailsDataSource(
