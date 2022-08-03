@@ -6,7 +6,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import app.cash.turbine.test
 import com.pavelratushnyi.movies.data.FakeDataStore
-import com.pavelratushnyi.movies.data.favouritemovies.local.RoomLocalFavouriteMoviesDataSource.Companion.FAVOURITE_MOVIES_IDS_KEY
+import com.pavelratushnyi.movies.data.favouritemovies.local.RoomDataStoreLocalFavouriteMoviesDataSource.Companion.FAVOURITE_MOVIES_IDS_KEY
 import com.pavelratushnyi.movies.data.movies.local.MoviesDao
 import com.pavelratushnyi.movies.data.popularmovies.toEntity
 import com.pavelratushnyi.movies.domain.vo.Movie
@@ -19,12 +19,12 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
-internal class RoomLocalFavouriteMoviesDataSourceTest {
+internal class RoomDataStoreLocalFavouriteMoviesDataSourceTest {
 
     private val moviesDao: MoviesDao = mock()
     private val dataStore: DataStore<Preferences> = FakeDataStore()
 
-    private val dataSource = RoomLocalFavouriteMoviesDataSource(moviesDao, dataStore)
+    private val dataSource = RoomDataStoreLocalFavouriteMoviesDataSource(moviesDao, dataStore)
 
     @Test
     fun `GIVEN favourite movies ids WHEN getting favourite movies THEN movies from dao returned and sorted according to id position`() =

@@ -7,7 +7,7 @@ import androidx.datastore.preferences.core.stringSetPreferencesKey
 import app.cash.turbine.test
 import com.pavelratushnyi.movies.data.FakeDataStore
 import com.pavelratushnyi.movies.data.movies.local.MoviesDao
-import com.pavelratushnyi.movies.data.popularmovies.local.RoomLocalPopularMoviesDataSource.Companion.POPULAR_MOVIES_IDS_KEY
+import com.pavelratushnyi.movies.data.popularmovies.local.RoomDataStoreLocalPopularMoviesDataSource.Companion.POPULAR_MOVIES_IDS_KEY
 import com.pavelratushnyi.movies.data.popularmovies.toEntity
 import com.pavelratushnyi.movies.domain.vo.Movie
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -20,12 +20,12 @@ import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
-internal class RoomLocalPopularMoviesDataSourceTest {
+internal class RoomDataStoreLocalPopularMoviesDataSourceTest {
 
     private val moviesDao: MoviesDao = mock()
     private val dataStore: DataStore<Preferences> = FakeDataStore()
 
-    private val dataSource = RoomLocalPopularMoviesDataSource(moviesDao, dataStore)
+    private val dataSource = RoomDataStoreLocalPopularMoviesDataSource(moviesDao, dataStore)
 
     @Test
     fun `GIVEN no popular movies ids WHEN getting popular movies THEN no movies returned`() =

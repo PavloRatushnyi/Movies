@@ -9,7 +9,7 @@ import androidx.room.Room
 import com.pavelratushnyi.movies.data.BuildConfig
 import com.pavelratushnyi.movies.data.favouritemovies.FavouriteMoviesRepositoryImpl
 import com.pavelratushnyi.movies.data.favouritemovies.local.LocalFavouriteMoviesDataSource
-import com.pavelratushnyi.movies.data.favouritemovies.local.RoomLocalFavouriteMoviesDataSource
+import com.pavelratushnyi.movies.data.favouritemovies.local.RoomDataStoreLocalFavouriteMoviesDataSource
 import com.pavelratushnyi.movies.data.moviedetails.MovieDetailsRepositoryImpl
 import com.pavelratushnyi.movies.data.moviedetails.local.LocalMovieDetailsDataSource
 import com.pavelratushnyi.movies.data.moviedetails.local.MovieDetailsDao
@@ -20,7 +20,7 @@ import com.pavelratushnyi.movies.data.movies.local.MoviesDao
 import com.pavelratushnyi.movies.data.movies.local.MoviesDatabase
 import com.pavelratushnyi.movies.data.popularmovies.PopularMoviesRepositoryImpl
 import com.pavelratushnyi.movies.data.popularmovies.local.LocalPopularMoviesDataSource
-import com.pavelratushnyi.movies.data.popularmovies.local.RoomLocalPopularMoviesDataSource
+import com.pavelratushnyi.movies.data.popularmovies.local.RoomDataStoreLocalPopularMoviesDataSource
 import com.pavelratushnyi.movies.data.popularmovies.remote.RemotePopularMoviesDataSource
 import com.pavelratushnyi.movies.data.popularmovies.remote.TmdbRemotePopularMoviesDataSource
 import com.pavelratushnyi.movies.data.tmdb.TmdbApikeyInterceptor
@@ -125,7 +125,7 @@ abstract class DataModule {
     @ExperimentalCoroutinesApi
     @Binds
     internal abstract fun bindLocalPopularMoviesDataSource(
-        roomLocalPopularMoviesDataSource: RoomLocalPopularMoviesDataSource
+        roomDataStoreLocalPopularMoviesDataSource: RoomDataStoreLocalPopularMoviesDataSource
     ): LocalPopularMoviesDataSource
 
     @Binds
@@ -152,7 +152,7 @@ abstract class DataModule {
     @ExperimentalCoroutinesApi
     @Binds
     internal abstract fun bindLocalFavouriteMoviesDataSource(
-        roomLocalFavouriteMoviesDataSource: RoomLocalFavouriteMoviesDataSource
+        roomDataStoreLocalFavouriteMoviesDataSource: RoomDataStoreLocalFavouriteMoviesDataSource
     ): LocalFavouriteMoviesDataSource
 
     @Binds

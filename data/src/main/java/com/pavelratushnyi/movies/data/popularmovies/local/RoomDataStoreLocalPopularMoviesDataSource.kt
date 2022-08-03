@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
-internal class RoomLocalPopularMoviesDataSource @Inject constructor(
+internal class RoomDataStoreLocalPopularMoviesDataSource @Inject constructor(
     private val moviesDao: MoviesDao,
     private val dataStore: DataStore<Preferences>,
 ) : LocalPopularMoviesDataSource {
