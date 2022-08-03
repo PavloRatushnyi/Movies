@@ -7,6 +7,9 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import androidx.room.Room
 import com.pavelratushnyi.movies.data.BuildConfig
+import com.pavelratushnyi.movies.data.favouritemovies.FavouriteMoviesRepositoryImpl
+import com.pavelratushnyi.movies.data.favouritemovies.local.LocalFavouriteMoviesDataSource
+import com.pavelratushnyi.movies.data.favouritemovies.local.RoomLocalFavouriteMoviesDataSource
 import com.pavelratushnyi.movies.data.moviedetails.MovieDetailsRepositoryImpl
 import com.pavelratushnyi.movies.data.moviedetails.local.LocalMovieDetailsDataSource
 import com.pavelratushnyi.movies.data.moviedetails.local.MovieDetailsDao
@@ -22,6 +25,7 @@ import com.pavelratushnyi.movies.data.movies.remote.RemoteMoviesDataSource
 import com.pavelratushnyi.movies.data.movies.remote.TmdbRemoteMoviesDataSource
 import com.pavelratushnyi.movies.data.tmdb.TmdbApikeyInterceptor
 import com.pavelratushnyi.movies.data.tmdb.TmdbMoviesService
+import com.pavelratushnyi.movies.domain.repository.FavouriteMoviesRepository
 import com.pavelratushnyi.movies.domain.repository.MovieDetailsRepository
 import com.pavelratushnyi.movies.domain.repository.MoviesRepository
 import com.squareup.moshi.Moshi
@@ -144,4 +148,15 @@ abstract class DataModule {
     internal abstract fun bindMoviesDetailsRepository(
         movieDetailsRepositoryImpl: MovieDetailsRepositoryImpl
     ): MovieDetailsRepository
+
+    @ExperimentalCoroutinesApi
+    @Binds
+    internal abstract fun bindLocalFavouriteMoviesDataSource(
+        roomLocalFavouriteMoviesDataSource: RoomLocalFavouriteMoviesDataSource
+    ): LocalFavouriteMoviesDataSource
+
+    @Binds
+    internal abstract fun bindFavouriteMoviesRepository(
+        favouriteMoviesRepositoryImpl: FavouriteMoviesRepositoryImpl
+    ): FavouriteMoviesRepository
 }

@@ -1,6 +1,6 @@
 package com.pavelratushnyi.movies.domain.usecase
 
-import com.pavelratushnyi.movies.domain.repository.MoviesRepository
+import com.pavelratushnyi.movies.domain.repository.FavouriteMoviesRepository
 import com.pavelratushnyi.movies.domain.vo.Movie
 import com.pavelratushnyi.movies.domain.vo.UserMovie
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -12,9 +12,9 @@ import org.mockito.kotlin.verify
 @ExperimentalCoroutinesApi
 internal class ToggleFavouriteUseCaseTest {
 
-    private val moviesRepository: MoviesRepository = mock()
+    private val favouriteMoviesRepository: FavouriteMoviesRepository = mock()
 
-    private val useCase = ToggleFavouriteUseCase(moviesRepository)
+    private val useCase = ToggleFavouriteUseCase(favouriteMoviesRepository)
 
     @Test
     fun `GIVEN favourite movie WHEN toggling movie THEN movie removed from favourites`() = runTest {
@@ -30,7 +30,7 @@ internal class ToggleFavouriteUseCaseTest {
             )
         )
 
-        verify(moviesRepository).removeFromFavourites(1)
+        verify(favouriteMoviesRepository).removeFromFavourites(1)
     }
 
     @Test
@@ -47,6 +47,6 @@ internal class ToggleFavouriteUseCaseTest {
             )
         )
 
-        verify(moviesRepository).addToFavourites(1)
+        verify(favouriteMoviesRepository).addToFavourites(1)
     }
 }

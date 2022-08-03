@@ -8,12 +8,4 @@ internal interface LocalMoviesDataSource {
     fun getPopularMovies(): Flow<List<Movie>?>
 
     suspend fun insertPopularMovies(movies: List<Movie>)
-
-    fun getFavouriteMovies(): Flow<List<Movie>>
-
-    fun getFavouriteMoviesIds(): Flow<List<Long>>
-
-    suspend fun addToFavourites(id: Long)
-
-    suspend fun removeFromFavourites(id: Long)
 }

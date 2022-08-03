@@ -1,6 +1,6 @@
 package com.pavelratushnyi.movies.domain.usecase
 
-import com.pavelratushnyi.movies.domain.repository.MoviesRepository
+import com.pavelratushnyi.movies.domain.repository.FavouriteMoviesRepository
 import com.pavelratushnyi.movies.domain.vo.Movie
 import com.pavelratushnyi.movies.domain.vo.UserMovie
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -12,9 +12,9 @@ import org.mockito.kotlin.verify
 @ExperimentalCoroutinesApi
 internal class RemoveFromFavouritesUseCaseTest {
 
-    private val moviesRepository: MoviesRepository = mock()
+    private val favouriteMoviesRepository: FavouriteMoviesRepository = mock()
 
-    private val useCase = RemoveFromFavouritesUseCase(moviesRepository)
+    private val useCase = RemoveFromFavouritesUseCase(favouriteMoviesRepository)
 
     @Test
     fun `WHEN removing movie from favourites THEN movie removed from favourites`() = runTest {
@@ -30,6 +30,6 @@ internal class RemoveFromFavouritesUseCaseTest {
             )
         )
 
-        verify(moviesRepository).removeFromFavourites(1)
+        verify(favouriteMoviesRepository).removeFromFavourites(1)
     }
 }

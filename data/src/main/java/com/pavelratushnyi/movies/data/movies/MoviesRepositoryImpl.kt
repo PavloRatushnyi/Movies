@@ -42,26 +42,4 @@ internal class MoviesRepositoryImpl @Inject constructor(
             remoteMoviesDataSource.getPopularMovies()
         }.onSuccess { localMoviesDataSource.insertPopularMovies(it) }.map { }
     }
-
-    override fun getFavouriteMovies(): Flow<Resource<List<Movie>>> {
-        return flow {
-            emit(Resource.Loading())
-            emitAll(localMoviesDataSource.getFavouriteMovies().map { Resource.Success(it) })
-        }.distinctUntilChanged()
-    }
-
-    override fun getFavouriteMoviesIds(): Flow<Resource<List<Long>>> {
-        return flow {
-            emit(Resource.Loading())
-            emitAll(localMoviesDataSource.getFavouriteMoviesIds().map { Resource.Success(it) })
-        }.distinctUntilChanged()
-    }
-
-    override suspend fun addToFavourites(id: Long) {
-        localMoviesDataSource.addToFavourites(id)
-    }
-
-    override suspend fun removeFromFavourites(id: Long) {
-        localMoviesDataSource.removeFromFavourites(id)
-    }
 }

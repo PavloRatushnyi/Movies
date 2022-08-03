@@ -2,6 +2,7 @@ package com.pavelratushnyi.movies.domain.usecase
 
 import app.cash.turbine.test
 import com.pavelratushnyi.movies.domain.Resource
+import com.pavelratushnyi.movies.domain.repository.FavouriteMoviesRepository
 import com.pavelratushnyi.movies.domain.repository.MoviesRepository
 import com.pavelratushnyi.movies.domain.vo.Movie
 import com.pavelratushnyi.movies.domain.vo.UserMovie
@@ -17,8 +18,12 @@ import org.mockito.kotlin.whenever
 internal class GetPopularUserMoviesStreamUseCaseTest {
 
     private val moviesRepository: MoviesRepository = mock()
+    private val favouriteMoviesRepository: FavouriteMoviesRepository = mock()
 
-    private val useCase = GetPopularUserMoviesStreamUseCase(moviesRepository)
+    private val useCase = GetPopularUserMoviesStreamUseCase(
+        favouriteMoviesRepository,
+        moviesRepository
+    )
 
     @Test
     fun `WHEN getting popular user movies THEN popular movies merged with favourites returned`() =
@@ -38,7 +43,7 @@ internal class GetPopularUserMoviesStreamUseCaseTest {
                 )
             )
             whenever(moviesRepository.getPopularMovies()).thenReturn(flowOf(Resource.Success(movies)))
-            whenever(moviesRepository.getFavouriteMoviesIds()).thenReturn(
+            whenever(favouriteMoviesRepository.getFavouriteMoviesIds()).thenReturn(
                 flowOf(
                     Resource.Success(
                         listOf(2)

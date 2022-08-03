@@ -43,47 +43,7 @@ internal class RoomLocalMoviesDataSource @Inject constructor(
         moviesDao.insert(movies.map { it.toEntity() })
     }
 
-    override fun getFavouriteMovies(): Flow<List<Movie>> {
-        return getFavouriteMoviesIds()
-            .flatMapLatest { moviesIds ->
-                moviesDao.getAndSortByIds(moviesIds).map { movies ->
-                    movies.map { it.toDomain() }
-                }
-            }
-    }
-
-    override fun getFavouriteMoviesIds(): Flow<List<Long>> {
-        return dataStore.data
-            .map { it[stringSetPreferencesKey(FAVOURITE_MOVIES_IDS_KEY)] ?: emptySet() }
-            .map { idsSet -> idsSet.map { it.toLong() } }
-    }
-
-    override suspend fun addToFavourites(id: Long) {
-        updateFavourites { favouriteMoviesIds ->
-            setOf(id.toString()) + favouriteMoviesIds
-        }
-    }
-
-    override suspend fun removeFromFavourites(id: Long) {
-        updateFavourites { favouriteMoviesIds ->
-            favouriteMoviesIds - id.toString()
-        }
-    }
-
-    private suspend fun updateFavourites(updateAction: (favouriteIds: Set<String>) -> Set<String>) {
-        dataStore.edit { preferences ->
-            val favouriteMoviesIds: Set<String> = preferences[
-                    stringSetPreferencesKey(FAVOURITE_MOVIES_IDS_KEY)
-            ] ?: emptySet()
-            val updatedFavouriteMoviesIds = updateAction(favouriteMoviesIds)
-            preferences[
-                    stringSetPreferencesKey(FAVOURITE_MOVIES_IDS_KEY)
-            ] = updatedFavouriteMoviesIds
-        }
-    }
-
     companion object {
         const val POPULAR_MOVIES_IDS_KEY = "popular_movies_ids"
-        const val FAVOURITE_MOVIES_IDS_KEY = "favourite_movies_ids"
     }
 }
