@@ -1,5 +1,6 @@
 package com.pavelratushnyi.movies.data.popularmovies.remote
 
+import com.pavelratushnyi.movies.data.movies.remote.MovieDto
 import com.pavelratushnyi.movies.data.popularmovies.toDomain
 import com.pavelratushnyi.movies.data.tmdb.TmdbImageResolver
 import com.pavelratushnyi.movies.data.tmdb.TmdbMoviesService

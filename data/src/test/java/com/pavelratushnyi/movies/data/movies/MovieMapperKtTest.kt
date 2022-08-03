@@ -1,7 +1,9 @@
-package com.pavelratushnyi.movies.data.popularmovies
+package com.pavelratushnyi.movies.data.movies
 
-import com.pavelratushnyi.movies.data.popularmovies.local.MovieEntity
-import com.pavelratushnyi.movies.data.popularmovies.remote.MovieDto
+import com.pavelratushnyi.movies.data.movies.local.MovieEntity
+import com.pavelratushnyi.movies.data.movies.remote.MovieDto
+import com.pavelratushnyi.movies.data.popularmovies.toDomain
+import com.pavelratushnyi.movies.data.popularmovies.toEntity
 import com.pavelratushnyi.movies.domain.vo.Movie
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

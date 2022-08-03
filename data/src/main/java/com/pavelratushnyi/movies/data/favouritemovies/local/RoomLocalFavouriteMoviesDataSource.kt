@@ -4,7 +4,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringSetPreferencesKey
-import com.pavelratushnyi.movies.data.popularmovies.local.MoviesDao
+import com.pavelratushnyi.movies.data.movies.local.MoviesDao
 import com.pavelratushnyi.movies.data.popularmovies.toDomain
 import com.pavelratushnyi.movies.domain.vo.Movie
 import kotlinx.coroutines.ExperimentalCoroutinesApi

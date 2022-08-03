@@ -1,6 +1,6 @@
 package com.pavelratushnyi.movies.data.favouritemovies.local
 
-import com.pavelratushnyi.movies.data.popularmovies.local.MovieEntity
+import com.pavelratushnyi.movies.data.movies.local.MovieEntity
 import com.pavelratushnyi.movies.data.popularmovies.toDomain
 import com.pavelratushnyi.movies.data.popularmovies.toEntity
 import com.pavelratushnyi.movies.domain.vo.Movie

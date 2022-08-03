@@ -16,10 +16,10 @@ import com.pavelratushnyi.movies.data.moviedetails.local.MovieDetailsDao
 import com.pavelratushnyi.movies.data.moviedetails.local.RoomLocalMovieDetailsDataSource
 import com.pavelratushnyi.movies.data.moviedetails.remote.RemoteMovieDetailsDataSource
 import com.pavelratushnyi.movies.data.moviedetails.remote.TmdbRemoteMovieDetailsDataSource
+import com.pavelratushnyi.movies.data.movies.local.MoviesDao
+import com.pavelratushnyi.movies.data.movies.local.MoviesDatabase
 import com.pavelratushnyi.movies.data.popularmovies.PopularMoviesRepositoryImpl
 import com.pavelratushnyi.movies.data.popularmovies.local.LocalPopularMoviesDataSource
-import com.pavelratushnyi.movies.data.popularmovies.local.MoviesDao
-import com.pavelratushnyi.movies.data.popularmovies.local.MoviesDatabase
 import com.pavelratushnyi.movies.data.popularmovies.local.RoomLocalPopularMoviesDataSource
 import com.pavelratushnyi.movies.data.popularmovies.remote.RemotePopularMoviesDataSource
 import com.pavelratushnyi.movies.data.popularmovies.remote.TmdbRemotePopularMoviesDataSource

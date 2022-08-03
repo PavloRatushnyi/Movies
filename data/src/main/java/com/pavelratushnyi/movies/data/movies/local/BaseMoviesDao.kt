@@ -1,4 +1,4 @@
-package com.pavelratushnyi.movies.data.popularmovies.local
+package com.pavelratushnyi.movies.data.movies.local
 
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy

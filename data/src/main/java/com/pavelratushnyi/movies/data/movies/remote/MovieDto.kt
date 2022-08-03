@@ -1,4 +1,4 @@
-package com.pavelratushnyi.movies.data.popularmovies.remote
+package com.pavelratushnyi.movies.data.movies.remote
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

@@ -7,7 +7,7 @@ import androidx.datastore.preferences.core.stringSetPreferencesKey
 import app.cash.turbine.test
 import com.pavelratushnyi.movies.data.FakeDataStore
 import com.pavelratushnyi.movies.data.favouritemovies.local.RoomLocalFavouriteMoviesDataSource.Companion.FAVOURITE_MOVIES_IDS_KEY
-import com.pavelratushnyi.movies.data.popularmovies.local.MoviesDao
+import com.pavelratushnyi.movies.data.movies.local.MoviesDao
 import com.pavelratushnyi.movies.data.popularmovies.toEntity
 import com.pavelratushnyi.movies.domain.vo.Movie
 import kotlinx.coroutines.ExperimentalCoroutinesApi
