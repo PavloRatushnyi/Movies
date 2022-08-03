@@ -1,10 +1,9 @@
-package com.pavelratushnyi.movies.data.popularmovies.local
+package com.pavelratushnyi.movies.data.moviedetails.local
 
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.RewriteQueriesToDropUnusedColumns
-import com.pavelratushnyi.movies.data.moviedetails.local.*
 import kotlinx.coroutines.flow.Flow
 
 internal interface BaseMovieDetailsDao {
