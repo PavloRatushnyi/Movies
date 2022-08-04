@@ -17,7 +17,7 @@ internal class MovieDetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val movieId = savedStateHandle.get<Long>("movieId")!!
+    private val movieId: Long = checkNotNull(savedStateHandle[MovieDetailsDestination.movieIdArg])
 
     private val _isRefreshingFlow = MutableStateFlow(false)
     val isRefreshingFlow: StateFlow<Boolean> = _isRefreshingFlow.asStateFlow()

@@ -8,8 +8,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.pavelratushnyi.movies.ui.screen.movies.MoviesScreen
-import com.pavelratushnyi.movies.ui.theme.MoviesTheme
+import com.pavelratushnyi.movies.ui.MoviesApp
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,9 +23,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MoviesTheme {
-                MoviesScreen()
-            }
+            MoviesApp()
         }
     }
 }
