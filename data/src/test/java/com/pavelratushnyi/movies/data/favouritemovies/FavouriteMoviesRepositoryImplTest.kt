@@ -43,7 +43,6 @@ internal class FavouriteMoviesRepositoryImplTest {
             localDataSource.addToFavourites(2)
 
             repository.getFavouriteMovies().test {
-                assertEquals(Resource.Loading<List<Movie>>(), awaitItem())
                 assertEquals(Resource.Success(listOf(secondMovie)), awaitItem())
                 expectNoEvents()
             }
@@ -55,7 +54,6 @@ internal class FavouriteMoviesRepositoryImplTest {
             localDataSource.addToFavourites(2)
 
             repository.getFavouriteMoviesIds().test {
-                assertEquals(Resource.Loading<List<Long>>(), awaitItem())
                 assertEquals(Resource.Success(listOf(2L)), awaitItem())
                 expectNoEvents()
             }

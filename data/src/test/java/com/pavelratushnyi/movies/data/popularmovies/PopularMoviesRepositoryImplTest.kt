@@ -48,7 +48,6 @@ internal class PopularMoviesRepositoryImplTest {
             whenever(remoteDataSource.getPopularMovies()).thenReturn(moviesRemote)
 
             repository.getPopularMovies().test {
-                assertEquals(Resource.Loading<List<Movie>>(), awaitItem())
                 assertEquals(Resource.Loading(moviesLocal), awaitItem())
                 assertEquals(Resource.Success(moviesRemote), awaitItem())
                 expectNoEvents()
@@ -71,7 +70,6 @@ internal class PopularMoviesRepositoryImplTest {
             whenever(remoteDataSource.getPopularMovies()).thenThrow(moviesRemoteError)
 
             repository.getPopularMovies().test {
-                assertEquals(Resource.Loading<List<Movie>>(), awaitItem())
                 assertEquals(Resource.Loading(moviesLocal), awaitItem())
                 assertEquals(Resource.Error(moviesRemoteError, moviesLocal), awaitItem())
                 assertEquals(Resource.Success(moviesLocal), awaitItem())
@@ -93,7 +91,6 @@ internal class PopularMoviesRepositoryImplTest {
             whenever(remoteDataSource.getPopularMovies()).thenReturn(moviesRemote)
 
             repository.getPopularMovies().test {
-                assertEquals(Resource.Loading<List<Movie>>(), awaitItem())
                 assertEquals(Resource.Success(moviesRemote), awaitItem())
                 expectNoEvents()
             }
@@ -106,7 +103,6 @@ internal class PopularMoviesRepositoryImplTest {
             whenever(remoteDataSource.getPopularMovies()).thenThrow(moviesRemoteError)
 
             repository.getPopularMovies().test {
-                assertEquals(Resource.Loading<List<Movie>>(), awaitItem())
                 assertEquals(Resource.Error<List<Movie>>(moviesRemoteError), awaitItem())
                 expectNoEvents()
             }

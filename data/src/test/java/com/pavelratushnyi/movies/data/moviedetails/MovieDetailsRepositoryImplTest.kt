@@ -41,7 +41,6 @@ internal class MovieDetailsRepositoryImplTest {
             whenever(remoteDataSource.getMovieDetails(1)).thenReturn(movieDetails)
 
             repository.getMovieDetails(1).test {
-                assertEquals(Resource.Loading<MovieDetails>(), awaitItem())
                 assertEquals(Resource.Success(movieDetails), awaitItem())
                 expectNoEvents()
             }
@@ -74,7 +73,6 @@ internal class MovieDetailsRepositoryImplTest {
             whenever(remoteDataSource.getMovieDetails(1)).thenReturn(movieDetailsRemote)
 
             repository.getMovieDetails(1).test {
-                assertEquals(Resource.Loading<MovieDetails>(), awaitItem())
                 assertEquals(Resource.Loading(movieDetailsLocal), awaitItem())
                 assertEquals(Resource.Success(movieDetailsRemote), awaitItem())
                 expectNoEvents()

@@ -13,7 +13,6 @@ internal class FavouriteMoviesRepositoryImpl @Inject constructor(
 
     override fun getFavouriteMovies(): Flow<Resource<List<Movie>>> {
         return flow {
-            emit(Resource.Loading())
             emitAll(localFavouriteMoviesDataSource.getFavouriteMovies().map {
                 Resource.Success(it)
             })
@@ -22,7 +21,6 @@ internal class FavouriteMoviesRepositoryImpl @Inject constructor(
 
     override fun getFavouriteMoviesIds(): Flow<Resource<List<Long>>> {
         return flow {
-            emit(Resource.Loading())
             emitAll(localFavouriteMoviesDataSource.getFavouriteMoviesIds().map {
                 Resource.Success(it)
             })

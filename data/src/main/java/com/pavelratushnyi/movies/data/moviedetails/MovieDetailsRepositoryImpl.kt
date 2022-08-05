@@ -15,8 +15,6 @@ internal class MovieDetailsRepositoryImpl @Inject constructor(
 
     override fun getMovieDetails(id: Long): Flow<Resource<MovieDetails>> {
         return flow {
-            emit(Resource.Loading())
-
             val localMovieDetails = localMovieDetailsDataSource.getMovieDetails(id).first()
             val localMovieDetailsResource = localMovieDetails?.let { Resource.Loading(it) }
             localMovieDetailsResource?.let { emit(it) }

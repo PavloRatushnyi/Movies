@@ -15,8 +15,6 @@ internal class PopularMoviesRepositoryImpl @Inject constructor(
 
     override fun getPopularMovies(): Flow<Resource<List<Movie>>> {
         return flow {
-            emit(Resource.Loading())
-
             val localMovies = localPopularMoviesDataSource.getPopularMovies().first()
             val localMoviesResource = localMovies?.let { Resource.Loading(it) }
             localMoviesResource?.let { emit(it) }
