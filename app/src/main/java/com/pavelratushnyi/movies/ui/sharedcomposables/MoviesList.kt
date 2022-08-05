@@ -5,7 +5,9 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -35,25 +37,41 @@ internal fun MoviesList(
     errorContentModifier: Modifier = Modifier,
     onMovieClicked: (Movie) -> Unit
 ) {
+    val lazyListState = rememberLazyListState()
     when (moviesResource) {
         is Resource.Loading -> {
             val movies = moviesResource.data
             if (movies != null) {
-                MoviesContent(movies, onToggleFavoriteClicked, emptyContentModifier, onMovieClicked)
+                MoviesContent(
+                    movies,
+                    onToggleFavoriteClicked,
+                    emptyContentModifier,
+                    onMovieClicked,
+                    lazyListState
+                )
             } else {
                 LoaderContent()
             }
         }
-        is Resource.Success -> MoviesContent(
-            moviesResource.data,
-            onToggleFavoriteClicked,
-            emptyContentModifier,
-            onMovieClicked
-        )
+        is Resource.Success -> {
+            MoviesContent(
+                moviesResource.data,
+                onToggleFavoriteClicked,
+                emptyContentModifier,
+                onMovieClicked,
+                lazyListState
+            )
+        }
         is Resource.Error -> {
             val movies = moviesResource.data
             if (movies != null) {
-                MoviesContent(movies, onToggleFavoriteClicked, emptyContentModifier, onMovieClicked)
+                MoviesContent(
+                    movies,
+                    onToggleFavoriteClicked,
+                    emptyContentModifier,
+                    onMovieClicked,
+                    lazyListState
+                )
             } else {
                 ErrorContent(errorContentModifier, moviesResource.error)
             }
@@ -69,7 +87,8 @@ private fun MoviesContent(
     userMovies: List<UserMovie>,
     onToggleFavoriteClicked: (UserMovie) -> Unit,
     emptyContentModifier: Modifier = Modifier,
-    onMovieClicked: (Movie) -> Unit
+    onMovieClicked: (Movie) -> Unit,
+    lazyListState: LazyListState
 ) {
     if (userMovies.isEmpty()) {
         EmptyContent(emptyContentModifier)
@@ -77,7 +96,8 @@ private fun MoviesContent(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(vertical = 4.dp)
+                .padding(vertical = 4.dp),
+            state = lazyListState
         ) {
             items(userMovies, key = { it.movie.id }, itemContent = { movie ->
                 MovieCard(

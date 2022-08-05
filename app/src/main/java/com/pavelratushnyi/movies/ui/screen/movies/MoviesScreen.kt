@@ -33,8 +33,16 @@ fun MoviesScreen(
     Column {
         val pages = remember {
             arrayListOf(
-                Page(R.string.movies_popular) { PopularMoviesScreen(onMovieClicked = onMovieClicked) },
-                Page(R.string.movies_favourites) { FavouriteMoviesScreen(onMovieClicked = onMovieClicked) },
+                Page(R.string.movies_popular) {
+                    PopularMoviesScreen(
+                        onMovieClicked = onMovieClicked
+                    )
+                },
+                Page(R.string.movies_favourites) {
+                    FavouriteMoviesScreen(
+                        onMovieClicked = onMovieClicked
+                    )
+                },
             )
         }
 
