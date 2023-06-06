@@ -7,7 +7,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -20,7 +19,6 @@ import com.pavelratushnyi.movies.ui.screen.movies.MoviesDestination
 import com.pavelratushnyi.movies.ui.screen.movies.MoviesScreen
 import com.pavelratushnyi.movies.ui.theme.MoviesTheme
 
-@ExperimentalLifecycleComposeApi
 @ExperimentalFoundationApi
 @ExperimentalAnimationApi
 @ExperimentalPagerApi

@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.pavelratushnyi.movies.ui.MoviesApp
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,7 +14,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @ExperimentalPagerApi
 @ExperimentalFoundationApi
 @ExperimentalAnimationApi
-@ExperimentalLifecycleComposeApi
 @ExperimentalMaterialApi
 class MainActivity : ComponentActivity() {
 

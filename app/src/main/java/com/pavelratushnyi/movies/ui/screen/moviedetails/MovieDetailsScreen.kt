@@ -11,7 +11,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.google.accompanist.swiperefresh.SwipeRefresh
@@ -22,7 +21,6 @@ import com.pavelratushnyi.movies.domain.vo.MovieDetails
 import com.pavelratushnyi.movies.ui.sharedcomposables.ErrorContent
 import com.pavelratushnyi.movies.ui.sharedcomposables.LoaderContent
 
-@ExperimentalLifecycleComposeApi
 @Composable
 internal fun MovieDetailsScreen(
     viewModel: MovieDetailsViewModel = hiltViewModel(),

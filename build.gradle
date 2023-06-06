@@ -19,7 +19,7 @@ task clean(type: Delete) {
 
 tasks.named("dependencyUpdates").configure {
     def isNonStable = { String version ->
-        def nonStableKeyword = ['alpha', 'beta', 'rc', 'm'].any {
+        def nonStableKeyword = ['dev', 'alpha', 'beta', 'rc', 'm'].any {
             qualifier -> version.toLowerCase().contains(qualifier)
         }
         return nonStableKeyword
