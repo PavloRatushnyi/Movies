@@ -13,7 +13,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.google.accompanist.pager.ExperimentalPagerApi
 import com.pavelratushnyi.movies.ui.screen.moviedetails.MovieDetailsDestination
 import com.pavelratushnyi.movies.ui.screen.moviedetails.MovieDetailsScreen
 import com.pavelratushnyi.movies.ui.screen.movies.MoviesDestination
@@ -23,7 +22,6 @@ import com.pavelratushnyi.movies.ui.theme.MoviesTheme
 @ExperimentalMaterial3Api
 @ExperimentalFoundationApi
 @ExperimentalAnimationApi
-@ExperimentalPagerApi
 @ExperimentalMaterialApi
 @Composable
 internal fun MoviesApp() {

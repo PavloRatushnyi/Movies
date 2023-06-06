@@ -18,7 +18,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.google.accompanist.pager.ExperimentalPagerApi
 import com.pavelratushnyi.movies.R
 import com.pavelratushnyi.movies.domain.vo.Movie
 import com.pavelratushnyi.movies.ui.components.pager.pagerTabIndicatorOffset
@@ -29,7 +28,6 @@ import kotlinx.coroutines.launch
 @ExperimentalMaterial3Api
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
-@ExperimentalPagerApi
 @ExperimentalMaterialApi
 @Composable
 fun MoviesScreen(
