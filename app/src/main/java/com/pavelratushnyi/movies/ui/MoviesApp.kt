@@ -4,7 +4,8 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Surface
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavType
@@ -19,6 +20,7 @@ import com.pavelratushnyi.movies.ui.screen.movies.MoviesDestination
 import com.pavelratushnyi.movies.ui.screen.movies.MoviesScreen
 import com.pavelratushnyi.movies.ui.theme.MoviesTheme
 
+@ExperimentalMaterial3Api
 @ExperimentalFoundationApi
 @ExperimentalAnimationApi
 @ExperimentalPagerApi

@@ -6,20 +6,27 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material.*
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabPosition
+import androidx.compose.material3.TabRow
+import androidx.compose.material3.TabRowDefaults
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.pavelratushnyi.movies.R
 import com.pavelratushnyi.movies.domain.vo.Movie
+import com.pavelratushnyi.movies.ui.components.pager.pagerTabIndicatorOffset
 import com.pavelratushnyi.movies.ui.screen.favouritemovies.FavouriteMoviesScreen
 import com.pavelratushnyi.movies.ui.screen.popularmovies.PopularMoviesScreen
 import kotlinx.coroutines.launch
 
+@ExperimentalMaterial3Api
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
 @ExperimentalPagerApi
@@ -49,7 +56,7 @@ fun MoviesScreen(
 
         TabRow(
             selectedTabIndex = pagerState.currentPage,
-            indicator = { tabPositions ->
+            indicator = { tabPositions: List<TabPosition> ->
                 TabRowDefaults.Indicator(
                     Modifier.pagerTabIndicatorOffset(pagerState, tabPositions)
                 )

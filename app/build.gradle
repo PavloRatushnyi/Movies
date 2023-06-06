@@ -62,9 +62,8 @@ dependencies {
     implementation project(':domain')
 
     implementation libs.core.ktx
-    implementation libs.compose.ui
-    implementation libs.compose.material
     implementation libs.compose.preview
+    implementation libs.compose.material.three
     implementation libs.runtime.ktx
     implementation libs.runtime.compose
     implementation libs.viewmodel.ktx
