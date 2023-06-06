@@ -4,6 +4,8 @@ import androidx.annotation.StringRes
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -11,9 +13,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.pagerTabIndicatorOffset
-import com.google.accompanist.pager.rememberPagerState
 import com.pavelratushnyi.movies.R
 import com.pavelratushnyi.movies.domain.vo.Movie
 import com.pavelratushnyi.movies.ui.screen.favouritemovies.FavouriteMoviesScreen
@@ -69,7 +69,7 @@ fun MoviesScreen(
         }
 
         HorizontalPager(
-            count = pages.size,
+            pageCount = pages.size,
             state = pagerState,
             modifier = Modifier.weight(1f)
         ) { pageIndex ->

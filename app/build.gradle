@@ -73,7 +73,6 @@ dependencies {
     implementation libs.hilt
     kapt libs.hilt.compiler
     implementation libs.coil
-    implementation libs.accompanist.pager
     implementation libs.accompanist.pager.indicators
     implementation libs.accompanist.swiperefresh
     implementation libs.navigation.compose
