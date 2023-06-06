@@ -5,6 +5,7 @@ buildscript {
 plugins {
     alias libs.plugins.android.library
     alias libs.plugins.kotlin.android
+    alias libs.plugins.ksp
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
 }
@@ -55,7 +56,7 @@ dependencies {
     implementation libs.hilt
     kapt libs.hilt.compiler
     implementation libs.moshi
-    kapt libs.moshi.codegen
+    ksp libs.moshi.codegen
     implementation libs.retrofit
     implementation libs.retrofit.moshi
     implementation libs.okhttp
