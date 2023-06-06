@@ -2,17 +2,20 @@ package com.pavelratushnyi.movies.ui.screen.popularmovies
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.pavelratushnyi.movies.domain.vo.Movie
 import com.pavelratushnyi.movies.ui.sharedcomposables.MoviesList
 
@@ -26,10 +29,10 @@ internal fun PopularMoviesScreen(
 ) {
     val uiState by viewModel.uiStateFlow.collectAsStateWithLifecycle()
     val isRefreshing by viewModel.isRefreshingFlow.collectAsStateWithLifecycle()
-    SwipeRefresh(
-        state = rememberSwipeRefreshState(isRefreshing),
-        onRefresh = { viewModel.onEvent(PopularMoviesEvent.Refresh) },
-    ) {
+    val pullRefreshState = rememberPullRefreshState(
+        refreshing = isRefreshing,
+        onRefresh = { viewModel.onEvent(PopularMoviesEvent.Refresh) })
+    Box(Modifier.pullRefresh(pullRefreshState)) {
         MoviesList(
             moviesResource = uiState.movies,
             onToggleFavoriteClicked = { viewModel.onEvent(PopularMoviesEvent.ToggleFavourite(it)) },
@@ -41,5 +44,6 @@ internal fun PopularMoviesScreen(
                 .verticalScroll(rememberScrollState()),
             onMovieClicked = onMovieClicked
         )
+        PullRefreshIndicator(isRefreshing, pullRefreshState, Modifier.align(Alignment.TopCenter))
     }
 }

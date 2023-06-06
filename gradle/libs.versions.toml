@@ -27,7 +27,6 @@ ksp = "1.8.21-1.0.11"
 
 [libraries]
 accompanist-pager-indicators = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "accompanist" }
-accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanist" }
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activitycompose" }
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
