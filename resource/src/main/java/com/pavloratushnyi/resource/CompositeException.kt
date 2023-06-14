@@ -1,4 +1,4 @@
-package com.pavloratushnyi.movies.domain
+package com.pavloratushnyi.resource
 
 class CompositeThrowable(
     vararg exceptions: Throwable

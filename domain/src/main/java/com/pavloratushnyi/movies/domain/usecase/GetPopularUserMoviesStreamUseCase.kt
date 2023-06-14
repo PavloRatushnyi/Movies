@@ -2,10 +2,10 @@ package com.pavloratushnyi.movies.domain.usecase
 
 import com.pavloratushnyi.model.Movie
 import com.pavloratushnyi.model.UserMovie
-import com.pavloratushnyi.movies.domain.Resource
-import com.pavloratushnyi.movies.domain.mergeWith
 import com.pavloratushnyi.movies.domain.repository.FavouriteMoviesRepository
 import com.pavloratushnyi.movies.domain.repository.PopularMoviesRepository
+import com.pavloratushnyi.resource.Resource
+import com.pavloratushnyi.resource.mergeWith
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import javax.inject.Inject

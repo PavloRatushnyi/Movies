@@ -1,4 +1,4 @@
-package com.pavloratushnyi.movies.domain
+package com.pavloratushnyi.resource
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

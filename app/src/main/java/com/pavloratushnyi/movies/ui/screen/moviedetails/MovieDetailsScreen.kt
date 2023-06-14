@@ -28,9 +28,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.pavloratushnyi.model.MovieDetails
 import com.pavloratushnyi.movies.R
-import com.pavloratushnyi.movies.domain.Resource
 import com.pavloratushnyi.movies.ui.sharedcomposables.ErrorContent
 import com.pavloratushnyi.movies.ui.sharedcomposables.LoaderContent
+import com.pavloratushnyi.resource.Resource
 
 @ExperimentalMaterialApi
 @Composable

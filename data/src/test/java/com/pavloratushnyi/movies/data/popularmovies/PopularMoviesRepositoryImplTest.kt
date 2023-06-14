@@ -4,7 +4,7 @@ import app.cash.turbine.test
 import com.pavloratushnyi.model.Movie
 import com.pavloratushnyi.movies.data.popularmovies.local.FakeLocalPopularMoviesDataSource
 import com.pavloratushnyi.movies.data.popularmovies.remote.RemotePopularMoviesDataSource
-import com.pavloratushnyi.movies.domain.Resource
+import com.pavloratushnyi.resource.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.AfterEach

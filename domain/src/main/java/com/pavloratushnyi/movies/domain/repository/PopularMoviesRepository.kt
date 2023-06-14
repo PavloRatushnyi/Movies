@@ -1,7 +1,7 @@
 package com.pavloratushnyi.movies.domain.repository
 
 import com.pavloratushnyi.model.Movie
-import com.pavloratushnyi.movies.domain.Resource
+import com.pavloratushnyi.resource.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface PopularMoviesRepository {

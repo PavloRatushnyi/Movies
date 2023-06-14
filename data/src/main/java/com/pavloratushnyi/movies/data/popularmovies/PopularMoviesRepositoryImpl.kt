@@ -3,8 +3,8 @@ package com.pavloratushnyi.movies.data.popularmovies
 import com.pavloratushnyi.model.Movie
 import com.pavloratushnyi.movies.data.popularmovies.local.LocalPopularMoviesDataSource
 import com.pavloratushnyi.movies.data.popularmovies.remote.RemotePopularMoviesDataSource
-import com.pavloratushnyi.movies.domain.Resource
 import com.pavloratushnyi.movies.domain.repository.PopularMoviesRepository
+import com.pavloratushnyi.resource.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.emitAll

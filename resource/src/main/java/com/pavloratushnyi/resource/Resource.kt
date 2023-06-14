@@ -1,4 +1,4 @@
-package com.pavloratushnyi.movies.domain
+package com.pavloratushnyi.resource
 
 sealed class Resource<T> {
     data class Loading<T>(val data: T? = null) : Resource<T>()

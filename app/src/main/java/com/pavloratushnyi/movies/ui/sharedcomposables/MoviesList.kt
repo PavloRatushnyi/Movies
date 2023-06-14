@@ -36,7 +36,7 @@ import coil.compose.AsyncImage
 import com.pavloratushnyi.model.Movie
 import com.pavloratushnyi.model.UserMovie
 import com.pavloratushnyi.movies.R
-import com.pavloratushnyi.movies.domain.Resource
+import com.pavloratushnyi.resource.Resource
 
 @ExperimentalMaterial3Api
 @ExperimentalFoundationApi

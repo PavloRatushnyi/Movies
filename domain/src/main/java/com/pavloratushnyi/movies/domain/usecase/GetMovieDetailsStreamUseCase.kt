@@ -1,8 +1,8 @@
 package com.pavloratushnyi.movies.domain.usecase
 
 import com.pavloratushnyi.model.MovieDetails
-import com.pavloratushnyi.movies.domain.Resource
 import com.pavloratushnyi.movies.domain.repository.MovieDetailsRepository
+import com.pavloratushnyi.resource.Resource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
