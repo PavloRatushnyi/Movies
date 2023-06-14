@@ -2,8 +2,8 @@ package com.pavloratushnyi.movies.domain.usecase
 
 import com.pavloratushnyi.model.Movie
 import com.pavloratushnyi.model.UserMovie
-import com.pavloratushnyi.movies.domain.repository.FavouriteMoviesRepository
-import com.pavloratushnyi.movies.domain.repository.PopularMoviesRepository
+import com.pavloratushnyi.movies.data.favouritemovies.FavouriteMoviesRepository
+import com.pavloratushnyi.movies.data.popularmovies.PopularMoviesRepository
 import com.pavloratushnyi.resource.Resource
 import com.pavloratushnyi.resource.mergeWith
 import kotlinx.coroutines.flow.Flow

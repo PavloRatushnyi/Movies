@@ -2,7 +2,7 @@ package com.pavloratushnyi.movies.domain.usecase
 
 import app.cash.turbine.test
 import com.pavloratushnyi.model.MovieDetails
-import com.pavloratushnyi.movies.domain.repository.MovieDetailsRepository
+import com.pavloratushnyi.movies.data.moviedetails.MovieDetailsRepository
 import com.pavloratushnyi.resource.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf

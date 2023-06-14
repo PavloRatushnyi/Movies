@@ -1,6 +1,6 @@
 package com.pavloratushnyi.movies.domain.usecase
 
-import com.pavloratushnyi.movies.domain.repository.MovieDetailsRepository
+import com.pavloratushnyi.movies.data.moviedetails.MovieDetailsRepository
 import javax.inject.Inject
 
 class RefreshMovieDetailsUseCase @Inject constructor(

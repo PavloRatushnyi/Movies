@@ -2,7 +2,6 @@ package com.pavloratushnyi.movies.data.favouritemovies
 
 import com.pavloratushnyi.model.Movie
 import com.pavloratushnyi.movies.data.favouritemovies.local.LocalFavouriteMoviesDataSource
-import com.pavloratushnyi.movies.domain.repository.FavouriteMoviesRepository
 import com.pavloratushnyi.resource.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged

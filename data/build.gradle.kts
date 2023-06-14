@@ -51,7 +51,6 @@ dependencies {
 
     implementation(project(":model"))
     implementation(project(":resource"))
-    implementation(project(":domain"))
 
     implementation(libs.coroutines)
     implementation(libs.hilt)

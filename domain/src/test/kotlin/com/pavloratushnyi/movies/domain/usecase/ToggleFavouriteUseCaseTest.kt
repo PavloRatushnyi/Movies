@@ -2,7 +2,7 @@ package com.pavloratushnyi.movies.domain.usecase
 
 import com.pavloratushnyi.model.Movie
 import com.pavloratushnyi.model.UserMovie
-import com.pavloratushnyi.movies.domain.repository.FavouriteMoviesRepository
+import com.pavloratushnyi.movies.data.favouritemovies.FavouriteMoviesRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test

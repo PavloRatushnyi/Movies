@@ -1,6 +1,6 @@
 package com.pavloratushnyi.movies.domain.usecase
 
-import com.pavloratushnyi.movies.domain.repository.MovieDetailsRepository
+import com.pavloratushnyi.movies.data.moviedetails.MovieDetailsRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test

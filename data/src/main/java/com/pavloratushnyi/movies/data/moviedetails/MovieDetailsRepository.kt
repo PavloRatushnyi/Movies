@@ -1,4 +1,4 @@
-package com.pavloratushnyi.movies.domain.repository
+package com.pavloratushnyi.movies.data.moviedetails
 
 import com.pavloratushnyi.model.MovieDetails
 import com.pavloratushnyi.resource.Resource

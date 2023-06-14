@@ -7,9 +7,11 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import androidx.room.Room
 import com.pavloratushnyi.movies.data.BuildConfig
+import com.pavloratushnyi.movies.data.favouritemovies.FavouriteMoviesRepository
 import com.pavloratushnyi.movies.data.favouritemovies.FavouriteMoviesRepositoryImpl
 import com.pavloratushnyi.movies.data.favouritemovies.local.LocalFavouriteMoviesDataSource
 import com.pavloratushnyi.movies.data.favouritemovies.local.RoomDataStoreLocalFavouriteMoviesDataSource
+import com.pavloratushnyi.movies.data.moviedetails.MovieDetailsRepository
 import com.pavloratushnyi.movies.data.moviedetails.MovieDetailsRepositoryImpl
 import com.pavloratushnyi.movies.data.moviedetails.local.LocalMovieDetailsDataSource
 import com.pavloratushnyi.movies.data.moviedetails.local.MovieDetailsDao
@@ -18,6 +20,7 @@ import com.pavloratushnyi.movies.data.moviedetails.remote.RemoteMovieDetailsData
 import com.pavloratushnyi.movies.data.moviedetails.remote.TmdbRemoteMovieDetailsDataSource
 import com.pavloratushnyi.movies.data.movies.local.MoviesDao
 import com.pavloratushnyi.movies.data.movies.local.MoviesDatabase
+import com.pavloratushnyi.movies.data.popularmovies.PopularMoviesRepository
 import com.pavloratushnyi.movies.data.popularmovies.PopularMoviesRepositoryImpl
 import com.pavloratushnyi.movies.data.popularmovies.local.LocalPopularMoviesDataSource
 import com.pavloratushnyi.movies.data.popularmovies.local.RoomDataStoreLocalPopularMoviesDataSource
@@ -25,9 +28,6 @@ import com.pavloratushnyi.movies.data.popularmovies.remote.RemotePopularMoviesDa
 import com.pavloratushnyi.movies.data.popularmovies.remote.TmdbRemotePopularMoviesDataSource
 import com.pavloratushnyi.movies.data.tmdb.TmdbApikeyInterceptor
 import com.pavloratushnyi.movies.data.tmdb.TmdbMoviesService
-import com.pavloratushnyi.movies.domain.repository.FavouriteMoviesRepository
-import com.pavloratushnyi.movies.domain.repository.MovieDetailsRepository
-import com.pavloratushnyi.movies.domain.repository.PopularMoviesRepository
 import com.squareup.moshi.Moshi
 import dagger.Binds
 import dagger.Module
