@@ -50,6 +50,7 @@ tasks.withType<Test> {
 dependencies {
 
     implementation(project(":model"))
+    implementation(project(":resource"))
     implementation(project(":domain"))
 
     implementation(libs.coroutines)

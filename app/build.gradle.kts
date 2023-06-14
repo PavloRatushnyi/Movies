@@ -64,6 +64,7 @@ tasks.withType<Test> {
 dependencies {
 
     implementation(project(":model"))
+    implementation(project(":resource"))
     implementation(project(":data"))
     implementation(project(":domain"))
 
