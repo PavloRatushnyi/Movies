@@ -13,6 +13,8 @@ tasks.test {
 }
 
 dependencies {
+    implementation(project(":model"))
+
     implementation(libs.coroutines)
     implementation(libs.hilt.core)
 

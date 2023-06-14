@@ -49,6 +49,7 @@ tasks.withType<Test> {
 
 dependencies {
 
+    implementation(project(":model"))
     implementation(project(":domain"))
 
     implementation(libs.coroutines)
