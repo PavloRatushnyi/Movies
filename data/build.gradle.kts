@@ -10,7 +10,7 @@ plugins {
 }
 
 android {
-    namespace = "com.pavelratushnyi.movies.data"
+    namespace = "com.pavloratushnyi.movies.data"
 
     compileSdk = 33
 

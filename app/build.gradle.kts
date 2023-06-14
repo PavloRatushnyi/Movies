@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    namespace = "com.pavelratushnyi.movies"
+    namespace = "com.pavloratushnyi.movies"
 
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.pavelratushnyi.movies"
+        applicationId = "com.pavloratushnyi.movies"
         minSdk = 26
         targetSdk = 33
         versionCode = 1
