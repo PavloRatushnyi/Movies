@@ -1,6 +1,6 @@
 package com.pavloratushnyi.movies.data.moviedetails
 
-import com.pavloratushnyi.model.MovieDetails
+import com.pavloratushnyi.movies.model.MovieDetails
 import com.pavloratushnyi.resource.Resource
 import kotlinx.coroutines.flow.Flow
 

@@ -2,9 +2,9 @@ package com.pavloratushnyi.movies.ui.screen.favouritemovies
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pavloratushnyi.model.UserMovie
 import com.pavloratushnyi.movies.domain.usecase.GetFavouriteUserMoviesStreamUseCase
 import com.pavloratushnyi.movies.domain.usecase.RemoveFromFavouritesUseCase
+import com.pavloratushnyi.movies.model.UserMovie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.scan

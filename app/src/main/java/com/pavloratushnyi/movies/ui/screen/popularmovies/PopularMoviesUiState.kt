@@ -1,6 +1,6 @@
 package com.pavloratushnyi.movies.ui.screen.popularmovies
 
-import com.pavloratushnyi.model.UserMovie
+import com.pavloratushnyi.movies.model.UserMovie
 import com.pavloratushnyi.resource.Resource
 
 internal data class PopularMoviesUiState(

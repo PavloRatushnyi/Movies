@@ -1,6 +1,6 @@
 package com.pavloratushnyi.movies.ui.screen.moviedetails
 
-import com.pavloratushnyi.model.MovieDetails
+import com.pavloratushnyi.movies.model.MovieDetails
 import com.pavloratushnyi.resource.Resource
 
 internal data class MovieDetailsUiState(

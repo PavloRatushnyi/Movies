@@ -1,6 +1,6 @@
 package com.pavloratushnyi.movies.data.moviedetails.local
 
-import com.pavloratushnyi.model.MovieDetails
+import com.pavloratushnyi.movies.model.MovieDetails
 import kotlinx.coroutines.flow.Flow
 
 internal interface LocalMovieDetailsDataSource {

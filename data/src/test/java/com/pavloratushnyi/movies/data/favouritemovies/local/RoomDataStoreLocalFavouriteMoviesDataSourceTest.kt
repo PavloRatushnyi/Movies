@@ -5,11 +5,11 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import app.cash.turbine.test
-import com.pavloratushnyi.model.Movie
 import com.pavloratushnyi.movies.data.FakeDataStore
 import com.pavloratushnyi.movies.data.favouritemovies.local.RoomDataStoreLocalFavouriteMoviesDataSource.Companion.FAVOURITE_MOVIES_IDS_KEY
 import com.pavloratushnyi.movies.data.movies.local.MoviesDao
 import com.pavloratushnyi.movies.data.popularmovies.toEntity
+import com.pavloratushnyi.movies.model.Movie
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest

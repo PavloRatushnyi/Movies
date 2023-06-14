@@ -2,10 +2,10 @@ package com.pavloratushnyi.movies.ui.screen.popularmovies
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pavloratushnyi.model.UserMovie
 import com.pavloratushnyi.movies.domain.usecase.GetPopularUserMoviesStreamUseCase
 import com.pavloratushnyi.movies.domain.usecase.RefreshPopularMoviesUseCase
 import com.pavloratushnyi.movies.domain.usecase.ToggleFavouriteUseCase
+import com.pavloratushnyi.movies.model.UserMovie
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

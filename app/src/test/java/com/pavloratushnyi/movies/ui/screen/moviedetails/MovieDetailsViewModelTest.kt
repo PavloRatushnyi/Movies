@@ -2,10 +2,10 @@ package com.pavloratushnyi.movies.ui.screen.moviedetails
 
 import androidx.lifecycle.SavedStateHandle
 import app.cash.turbine.test
-import com.pavloratushnyi.model.MovieDetails
 import com.pavloratushnyi.movies.MainDispatchersExtension
 import com.pavloratushnyi.movies.domain.usecase.GetMovieDetailsStreamUseCase
 import com.pavloratushnyi.movies.domain.usecase.RefreshMovieDetailsUseCase
+import com.pavloratushnyi.movies.model.MovieDetails
 import com.pavloratushnyi.resource.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf

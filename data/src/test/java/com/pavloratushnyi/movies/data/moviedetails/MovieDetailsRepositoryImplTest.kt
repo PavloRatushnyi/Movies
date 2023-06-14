@@ -1,9 +1,9 @@
 package com.pavloratushnyi.movies.data.moviedetails
 
 import app.cash.turbine.test
-import com.pavloratushnyi.model.MovieDetails
 import com.pavloratushnyi.movies.data.moviedetails.local.FakeLocalMovieDetailsDataSource
 import com.pavloratushnyi.movies.data.moviedetails.remote.RemoteMovieDetailsDataSource
+import com.pavloratushnyi.movies.model.MovieDetails
 import com.pavloratushnyi.resource.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first

@@ -1,10 +1,10 @@
 package com.pavloratushnyi.movies.data.movies
 
-import com.pavloratushnyi.model.Movie
 import com.pavloratushnyi.movies.data.movies.local.MovieEntity
 import com.pavloratushnyi.movies.data.movies.remote.MovieDto
 import com.pavloratushnyi.movies.data.popularmovies.toDomain
 import com.pavloratushnyi.movies.data.popularmovies.toEntity
+import com.pavloratushnyi.movies.model.Movie
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

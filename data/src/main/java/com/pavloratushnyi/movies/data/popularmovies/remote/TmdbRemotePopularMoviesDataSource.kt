@@ -1,9 +1,9 @@
 package com.pavloratushnyi.movies.data.popularmovies.remote
 
-import com.pavloratushnyi.model.Movie
 import com.pavloratushnyi.movies.data.popularmovies.toDomain
 import com.pavloratushnyi.movies.data.tmdb.TmdbImageResolver
 import com.pavloratushnyi.movies.data.tmdb.TmdbMoviesService
+import com.pavloratushnyi.movies.model.Movie
 import javax.inject.Inject
 
 internal class TmdbRemotePopularMoviesDataSource @Inject constructor(

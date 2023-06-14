@@ -1,4 +1,4 @@
-package com.pavloratushnyi.model
+package com.pavloratushnyi.movies.model
 
 data class MovieDetails(
     val id: Long,

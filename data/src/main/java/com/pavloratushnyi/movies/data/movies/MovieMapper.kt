@@ -1,8 +1,8 @@
 package com.pavloratushnyi.movies.data.popularmovies
 
-import com.pavloratushnyi.model.Movie
 import com.pavloratushnyi.movies.data.movies.local.MovieEntity
 import com.pavloratushnyi.movies.data.movies.remote.MovieDto
+import com.pavloratushnyi.movies.model.Movie
 
 internal fun MovieDto.toDomain() = Movie(
     id = id,

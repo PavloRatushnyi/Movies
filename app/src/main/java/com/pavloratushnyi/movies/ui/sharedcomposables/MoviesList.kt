@@ -33,9 +33,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
 import coil.compose.AsyncImage
-import com.pavloratushnyi.model.Movie
-import com.pavloratushnyi.model.UserMovie
 import com.pavloratushnyi.movies.R
+import com.pavloratushnyi.movies.model.Movie
+import com.pavloratushnyi.movies.model.UserMovie
 import com.pavloratushnyi.resource.Resource
 
 @ExperimentalMaterial3Api

@@ -1,6 +1,6 @@
 package com.pavloratushnyi.movies.domain.usecase
 
-import com.pavloratushnyi.model.UserMovie
+import com.pavloratushnyi.movies.model.UserMovie
 import com.pavloratushnyi.resource.Resource
 import com.pavloratushnyi.resource.mapData
 import kotlinx.coroutines.flow.Flow

@@ -1,10 +1,10 @@
 package com.pavloratushnyi.movies.domain.usecase
 
 import app.cash.turbine.test
-import com.pavloratushnyi.model.Movie
-import com.pavloratushnyi.model.UserMovie
 import com.pavloratushnyi.movies.data.favouritemovies.FavouriteMoviesRepository
 import com.pavloratushnyi.movies.data.popularmovies.PopularMoviesRepository
+import com.pavloratushnyi.movies.model.Movie
+import com.pavloratushnyi.movies.model.UserMovie
 import com.pavloratushnyi.resource.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf

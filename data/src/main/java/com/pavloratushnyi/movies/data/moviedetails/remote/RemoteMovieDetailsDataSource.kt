@@ -1,6 +1,6 @@
 package com.pavloratushnyi.movies.data.moviedetails.remote
 
-import com.pavloratushnyi.model.MovieDetails
+import com.pavloratushnyi.movies.model.MovieDetails
 
 internal interface RemoteMovieDetailsDataSource {
 

@@ -17,7 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.pavloratushnyi.model.Movie
+import com.pavloratushnyi.movies.model.Movie
 import com.pavloratushnyi.movies.ui.sharedcomposables.MoviesList
 
 @ExperimentalMaterial3Api
