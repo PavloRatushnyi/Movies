@@ -1,6 +1,0 @@
-def apiKeyProperties = new Properties()
-apiKeyProperties.load(new FileInputStream(file("apikey.properties")))
-
-ext {
-    tmdbApiKey = "\"${apiKeyProperties['TMDB_API_KEY']}\""
-}
