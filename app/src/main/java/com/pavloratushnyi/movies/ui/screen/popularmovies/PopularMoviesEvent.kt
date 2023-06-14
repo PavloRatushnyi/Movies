@@ -1,6 +1,6 @@
 package com.pavloratushnyi.movies.ui.screen.popularmovies
 
-import com.pavloratushnyi.movies.domain.vo.UserMovie
+import com.pavloratushnyi.model.UserMovie
 
 internal sealed class PopularMoviesEvent {
 

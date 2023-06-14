@@ -1,7 +1,7 @@
 package com.pavloratushnyi.movies.domain.usecase
 
+import com.pavloratushnyi.model.UserMovie
 import com.pavloratushnyi.movies.domain.repository.FavouriteMoviesRepository
-import com.pavloratushnyi.movies.domain.vo.UserMovie
 import javax.inject.Inject
 
 class ToggleFavouriteUseCase @Inject constructor(

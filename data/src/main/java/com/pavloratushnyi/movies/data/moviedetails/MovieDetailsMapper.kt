@@ -1,5 +1,9 @@
 package com.pavloratushnyi.movies.data.popularmovies
 
+import com.pavloratushnyi.model.MovieDetails
+import com.pavloratushnyi.model.MovieGenre
+import com.pavloratushnyi.model.MovieProductionCompany
+import com.pavloratushnyi.model.MovieProductionCountry
 import com.pavloratushnyi.movies.data.moviedetails.local.MovieDetailsContent
 import com.pavloratushnyi.movies.data.moviedetails.local.MovieDetailsEntity
 import com.pavloratushnyi.movies.data.moviedetails.local.MovieGenreEntity
@@ -9,10 +13,6 @@ import com.pavloratushnyi.movies.data.moviedetails.remote.MovieDetailsDto
 import com.pavloratushnyi.movies.data.moviedetails.remote.MovieGenreDto
 import com.pavloratushnyi.movies.data.moviedetails.remote.MovieProductionCompanyDto
 import com.pavloratushnyi.movies.data.moviedetails.remote.MovieProductionCountryDto
-import com.pavloratushnyi.movies.domain.vo.MovieDetails
-import com.pavloratushnyi.movies.domain.vo.MovieGenre
-import com.pavloratushnyi.movies.domain.vo.MovieProductionCompany
-import com.pavloratushnyi.movies.domain.vo.MovieProductionCountry
 
 internal fun MovieDetailsDto.toDomain() = MovieDetails(
     id = id,

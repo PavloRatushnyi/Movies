@@ -33,10 +33,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
 import coil.compose.AsyncImage
+import com.pavloratushnyi.model.Movie
+import com.pavloratushnyi.model.UserMovie
 import com.pavloratushnyi.movies.R
 import com.pavloratushnyi.movies.domain.Resource
-import com.pavloratushnyi.movies.domain.vo.Movie
-import com.pavloratushnyi.movies.domain.vo.UserMovie
 
 @ExperimentalMaterial3Api
 @ExperimentalFoundationApi

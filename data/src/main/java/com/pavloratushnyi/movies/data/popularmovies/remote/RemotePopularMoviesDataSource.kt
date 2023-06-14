@@ -1,6 +1,6 @@
 package com.pavloratushnyi.movies.data.popularmovies.remote
 
-import com.pavloratushnyi.movies.domain.vo.Movie
+import com.pavloratushnyi.model.Movie
 
 internal interface RemotePopularMoviesDataSource {
 

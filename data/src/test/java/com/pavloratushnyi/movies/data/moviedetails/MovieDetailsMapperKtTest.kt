@@ -1,5 +1,9 @@
 package com.pavloratushnyi.movies.data.moviedetails
 
+import com.pavloratushnyi.model.MovieDetails
+import com.pavloratushnyi.model.MovieGenre
+import com.pavloratushnyi.model.MovieProductionCompany
+import com.pavloratushnyi.model.MovieProductionCountry
 import com.pavloratushnyi.movies.data.moviedetails.local.MovieDetailsContent
 import com.pavloratushnyi.movies.data.moviedetails.local.MovieDetailsEntity
 import com.pavloratushnyi.movies.data.moviedetails.local.MovieGenreEntity
@@ -11,10 +15,6 @@ import com.pavloratushnyi.movies.data.moviedetails.remote.MovieProductionCompany
 import com.pavloratushnyi.movies.data.moviedetails.remote.MovieProductionCountryDto
 import com.pavloratushnyi.movies.data.popularmovies.toDomain
 import com.pavloratushnyi.movies.data.popularmovies.toEntity
-import com.pavloratushnyi.movies.domain.vo.MovieDetails
-import com.pavloratushnyi.movies.domain.vo.MovieGenre
-import com.pavloratushnyi.movies.domain.vo.MovieProductionCompany
-import com.pavloratushnyi.movies.domain.vo.MovieProductionCountry
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

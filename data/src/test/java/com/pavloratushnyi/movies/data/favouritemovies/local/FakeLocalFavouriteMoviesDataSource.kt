@@ -1,9 +1,9 @@
 package com.pavloratushnyi.movies.data.favouritemovies.local
 
+import com.pavloratushnyi.model.Movie
 import com.pavloratushnyi.movies.data.movies.local.MovieEntity
 import com.pavloratushnyi.movies.data.popularmovies.toDomain
 import com.pavloratushnyi.movies.data.popularmovies.toEntity
-import com.pavloratushnyi.movies.domain.vo.Movie
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest

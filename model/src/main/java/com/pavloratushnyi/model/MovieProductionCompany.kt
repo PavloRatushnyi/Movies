@@ -1,4 +1,4 @@
-package com.pavloratushnyi.movies.domain.vo
+package com.pavloratushnyi.model
 
 data class MovieProductionCompany(
     val id: Long,

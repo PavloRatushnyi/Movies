@@ -1,12 +1,12 @@
 package com.pavloratushnyi.movies.ui.screen.favouritemovies
 
 import app.cash.turbine.test
+import com.pavloratushnyi.model.Movie
+import com.pavloratushnyi.model.UserMovie
 import com.pavloratushnyi.movies.MainDispatchersExtension
 import com.pavloratushnyi.movies.domain.Resource
 import com.pavloratushnyi.movies.domain.usecase.GetFavouriteUserMoviesStreamUseCase
 import com.pavloratushnyi.movies.domain.usecase.RemoveFromFavouritesUseCase
-import com.pavloratushnyi.movies.domain.vo.Movie
-import com.pavloratushnyi.movies.domain.vo.UserMovie
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest

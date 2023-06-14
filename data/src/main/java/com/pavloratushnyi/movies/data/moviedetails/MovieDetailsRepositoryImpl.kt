@@ -1,10 +1,10 @@
 package com.pavloratushnyi.movies.data.moviedetails
 
+import com.pavloratushnyi.model.MovieDetails
 import com.pavloratushnyi.movies.data.moviedetails.local.LocalMovieDetailsDataSource
 import com.pavloratushnyi.movies.data.moviedetails.remote.RemoteMovieDetailsDataSource
 import com.pavloratushnyi.movies.domain.Resource
 import com.pavloratushnyi.movies.domain.repository.MovieDetailsRepository
-import com.pavloratushnyi.movies.domain.vo.MovieDetails
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.emitAll
