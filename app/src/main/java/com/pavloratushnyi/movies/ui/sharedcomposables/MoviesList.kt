@@ -16,7 +16,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -38,10 +37,6 @@ import com.pavloratushnyi.movies.model.Movie
 import com.pavloratushnyi.movies.model.UserMovie
 import com.pavloratushnyi.resource.Resource
 
-@ExperimentalMaterial3Api
-@ExperimentalFoundationApi
-@ExperimentalAnimationApi
-@ExperimentalMaterialApi
 @Composable
 internal fun MoviesList(
     moviesResource: Resource<List<UserMovie>>,
@@ -92,10 +87,7 @@ internal fun MoviesList(
     }
 }
 
-@ExperimentalMaterial3Api
-@ExperimentalFoundationApi
-@ExperimentalAnimationApi
-@ExperimentalMaterialApi
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun MoviesContent(
     userMovies: List<UserMovie>,
@@ -138,9 +130,7 @@ private fun EmptyContent(modifier: Modifier = Modifier) {
     }
 }
 
-@ExperimentalMaterial3Api
-@ExperimentalMaterialApi
-@ExperimentalAnimationApi
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun MovieCard(
     modifier: Modifier = Modifier,
@@ -190,8 +180,8 @@ private fun MovieCard(
     }
 }
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
-@ExperimentalAnimationApi
 private fun MovieButtons(
     userMovie: UserMovie,
     onToggleFavoriteClicked: (UserMovie) -> Unit

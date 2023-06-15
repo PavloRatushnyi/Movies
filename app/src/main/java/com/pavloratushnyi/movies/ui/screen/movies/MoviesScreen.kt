@@ -1,13 +1,10 @@
 package com.pavloratushnyi.movies.ui.screen.movies
 
 import androidx.annotation.StringRes
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabPosition
 import androidx.compose.material3.TabRow
@@ -25,10 +22,7 @@ import com.pavloratushnyi.movies.ui.screen.favouritemovies.FavouriteMoviesScreen
 import com.pavloratushnyi.movies.ui.screen.popularmovies.PopularMoviesScreen
 import kotlinx.coroutines.launch
 
-@ExperimentalMaterial3Api
-@ExperimentalAnimationApi
-@ExperimentalFoundationApi
-@ExperimentalMaterialApi
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MoviesScreen(
     onMovieClicked: (Movie) -> Unit

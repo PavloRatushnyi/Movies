@@ -32,7 +32,7 @@ import com.pavloratushnyi.movies.ui.sharedcomposables.ErrorContent
 import com.pavloratushnyi.movies.ui.sharedcomposables.LoaderContent
 import com.pavloratushnyi.resource.Resource
 
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 internal fun MovieDetailsScreen(
     viewModel: MovieDetailsViewModel = hiltViewModel(),

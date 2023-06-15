@@ -1,7 +1,5 @@
 package com.pavloratushnyi.movies.ui.screen.popularmovies
 
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.rememberScrollState
@@ -10,7 +8,6 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -20,10 +17,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.pavloratushnyi.movies.model.Movie
 import com.pavloratushnyi.movies.ui.sharedcomposables.MoviesList
 
-@ExperimentalMaterial3Api
-@ExperimentalFoundationApi
-@ExperimentalAnimationApi
-@ExperimentalMaterialApi
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 internal fun PopularMoviesScreen(
     viewModel: PopularMoviesViewModel = hiltViewModel(),
