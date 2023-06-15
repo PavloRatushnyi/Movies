@@ -1,4 +1,4 @@
-package com.pavloratushnyi.movies.ui.screen.popularmovies
+package com.pavloratushnyi.movies.feature.popular_movies
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,7 +19,7 @@ import com.pavloratushnyi.movies.shared_composables.MoviesList
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-internal fun PopularMoviesScreen(
+fun PopularMoviesScreen(
     viewModel: PopularMoviesViewModel = hiltViewModel(),
     onMovieClicked: (Movie) -> Unit
 ) {

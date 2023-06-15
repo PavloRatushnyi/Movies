@@ -4,6 +4,7 @@ activitycompose = "1.7.2"
 coil = "2.4.0"
 compose = "1.4.3"
 composecompiler = "1.4.7"
+composematerial = "1.4.3"
 composematerialthree = "1.1.0"
 corektx = "1.9.0"
 coroutines = "1.7.1"
@@ -32,6 +33,7 @@ activity-compose = { module = "androidx.activity:activity-compose", version.ref 
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 compose-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+compose-material = { module = "androidx.compose.material:material", version.ref = "composematerial" }
 compose-material-three = { module = "androidx.compose.material3:material3", version.ref = "composematerialthree" }
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "corektx" }
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }

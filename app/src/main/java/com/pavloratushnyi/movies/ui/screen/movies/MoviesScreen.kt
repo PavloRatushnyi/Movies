@@ -19,7 +19,6 @@ import com.pavloratushnyi.movies.R
 import com.pavloratushnyi.movies.feature.favourite_movies.FavouriteMoviesScreen
 import com.pavloratushnyi.movies.model.Movie
 import com.pavloratushnyi.movies.ui.components.pager.pagerTabIndicatorOffset
-import com.pavloratushnyi.movies.ui.screen.popularmovies.PopularMoviesScreen
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -31,7 +30,7 @@ fun MoviesScreen(
         val pages = remember {
             arrayListOf(
                 Page(R.string.movies_popular) {
-                    PopularMoviesScreen(
+                    com.pavloratushnyi.movies.feature.popular_movies.PopularMoviesScreen(
                         onMovieClicked = onMovieClicked
                     )
                 },

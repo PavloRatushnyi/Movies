@@ -1,8 +1,8 @@
-package com.pavloratushnyi.movies.ui.screen.popularmovies
+package com.pavloratushnyi.movies.feature.popular_movies
 
 import com.pavloratushnyi.movies.model.UserMovie
 
-internal sealed class PopularMoviesEvent {
+sealed class PopularMoviesEvent {
 
     object Refresh : PopularMoviesEvent()
 

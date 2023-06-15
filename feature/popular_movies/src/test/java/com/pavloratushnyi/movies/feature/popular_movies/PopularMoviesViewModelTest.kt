@@ -1,7 +1,6 @@
-package com.pavloratushnyi.movies.ui.screen.popularmovies
+package com.pavloratushnyi.movies.feature.popular_movies
 
 import app.cash.turbine.test
-import com.pavloratushnyi.movies.MainDispatchersExtension
 import com.pavloratushnyi.movies.domain.usecase.GetPopularUserMoviesStreamUseCase
 import com.pavloratushnyi.movies.domain.usecase.RefreshPopularMoviesUseCase
 import com.pavloratushnyi.movies.domain.usecase.ToggleFavouriteUseCase

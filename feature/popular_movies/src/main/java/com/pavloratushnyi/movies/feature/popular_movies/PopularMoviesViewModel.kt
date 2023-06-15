@@ -1,4 +1,4 @@
-package com.pavloratushnyi.movies.ui.screen.popularmovies
+package com.pavloratushnyi.movies.feature.popular_movies
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-internal class PopularMoviesViewModel @Inject constructor(
+class PopularMoviesViewModel @Inject constructor(
     getPopularUserMoviesStreamUseCase: GetPopularUserMoviesStreamUseCase,
     private val toggleFavouriteUseCase: ToggleFavouriteUseCase,
     private val refreshPopularMoviesUseCase: RefreshPopularMoviesUseCase
