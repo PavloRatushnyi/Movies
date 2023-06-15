@@ -1,8 +1,8 @@
-package com.pavloratushnyi.movies.ui.screen.favouritemovies
+package com.pavloratushnyi.movies.feature.favourite_movies
 
 import com.pavloratushnyi.movies.model.UserMovie
 
-internal sealed class FavouriteMoviesEvent {
+sealed class FavouriteMoviesEvent {
 
     data class ToggleFavourite(val movie: UserMovie) : FavouriteMoviesEvent()
 }

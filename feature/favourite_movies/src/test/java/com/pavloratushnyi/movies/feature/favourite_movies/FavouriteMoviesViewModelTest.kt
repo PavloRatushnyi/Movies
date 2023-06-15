@@ -1,7 +1,6 @@
-package com.pavloratushnyi.movies.ui.screen.favouritemovies
+package com.pavloratushnyi.movies.feature.favourite_movies
 
 import app.cash.turbine.test
-import com.pavloratushnyi.movies.MainDispatchersExtension
 import com.pavloratushnyi.movies.domain.usecase.GetFavouriteUserMoviesStreamUseCase
 import com.pavloratushnyi.movies.domain.usecase.RemoveFromFavouritesUseCase
 import com.pavloratushnyi.movies.model.Movie

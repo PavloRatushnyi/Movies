@@ -16,9 +16,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.pavloratushnyi.movies.R
+import com.pavloratushnyi.movies.feature.favourite_movies.FavouriteMoviesScreen
 import com.pavloratushnyi.movies.model.Movie
 import com.pavloratushnyi.movies.ui.components.pager.pagerTabIndicatorOffset
-import com.pavloratushnyi.movies.ui.screen.favouritemovies.FavouriteMoviesScreen
 import com.pavloratushnyi.movies.ui.screen.popularmovies.PopularMoviesScreen
 import kotlinx.coroutines.launch
 

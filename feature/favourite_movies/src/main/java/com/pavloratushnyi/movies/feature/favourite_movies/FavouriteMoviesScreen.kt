@@ -1,4 +1,4 @@
-package com.pavloratushnyi.movies.ui.screen.favouritemovies
+package com.pavloratushnyi.movies.feature.favourite_movies
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -10,7 +10,7 @@ import com.pavloratushnyi.movies.model.Movie
 import com.pavloratushnyi.movies.shared_composables.MoviesList
 
 @Composable
-internal fun FavouriteMoviesScreen(
+fun FavouriteMoviesScreen(
     viewModel: FavouriteMoviesViewModel = hiltViewModel(),
     onMovieClicked: (Movie) -> Unit
 ) {

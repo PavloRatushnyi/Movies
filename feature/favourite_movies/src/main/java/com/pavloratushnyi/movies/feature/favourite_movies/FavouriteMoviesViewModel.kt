@@ -1,4 +1,4 @@
-package com.pavloratushnyi.movies.ui.screen.favouritemovies
+package com.pavloratushnyi.movies.feature.favourite_movies
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-internal class FavouriteMoviesViewModel @Inject constructor(
+class FavouriteMoviesViewModel @Inject constructor(
     getFavouriteUserMoviesStreamUseCase: GetFavouriteUserMoviesStreamUseCase,
     private val removeFromFavouritesUseCase: RemoveFromFavouritesUseCase
 ) : ViewModel() {
