@@ -1,4 +1,4 @@
-package com.pavloratushnyi.movies.ui.sharedcomposables
+package com.pavloratushnyi.movies.shared_composables
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -32,13 +32,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
 import coil.compose.AsyncImage
-import com.pavloratushnyi.movies.R
 import com.pavloratushnyi.movies.model.Movie
 import com.pavloratushnyi.movies.model.UserMovie
 import com.pavloratushnyi.resource.Resource
 
 @Composable
-internal fun MoviesList(
+fun MoviesList(
     moviesResource: Resource<List<UserMovie>>,
     onToggleFavoriteClicked: (UserMovie) -> Unit,
     emptyContentModifier: Modifier = Modifier,

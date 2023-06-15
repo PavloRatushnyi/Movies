@@ -1,12 +1,7 @@
 <resources>
     <string name="app_name">Movies</string>
-    <string name="error.general">Something went wrong</string>
-    <string name="empty_state.no_items">No items</string>
     <string name="movies.popular">Popular</string>
     <string name="movies.favourites">Favourites</string>
-    <string name="toggle_favourite.add">Add to favourites</string>
-    <string name="toggle_favourite.remove">Remove</string>
-    <string name="share">Share</string>
     <string name="genres_template">Genres: %s</string>
     <string name="production_companies_template">Production companies: %s</string>
     <string name="production_countries_template">Production countries: %s</string>

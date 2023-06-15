@@ -67,6 +67,7 @@ dependencies {
     implementation(project(":resource"))
     implementation(project(":data"))
     implementation(project(":domain"))
+    implementation(project(":shared_composables"))
 
     implementation(libs.core.ktx)
     implementation(libs.compose.preview)

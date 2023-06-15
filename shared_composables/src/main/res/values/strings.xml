@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error.general">Something went wrong</string>
+    <string name="empty_state.no_items">No items</string>
+    <string name="toggle_favourite.add">Add to favourites</string>
+    <string name="toggle_favourite.remove">Remove</string>
+    <string name="share">Share</string>
+</resources>
