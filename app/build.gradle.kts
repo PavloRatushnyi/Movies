@@ -65,7 +65,6 @@ dependencies {
 
     implementation(project(":model"))
     implementation(project(":resource"))
-    implementation(project(":data"))
     implementation(project(":domain"))
     implementation(project(":shared_composables"))
     implementation(project(":feature:favourite_movies"))
