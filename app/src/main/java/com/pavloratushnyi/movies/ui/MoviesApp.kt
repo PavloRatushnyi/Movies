@@ -8,15 +8,12 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import com.pavloratushnyi.movies.ui.screen.moviedetails.MovieDetailsDestination
-import com.pavloratushnyi.movies.ui.screen.moviedetails.MovieDetailsScreen
+import com.pavloratushnyi.movies.ui.screen.moviedetails.movieDetailsScreen
+import com.pavloratushnyi.movies.ui.screen.moviedetails.navigateToMovieDetails
 import com.pavloratushnyi.movies.ui.screen.movies.MoviesDestination
-import com.pavloratushnyi.movies.ui.screen.movies.MoviesScreen
+import com.pavloratushnyi.movies.ui.screen.movies.moviesScreen
 import com.pavloratushnyi.movies.ui.theme.MoviesTheme
 
 @ExperimentalMaterial3Api
@@ -28,20 +25,14 @@ internal fun MoviesApp() {
     MoviesTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
             val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = MoviesDestination.route) {
-                composable(MoviesDestination.route) {
-                    MoviesScreen(onMovieClicked = { movie ->
-                        navController.navigate(MovieDetailsDestination.createNavigationRoute(movie.id))
-                    })
-                }
-                composable(
-                    MovieDetailsDestination.route,
-                    arguments = listOf(
-                        navArgument(MovieDetailsDestination.movieIdArg) { type = NavType.LongType }
-                    )
-                ) {
-                    MovieDetailsScreen()
-                }
+            NavHost(
+                navController = navController,
+                startDestination = MoviesDestination.route
+            ) {
+                moviesScreen(onMovieClicked = { movie ->
+                    navController.navigateToMovieDetails(movie.id)
+                })
+                movieDetailsScreen()
             }
         }
     }
