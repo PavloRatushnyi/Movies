@@ -7,7 +7,6 @@ import com.pavloratushnyi.movies.domain.usecase.RemoveFromFavouritesUseCase
 import com.pavloratushnyi.movies.model.Movie
 import com.pavloratushnyi.movies.model.UserMovie
 import com.pavloratushnyi.resource.Resource
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -17,7 +16,6 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-@ExperimentalCoroutinesApi
 @ExtendWith(MainDispatchersExtension::class)
 internal class FavouriteMoviesViewModelTest {
 

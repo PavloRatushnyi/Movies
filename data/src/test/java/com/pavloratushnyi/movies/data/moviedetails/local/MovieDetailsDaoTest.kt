@@ -1,7 +1,6 @@
 package com.pavloratushnyi.movies.data.moviedetails.local
 
 import app.cash.turbine.test
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
@@ -11,7 +10,6 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-@ExperimentalCoroutinesApi
 internal class MovieDetailsDaoTest {
 
     private val baseMovieDetailsDao: BaseMovieDetailsDao = mock()

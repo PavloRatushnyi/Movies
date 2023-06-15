@@ -5,7 +5,6 @@ import com.pavloratushnyi.movies.data.popularmovies.local.FakeLocalPopularMovies
 import com.pavloratushnyi.movies.data.popularmovies.remote.RemotePopularMoviesDataSource
 import com.pavloratushnyi.movies.model.Movie
 import com.pavloratushnyi.resource.Resource
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -16,7 +15,6 @@ import org.mockito.kotlin.verify
 import org.mockito.kotlin.verifyNoInteractions
 import org.mockito.kotlin.whenever
 
-@ExperimentalCoroutinesApi
 internal class PopularMoviesRepositoryImplTest {
 
     private val localDataSource = spy(FakeLocalPopularMoviesDataSource())

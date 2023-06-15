@@ -15,12 +15,12 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-@ExperimentalCoroutinesApi
 internal class RoomDataStoreLocalPopularMoviesDataSource @Inject constructor(
     private val moviesDao: MoviesDao,
     private val dataStore: DataStore<Preferences>,
 ) : LocalPopularMoviesDataSource {
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun getPopularMovies(): Flow<List<Movie>?> {
         return dataStore.data
             .map { it[stringSetPreferencesKey(POPULAR_MOVIES_IDS_KEY)] }

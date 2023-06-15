@@ -7,7 +7,6 @@ import com.pavloratushnyi.movies.domain.usecase.GetMovieDetailsStreamUseCase
 import com.pavloratushnyi.movies.domain.usecase.RefreshMovieDetailsUseCase
 import com.pavloratushnyi.movies.model.MovieDetails
 import com.pavloratushnyi.resource.Resource
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
@@ -19,7 +18,6 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-@ExperimentalCoroutinesApi
 @ExtendWith(MainDispatchersExtension::class)
 internal class MovieDetailsViewModelTest {
 

@@ -5,7 +5,6 @@ import com.pavloratushnyi.movies.data.moviedetails.local.FakeLocalMovieDetailsDa
 import com.pavloratushnyi.movies.data.moviedetails.remote.RemoteMovieDetailsDataSource
 import com.pavloratushnyi.movies.model.MovieDetails
 import com.pavloratushnyi.resource.Resource
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.AfterEach
@@ -17,7 +16,6 @@ import org.mockito.kotlin.verify
 import org.mockito.kotlin.verifyNoInteractions
 import org.mockito.kotlin.whenever
 
-@ExperimentalCoroutinesApi
 internal class MovieDetailsRepositoryImplTest {
 
     private val localDataSource = spy(FakeLocalMovieDetailsDataSource())

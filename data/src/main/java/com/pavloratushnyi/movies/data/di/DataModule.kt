@@ -35,7 +35,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -122,7 +121,6 @@ abstract class DataModule {
         tmdbRemotePopularMoviesDataSource: TmdbRemotePopularMoviesDataSource
     ): RemotePopularMoviesDataSource
 
-    @ExperimentalCoroutinesApi
     @Binds
     internal abstract fun bindLocalPopularMoviesDataSource(
         roomDataStoreLocalPopularMoviesDataSource: RoomDataStoreLocalPopularMoviesDataSource
@@ -138,7 +136,6 @@ abstract class DataModule {
         tmdbRemoteMovieDetailsDataSource: TmdbRemoteMovieDetailsDataSource
     ): RemoteMovieDetailsDataSource
 
-    @ExperimentalCoroutinesApi
     @Binds
     internal abstract fun bindLocalMovieDetailsDataSource(
         roomLocalMovieDetailsDataSource: RoomLocalMovieDetailsDataSource
@@ -149,7 +146,6 @@ abstract class DataModule {
         movieDetailsRepositoryImpl: MovieDetailsRepositoryImpl
     ): MovieDetailsRepository
 
-    @ExperimentalCoroutinesApi
     @Binds
     internal abstract fun bindLocalFavouriteMoviesDataSource(
         roomDataStoreLocalFavouriteMoviesDataSource: RoomDataStoreLocalFavouriteMoviesDataSource

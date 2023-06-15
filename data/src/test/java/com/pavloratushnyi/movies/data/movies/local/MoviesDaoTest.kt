@@ -1,7 +1,6 @@
 package com.pavloratushnyi.movies.data.movies.local
 
 import app.cash.turbine.test
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
-@ExperimentalCoroutinesApi
 internal class MoviesDaoTest {
 
     private val baseMoviesDao: BaseMoviesDao = mock()

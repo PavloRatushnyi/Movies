@@ -13,12 +13,12 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-@ExperimentalCoroutinesApi
 internal class RoomDataStoreLocalFavouriteMoviesDataSource @Inject constructor(
     private val moviesDao: MoviesDao,
     private val dataStore: DataStore<Preferences>,
 ) : LocalFavouriteMoviesDataSource {
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun getFavouriteMovies(): Flow<List<Movie>> {
         return getFavouriteMoviesIds()
             .flatMapLatest { moviesIds ->

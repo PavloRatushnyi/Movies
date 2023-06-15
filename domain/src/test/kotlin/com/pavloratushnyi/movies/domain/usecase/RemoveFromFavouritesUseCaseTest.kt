@@ -3,13 +3,11 @@ package com.pavloratushnyi.movies.domain.usecase
 import com.pavloratushnyi.movies.data.favouritemovies.FavouriteMoviesRepository
 import com.pavloratushnyi.movies.model.Movie
 import com.pavloratushnyi.movies.model.UserMovie
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 
-@ExperimentalCoroutinesApi
 internal class RemoveFromFavouritesUseCaseTest {
 
     private val favouriteMoviesRepository: FavouriteMoviesRepository = mock()

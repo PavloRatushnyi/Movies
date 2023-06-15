@@ -3,14 +3,12 @@ package com.pavloratushnyi.movies.data.moviedetails.remote
 import com.pavloratushnyi.movies.data.popularmovies.toDomain
 import com.pavloratushnyi.movies.data.tmdb.TmdbImageResolver
 import com.pavloratushnyi.movies.data.tmdb.TmdbMoviesService
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
-@ExperimentalCoroutinesApi
 internal class TmdbRemoteMovieDetailsDataSourceTest {
 
     private val service: TmdbMoviesService = mock()

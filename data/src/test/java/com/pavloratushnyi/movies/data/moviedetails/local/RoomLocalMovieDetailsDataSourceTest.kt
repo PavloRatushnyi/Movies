@@ -3,7 +3,6 @@ package com.pavloratushnyi.movies.data.moviedetails.local
 import app.cash.turbine.test
 import com.pavloratushnyi.movies.data.popularmovies.toEntity
 import com.pavloratushnyi.movies.model.MovieDetails
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -12,7 +11,6 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-@ExperimentalCoroutinesApi
 internal class RoomLocalMovieDetailsDataSourceTest {
 
     private val movieDetailsDao: MovieDetailsDao = mock()
