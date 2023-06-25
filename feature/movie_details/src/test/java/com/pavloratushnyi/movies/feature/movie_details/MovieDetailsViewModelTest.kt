@@ -8,17 +8,22 @@ import com.pavloratushnyi.movies.main_dispatcher_extension.MainDispatcherExtensi
 import com.pavloratushnyi.resource.Resource
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
+import org.junit.jupiter.api.extension.RegisterExtension
 import org.mockito.kotlin.doAnswer
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-@ExtendWith(MainDispatcherExtension::class)
 internal class MovieDetailsViewModelTest {
+
+    private val dispatcher = UnconfinedTestDispatcher()
+
+    @RegisterExtension
+    private val mainDispatcherExtension = MainDispatcherExtension(dispatcher)
 
     private val getMovieDetailsStreamUseCase: GetMovieDetailsStreamUseCase = mock()
     private val refreshMovieDetailsUseCase: RefreshMovieDetailsUseCase = mock()
@@ -55,7 +60,7 @@ internal class MovieDetailsViewModelTest {
 
     @Test
     fun `WHEN refreshing movie details THEN flag is changed to true AND when is refreshed THEN flag changed to false`() =
-        runTest {
+        runTest(dispatcher) {
             whenever(refreshMovieDetailsUseCase(1)) doAnswer { runBlocking { Result.success(Unit) } }
 
             val viewModel = createViewModel()
