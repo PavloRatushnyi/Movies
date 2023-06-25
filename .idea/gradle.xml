@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/favourite_movies" />
             <option value="$PROJECT_DIR$/feature/movie_details" />
+            <option value="$PROJECT_DIR$/feature/movies" />
             <option value="$PROJECT_DIR$/feature/popular_movies" />
             <option value="$PROJECT_DIR$/model" />
             <option value="$PROJECT_DIR$/resource" />

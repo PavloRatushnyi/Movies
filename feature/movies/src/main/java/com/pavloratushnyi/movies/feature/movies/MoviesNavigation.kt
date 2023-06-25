@@ -1,4 +1,4 @@
-package com.pavloratushnyi.movies.ui.screen.movies
+package com.pavloratushnyi.movies.feature.movies
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable

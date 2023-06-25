@@ -1,4 +1,4 @@
-package com.pavloratushnyi.movies.ui.screen.movies
+package com.pavloratushnyi.movies.feature.movies
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -15,10 +15,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.pavloratushnyi.movies.R
 import com.pavloratushnyi.movies.feature.favourite_movies.FavouriteMoviesScreen
+import com.pavloratushnyi.movies.feature.popular_movies.PopularMoviesScreen
 import com.pavloratushnyi.movies.model.Movie
-import com.pavloratushnyi.movies.ui.components.pager.pagerTabIndicatorOffset
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -30,7 +29,7 @@ fun MoviesScreen(
         val pages = remember {
             arrayListOf(
                 Page(R.string.movies_popular) {
-                    com.pavloratushnyi.movies.feature.popular_movies.PopularMoviesScreen(
+                    PopularMoviesScreen(
                         onMovieClicked = onMovieClicked
                     )
                 },

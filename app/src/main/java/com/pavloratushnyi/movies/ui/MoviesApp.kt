@@ -8,8 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.pavloratushnyi.movies.feature.movie_details.movieDetailsScreen
 import com.pavloratushnyi.movies.feature.movie_details.navigateToMovieDetails
-import com.pavloratushnyi.movies.ui.screen.movies.MoviesDestination
-import com.pavloratushnyi.movies.ui.screen.movies.moviesScreen
+import com.pavloratushnyi.movies.feature.movies.MoviesDestination
+import com.pavloratushnyi.movies.feature.movies.moviesScreen
 import com.pavloratushnyi.movies.ui.theme.MoviesTheme
 
 @Composable

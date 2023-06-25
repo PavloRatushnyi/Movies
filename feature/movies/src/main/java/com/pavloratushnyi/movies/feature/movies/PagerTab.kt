@@ -15,7 +15,7 @@
  */
 
 @file:Suppress("DEPRECATION")
-package com.pavloratushnyi.movies.ui.components.pager
+package com.pavloratushnyi.movies.feature.movies
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material3.ScrollableTabRow

@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">Movies</string>
-    <string name="movies.popular">Popular</string>
-    <string name="movies.favourites">Favourites</string>
 </resources>
