@@ -51,8 +51,7 @@ dependencies {
     implementation(libs.compose.preview)
     implementation(libs.compose.material.three)
 
-    implementation(libs.navigation.compose)
-    implementation(libs.navigation.compose.hilt)
+    implementation(libs.core.ktx)
 
     debugImplementation(libs.compose.tooling)
 }
