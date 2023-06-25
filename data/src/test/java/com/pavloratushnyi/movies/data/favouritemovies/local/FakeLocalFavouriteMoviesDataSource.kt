@@ -4,6 +4,7 @@ import com.pavloratushnyi.movies.data.movies.local.MovieEntity
 import com.pavloratushnyi.movies.data.popularmovies.toDomain
 import com.pavloratushnyi.movies.data.popularmovies.toEntity
 import com.pavloratushnyi.movies.model.Movie
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
@@ -15,6 +16,7 @@ class FakeLocalFavouriteMoviesDataSource : LocalFavouriteMoviesDataSource {
     private val moviesFlow = MutableStateFlow<Map<Long, MovieEntity>>(emptyMap())
     private val favouriteMoviesIdsFlow = MutableStateFlow<List<Long>>(emptyList())
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun getFavouriteMovies(): Flow<List<Movie>> {
         return favouriteMoviesIdsFlow.flatMapLatest { favouritesMoviesIds ->
             moviesFlow.map { movies ->
