@@ -63,6 +63,7 @@ dependencies {
 
     debugImplementation(libs.compose.tooling)
 
+    testImplementation(project(":main_dispatcher_extension"))
     testImplementation(libs.junit.api)
     testRuntimeOnly(libs.junit.engine)
     testImplementation(libs.mockito)

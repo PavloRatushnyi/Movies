@@ -3,6 +3,7 @@ package com.pavloratushnyi.movies.feature.favourite_movies
 import app.cash.turbine.test
 import com.pavloratushnyi.movies.domain.usecase.GetFavouriteUserMoviesStreamUseCase
 import com.pavloratushnyi.movies.domain.usecase.RemoveFromFavouritesUseCase
+import com.pavloratushnyi.movies.main_dispatcher_extension.MainDispatcherExtension
 import com.pavloratushnyi.movies.model.Movie
 import com.pavloratushnyi.movies.model.UserMovie
 import com.pavloratushnyi.resource.Resource
@@ -15,7 +16,7 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-@ExtendWith(MainDispatchersExtension::class)
+@ExtendWith(MainDispatcherExtension::class)
 internal class FavouriteMoviesViewModelTest {
 
     private val getFavouriteUserMoviesStreamUseCase: GetFavouriteUserMoviesStreamUseCase = mock()

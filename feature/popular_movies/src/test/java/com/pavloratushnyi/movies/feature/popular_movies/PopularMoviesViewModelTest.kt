@@ -4,6 +4,7 @@ import app.cash.turbine.test
 import com.pavloratushnyi.movies.domain.usecase.GetPopularUserMoviesStreamUseCase
 import com.pavloratushnyi.movies.domain.usecase.RefreshPopularMoviesUseCase
 import com.pavloratushnyi.movies.domain.usecase.ToggleFavouriteUseCase
+import com.pavloratushnyi.movies.main_dispatcher_extension.MainDispatcherExtension
 import com.pavloratushnyi.movies.model.Movie
 import com.pavloratushnyi.movies.model.UserMovie
 import com.pavloratushnyi.resource.Resource
@@ -18,7 +19,7 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-@ExtendWith(MainDispatchersExtension::class)
+@ExtendWith(MainDispatcherExtension::class)
 internal class PopularMoviesViewModelTest {
 
     private val getPopularUserMoviesStreamUseCase: GetPopularUserMoviesStreamUseCase = mock()

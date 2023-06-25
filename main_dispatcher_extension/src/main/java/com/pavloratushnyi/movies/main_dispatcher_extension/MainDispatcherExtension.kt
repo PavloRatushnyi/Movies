@@ -1,4 +1,4 @@
-package com.pavloratushnyi.movies.feature.movie_details
+package com.pavloratushnyi.movies.main_dispatcher_extension
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.TestDispatcher
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.extension.AfterEachCallback
 import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 
-class MainDispatchersExtension(
+class MainDispatcherExtension(
     private val dispatcher: TestDispatcher = UnconfinedTestDispatcher()
 ) : BeforeEachCallback, AfterEachCallback {
 

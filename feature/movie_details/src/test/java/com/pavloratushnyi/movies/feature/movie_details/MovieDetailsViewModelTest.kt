@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import app.cash.turbine.test
 import com.pavloratushnyi.movies.domain.usecase.GetMovieDetailsStreamUseCase
 import com.pavloratushnyi.movies.domain.usecase.RefreshMovieDetailsUseCase
+import com.pavloratushnyi.movies.main_dispatcher_extension.MainDispatcherExtension
 import com.pavloratushnyi.resource.Resource
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
@@ -16,7 +17,7 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-@ExtendWith(MainDispatchersExtension::class)
+@ExtendWith(MainDispatcherExtension::class)
 internal class MovieDetailsViewModelTest {
 
     private val getMovieDetailsStreamUseCase: GetMovieDetailsStreamUseCase = mock()

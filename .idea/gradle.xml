@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/feature/movie_details" />
             <option value="$PROJECT_DIR$/feature/movies" />
             <option value="$PROJECT_DIR$/feature/popular_movies" />
+            <option value="$PROJECT_DIR$/main_dispatcher_extension" />
             <option value="$PROJECT_DIR$/model" />
             <option value="$PROJECT_DIR$/resource" />
             <option value="$PROJECT_DIR$/shared_composables" />
