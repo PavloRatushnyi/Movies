@@ -6,8 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.pavloratushnyi.movies.ui.screen.moviedetails.movieDetailsScreen
-import com.pavloratushnyi.movies.ui.screen.moviedetails.navigateToMovieDetails
+import com.pavloratushnyi.movies.feature.movie_details.movieDetailsScreen
+import com.pavloratushnyi.movies.feature.movie_details.navigateToMovieDetails
 import com.pavloratushnyi.movies.ui.screen.movies.MoviesDestination
 import com.pavloratushnyi.movies.ui.screen.movies.moviesScreen
 import com.pavloratushnyi.movies.ui.theme.MoviesTheme

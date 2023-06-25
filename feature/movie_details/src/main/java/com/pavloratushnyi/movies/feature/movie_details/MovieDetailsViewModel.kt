@@ -1,4 +1,4 @@
-package com.pavloratushnyi.movies.ui.screen.moviedetails
+package com.pavloratushnyi.movies.feature.movie_details
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-internal class MovieDetailsViewModel @Inject constructor(
+class MovieDetailsViewModel @Inject constructor(
     getMovieDetailsStreamUseCase: GetMovieDetailsStreamUseCase,
     private val refreshMovieDetailsUseCase: RefreshMovieDetailsUseCase,
     savedStateHandle: SavedStateHandle

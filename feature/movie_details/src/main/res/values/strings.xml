@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="genres_template">Genres: %s</string>
+    <string name="production_companies_template">Production companies: %s</string>
+    <string name="production_countries_template">Production countries: %s</string>
+</resources>

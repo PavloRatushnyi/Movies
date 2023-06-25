@@ -1,8 +1,8 @@
-package com.pavloratushnyi.movies.ui.screen.moviedetails
+package com.pavloratushnyi.movies.feature.movie_details
 
 import com.pavloratushnyi.movies.model.MovieDetails
 import com.pavloratushnyi.resource.Resource
 
-internal data class MovieDetailsUiState(
+data class MovieDetailsUiState(
     val movieDetails: Resource<MovieDetails> = Resource.Loading()
 )

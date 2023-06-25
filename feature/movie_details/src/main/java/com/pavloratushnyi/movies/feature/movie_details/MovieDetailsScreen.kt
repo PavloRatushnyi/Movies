@@ -1,4 +1,4 @@
-package com.pavloratushnyi.movies.ui.screen.moviedetails
+package com.pavloratushnyi.movies.feature.movie_details
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
-import com.pavloratushnyi.movies.R
 import com.pavloratushnyi.movies.model.MovieDetails
 import com.pavloratushnyi.movies.shared_composables.ErrorContent
 import com.pavloratushnyi.movies.shared_composables.LoaderContent
@@ -34,7 +33,7 @@ import com.pavloratushnyi.resource.Resource
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-internal fun MovieDetailsScreen(
+fun MovieDetailsScreen(
     viewModel: MovieDetailsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiStateFlow.collectAsStateWithLifecycle()

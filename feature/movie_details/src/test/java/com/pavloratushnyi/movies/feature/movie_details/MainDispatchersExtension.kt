@@ -1,4 +1,4 @@
-package com.pavloratushnyi.movies
+package com.pavloratushnyi.movies.feature.movie_details
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.TestDispatcher
