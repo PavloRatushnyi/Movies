@@ -64,28 +64,15 @@ tasks.withType<Test> {
 dependencies {
 
     implementation(project(":model"))
-    implementation(project(":resource"))
-    implementation(project(":domain"))
-    implementation(project(":shared_composables"))
-    implementation(project(":feature:favourite_movies"))
-    implementation(project(":feature:popular_movies"))
     implementation(project(":feature:movie_details"))
     implementation(project(":feature:movies"))
 
-    implementation(libs.core.ktx)
     implementation(libs.compose.preview)
     implementation(libs.compose.material.three)
-    implementation(libs.runtime.ktx)
-    implementation(libs.runtime.compose)
-    implementation(libs.viewmodel.ktx)
-    implementation(libs.viewmodel.compose)
     implementation(libs.activity.compose)
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
-    implementation(libs.coil)
-    implementation(libs.accompanist.pager.indicators)
     implementation(libs.navigation.compose)
-    implementation(libs.navigation.compose.hilt)
 
     debugImplementation(libs.compose.tooling)
 
