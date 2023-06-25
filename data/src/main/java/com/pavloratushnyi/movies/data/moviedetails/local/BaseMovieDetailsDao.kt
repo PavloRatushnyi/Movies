@@ -71,6 +71,6 @@ internal interface BaseMovieDetailsDao {
     @Query("DELETE FROM movie_production_company_cross_ref WHERE movie_id = :movieId")
     suspend fun deleteMovieProductionCompanyCrossRefs(movieId: Long)
 
-    @Query("DELETE FROM movie_production_country_cross_ref WHERE movie_id = :movieIds")
-    suspend fun deleteMovieProductionCountryCrossRefs(movieIds: Long)
+    @Query("DELETE FROM movie_production_country_cross_ref WHERE movie_id = :movieId")
+    suspend fun deleteMovieProductionCountryCrossRefs(movieId: Long)
 }
