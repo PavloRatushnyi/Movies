@@ -15,9 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.pavloratushnyi.movies.model.Movie
+import com.pavloratushnyi.movies.model.UserMovie
 import com.pavloratushnyi.movies.shared_composables.MoviesList
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PopularMoviesScreen(
     viewModel: PopularMoviesViewModel = hiltViewModel(),
@@ -25,13 +25,32 @@ fun PopularMoviesScreen(
 ) {
     val uiState by viewModel.uiStateFlow.collectAsStateWithLifecycle()
     val isRefreshing by viewModel.isRefreshingFlow.collectAsStateWithLifecycle()
+    PopularMoviesScreen(
+        uiState = uiState,
+        isRefreshing = isRefreshing,
+        onMovieClicked = onMovieClicked,
+        onToggleFavoriteClicked = { viewModel.onEvent(PopularMoviesEvent.ToggleFavourite(it)) },
+        onRefresh = { viewModel.onEvent(PopularMoviesEvent.Refresh) },
+    )
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+fun PopularMoviesScreen(
+    uiState: PopularMoviesUiState,
+    isRefreshing: Boolean,
+    onMovieClicked: (Movie) -> Unit,
+    onToggleFavoriteClicked: (UserMovie) -> Unit,
+    onRefresh: () -> Unit,
+) {
     val pullRefreshState = rememberPullRefreshState(
         refreshing = isRefreshing,
-        onRefresh = { viewModel.onEvent(PopularMoviesEvent.Refresh) })
+        onRefresh = onRefresh
+    )
     Box(Modifier.pullRefresh(pullRefreshState)) {
         MoviesList(
             moviesResource = uiState.movies,
-            onToggleFavoriteClicked = { viewModel.onEvent(PopularMoviesEvent.ToggleFavourite(it)) },
+            onToggleFavoriteClicked = onToggleFavoriteClicked,
             emptyContentModifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState()),

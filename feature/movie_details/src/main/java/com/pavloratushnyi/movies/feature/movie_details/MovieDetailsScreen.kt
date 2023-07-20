@@ -31,16 +31,30 @@ import com.pavloratushnyi.movies.shared_composables.ErrorContent
 import com.pavloratushnyi.movies.shared_composables.LoaderContent
 import com.pavloratushnyi.resource.Resource
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MovieDetailsScreen(
     viewModel: MovieDetailsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiStateFlow.collectAsStateWithLifecycle()
     val isRefreshing by viewModel.isRefreshingFlow.collectAsStateWithLifecycle()
+    MovieDetailsScreen(
+        uiState = uiState,
+        isRefreshing = isRefreshing,
+        onRefresh = { viewModel.onEvent(MovieDetailsEvent.Refresh) },
+    )
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+fun MovieDetailsScreen(
+    uiState: MovieDetailsUiState,
+    isRefreshing: Boolean,
+    onRefresh: () -> Unit,
+) {
     val pullRefreshState = rememberPullRefreshState(
         refreshing = isRefreshing,
-        onRefresh = { viewModel.onEvent(MovieDetailsEvent.Refresh) })
+        onRefresh = onRefresh
+    )
     Box(Modifier.pullRefresh(pullRefreshState)) {
         MovieDetails(uiState.movieDetails)
         PullRefreshIndicator(isRefreshing, pullRefreshState, Modifier.align(Alignment.TopCenter))

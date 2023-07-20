@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.pavloratushnyi.movies.model.Movie
+import com.pavloratushnyi.movies.model.UserMovie
 import com.pavloratushnyi.movies.shared_composables.MoviesList
 
 @Composable
@@ -15,13 +16,26 @@ fun FavouriteMoviesScreen(
     onMovieClicked: (Movie) -> Unit
 ) {
     val uiState by viewModel.uiStateFlow.collectAsStateWithLifecycle()
+    FavouriteMoviesScreen(
+        uiState = uiState,
+        onMovieClicked = onMovieClicked,
+        onToggleFavoriteClicked = { viewModel.onEvent(FavouriteMoviesEvent.ToggleFavourite(it)) },
+    )
+}
+
+@Composable
+fun FavouriteMoviesScreen(
+    uiState: FavouriteMoviesUiState,
+    onMovieClicked: (Movie) -> Unit,
+    onToggleFavoriteClicked: (UserMovie) -> Unit,
+) {
     MoviesList(
         moviesResource = uiState.movies,
-        onToggleFavoriteClicked = { viewModel.onEvent(FavouriteMoviesEvent.ToggleFavourite(it)) },
+        onToggleFavoriteClicked = onToggleFavoriteClicked,
         emptyContentModifier = Modifier
             .fillMaxSize(),
         errorContentModifier = Modifier
             .fillMaxSize(),
-        onMovieClicked = onMovieClicked
+        onMovieClicked = onMovieClicked,
     )
 }
