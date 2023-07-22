@@ -4,9 +4,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.pavloratushnyi.movies.model.Movie
 
-object MoviesDestination {
-    const val route = "movies"
-}
+const val MOVIES_DESTINATION_ROUTE = MoviesDestination.route
 
 fun NavGraphBuilder.moviesScreen(
     onMovieClicked: (Movie) -> Unit,
@@ -16,4 +14,8 @@ fun NavGraphBuilder.moviesScreen(
     ) {
         MoviesScreen(onMovieClicked = onMovieClicked)
     }
+}
+
+internal object MoviesDestination {
+    const val route = "movies"
 }

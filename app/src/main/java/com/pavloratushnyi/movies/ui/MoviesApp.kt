@@ -8,7 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.pavloratushnyi.movies.feature.movie_details.movieDetailsScreen
 import com.pavloratushnyi.movies.feature.movie_details.navigateToMovieDetails
-import com.pavloratushnyi.movies.feature.movies.MoviesDestination
+import com.pavloratushnyi.movies.feature.movies.MOVIES_DESTINATION_ROUTE
 import com.pavloratushnyi.movies.feature.movies.moviesScreen
 import com.pavloratushnyi.movies.ui.theme.MoviesTheme
 
@@ -19,7 +19,7 @@ internal fun MoviesApp() {
             val navController = rememberNavController()
             NavHost(
                 navController = navController,
-                startDestination = MoviesDestination.route
+                startDestination = MOVIES_DESTINATION_ROUTE
             ) {
                 moviesScreen(onMovieClicked = { movie ->
                     navController.navigateToMovieDetails(movie.id)
