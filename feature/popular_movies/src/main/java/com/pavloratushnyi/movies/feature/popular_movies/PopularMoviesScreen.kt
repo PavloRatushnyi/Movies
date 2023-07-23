@@ -14,14 +14,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.pavloratushnyi.movies.model.Movie
 import com.pavloratushnyi.movies.model.UserMovie
 import com.pavloratushnyi.movies.shared_composables.MoviesList
 
 @Composable
 fun PopularMoviesScreen(
     viewModel: PopularMoviesViewModel = hiltViewModel(),
-    onMovieClicked: (Movie) -> Unit
+    onMovieClicked: (Long) -> Unit
 ) {
     val uiState by viewModel.uiStateFlow.collectAsStateWithLifecycle()
     val isRefreshing by viewModel.isRefreshingFlow.collectAsStateWithLifecycle()
@@ -39,7 +38,7 @@ fun PopularMoviesScreen(
 fun PopularMoviesScreen(
     uiState: PopularMoviesUiState,
     isRefreshing: Boolean,
-    onMovieClicked: (Movie) -> Unit,
+    onMovieClicked: (Long) -> Unit,
     onToggleFavoriteClicked: (UserMovie) -> Unit,
     onRefresh: () -> Unit,
 ) {

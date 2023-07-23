@@ -16,8 +16,8 @@ internal fun MoviesNavHost(
         navController = navController,
         startDestination = MOVIES_DESTINATION_ROUTE
     ) {
-        moviesScreen(onMovieClicked = { movie ->
-            navController.navigateToMovieDetails(movie.id)
+        moviesScreen(onMovieClicked = { movieId ->
+            navController.navigateToMovieDetails(movieId)
         })
         movieDetailsScreen()
     }

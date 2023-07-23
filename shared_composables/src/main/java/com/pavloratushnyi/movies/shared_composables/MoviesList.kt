@@ -32,7 +32,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
 import coil.compose.AsyncImage
-import com.pavloratushnyi.movies.model.Movie
 import com.pavloratushnyi.movies.model.UserMovie
 import com.pavloratushnyi.resource.Resource
 
@@ -42,7 +41,7 @@ fun MoviesList(
     onToggleFavoriteClicked: (UserMovie) -> Unit,
     emptyContentModifier: Modifier = Modifier,
     errorContentModifier: Modifier = Modifier,
-    onMovieClicked: (Movie) -> Unit
+    onMovieClicked: (Long) -> Unit
 ) {
     val lazyListState = rememberLazyListState()
     when (moviesResource) {
@@ -92,7 +91,7 @@ private fun MoviesContent(
     userMovies: List<UserMovie>,
     onToggleFavoriteClicked: (UserMovie) -> Unit,
     emptyContentModifier: Modifier = Modifier,
-    onMovieClicked: (Movie) -> Unit,
+    onMovieClicked: (Long) -> Unit,
     lazyListState: LazyListState
 ) {
     if (userMovies.isEmpty()) {
@@ -135,13 +134,13 @@ private fun MovieCard(
     modifier: Modifier = Modifier,
     userMovie: UserMovie,
     onToggleFavoriteClicked: (UserMovie) -> Unit,
-    onMovieClicked: (Movie) -> Unit
+    onMovieClicked: (Long) -> Unit
 ) {
     Card(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 8.dp, vertical = 4.dp),
-        onClick = { onMovieClicked(userMovie.movie) }
+        onClick = { onMovieClicked(userMovie.movie.id) }
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
             AsyncImage(

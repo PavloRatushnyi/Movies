@@ -2,12 +2,11 @@ package com.pavloratushnyi.movies.feature.movies
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.pavloratushnyi.movies.model.Movie
 
 const val MOVIES_DESTINATION_ROUTE = MoviesDestination.route
 
 fun NavGraphBuilder.moviesScreen(
-    onMovieClicked: (Movie) -> Unit,
+    onMovieClicked: (Long) -> Unit,
 ) {
     composable(
         route = MoviesDestination.route

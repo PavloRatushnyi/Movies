@@ -6,14 +6,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.pavloratushnyi.movies.model.Movie
 import com.pavloratushnyi.movies.model.UserMovie
 import com.pavloratushnyi.movies.shared_composables.MoviesList
 
 @Composable
 fun FavouriteMoviesScreen(
     viewModel: FavouriteMoviesViewModel = hiltViewModel(),
-    onMovieClicked: (Movie) -> Unit
+    onMovieClicked: (Long) -> Unit
 ) {
     val uiState by viewModel.uiStateFlow.collectAsStateWithLifecycle()
     FavouriteMoviesScreen(
@@ -26,7 +25,7 @@ fun FavouriteMoviesScreen(
 @Composable
 fun FavouriteMoviesScreen(
     uiState: FavouriteMoviesUiState,
-    onMovieClicked: (Movie) -> Unit,
+    onMovieClicked: (Long) -> Unit,
     onToggleFavoriteClicked: (UserMovie) -> Unit,
 ) {
     MoviesList(
