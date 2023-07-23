@@ -3,38 +3,38 @@ accompanist = "0.30.1"
 activitycompose = "1.7.2"
 coil = "2.4.0"
 compose = "1.4.3"
-composecompiler = "1.4.7"
+composecompiler = "1.4.8"
 composematerial = "1.4.3"
-composematerialthree = "1.1.0"
+composematerialthree = "1.1.1"
 corektx = "1.9.0"
-coroutines = "1.7.1"
+coroutines = "1.7.2"
 datastore = "1.0.0"
 gradleplugin = "8.0.2"
-gradleversions = "0.46.0"
-hilt = "2.46.1"
+gradleversions = "0.47.0"
+hilt = "2.47"
 junit = "5.9.3"
-kotlin = "1.8.21"
+kotlin = "1.8.22"
+ksp = "1.8.22-1.0.11"
 lifecycle = "2.6.1"
 mockito = "5.0.0"
 mockitoinline = "5.2.0"
 moshi = "1.15.0"
-navigation = "2.5.3"
+navigation = "2.6.0"
 navigationcomposehilt = "1.0.0"
 okhttp = "4.11.0"
 retrofit = "2.9.0"
-room = "2.5.1"
-turbine = "0.9.0"
-versioncatalogupdate = "0.8.0"
-ksp = "1.8.21-1.0.11"
+room = "2.5.2"
+turbine = "1.0.0"
+versioncatalogupdate = "0.8.1"
 
 [libraries]
 accompanist-pager-indicators = { module = "com.google.accompanist:accompanist-pager-indicators", version.ref = "accompanist" }
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activitycompose" }
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
-compose-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
-compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-material = { module = "androidx.compose.material:material", version.ref = "composematerial" }
 compose-material-three = { module = "androidx.compose.material3:material3", version.ref = "composematerialthree" }
+compose-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "corektx" }
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
@@ -67,9 +67,9 @@ viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version
 android-application = { id = "com.android.application", version.ref = "gradleplugin" }
 android-library = { id = "com.android.library", version.ref = "gradleplugin" }
 gradle-versions = { id = "com.github.ben-manes.versions", version.ref = "gradleversions" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "versioncatalogupdate" }
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "versioncatalogupdate" }
