@@ -19,7 +19,7 @@ tasks.register("clean", Delete::class) {
 tasks.named<DependencyUpdatesTask>("dependencyUpdates").configure {
     fun isNonStable(version: String): Boolean {
         return setOf("dev", "alpha", "beta", "rc", "m").any { qualifier ->
-            version.toLowerCase().contains(qualifier)
+            version.lowercase().contains(qualifier)
         }
     }
 
